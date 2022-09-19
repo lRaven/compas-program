@@ -6,6 +6,8 @@
 			<the-banner />
 			<the-steps />
 		</main>
+
+		<arrow-anchor-link></arrow-anchor-link>
 	</div>
 </template>
 
@@ -15,6 +17,8 @@
 	import TheBanner from "@/components/TheBanner.vue";
 	import TheSteps from "@/components/TheSteps.vue";
 
+	import ArrowAnchorLink from "@/components/ArrowAnchorLink.vue";
+
 	export default {
 		name: "PageHome",
 		components: {
@@ -22,6 +26,8 @@
 
 			TheBanner,
 			TheSteps,
+
+			ArrowAnchorLink,
 		},
 	};
 </script>
@@ -29,7 +35,6 @@
 <style lang="scss" scoped>
 	.page-home {
 		&__main {
-			height: 200vh;
 		}
 	}
 </style>
