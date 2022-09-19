@@ -1,0 +1,19 @@
+//* colors
+$black: #1d1d1d;
+$dark: #383838;
+$cool-gray: #475265;
+$gray: #6a6a6a;
+$light-gray: #f2f2f2;
+$bg: #fcfaf8;
+$white: #fff;
+
+$accent: #14cf93;
+$accent-dark: #356570;
+$skin: #f5d6b1;
+
+//* scrollbar
+$scrollbarBg: $bg;
+$scrollbarThumb: $accent;
+$scrollbarWidth: 1rem;
+$scrollbarBorder: 0.2rem solid $scrollbarBg;
+$scrollbarBorderRadius: calc($scrollbarWidth / 2);
