@@ -1,40 +1,42 @@
 <template>
-	<section class="the-banner">
-		<h2 class="the-banner__title">
-			<span class="the-banner__title_accent"> Эксклюзивный </span>
-			сайт с<br />
-			проработанным функционалом<br />
-			и дизайном под ваш запрос
-		</h2>
+	<section class="the-banner" id="banner">
+		<div class="the-banner__container center">
+			<h2 class="the-banner__title">
+				<span class="the-banner__title_accent"> Эксклюзивный </span>
+				сайт с<br />
+				проработанным функционалом<br />
+				и дизайном под ваш запрос
+			</h2>
 
-		<div class="the-banner__steps">
-			<div class="the-banner__step">
-				<span class="the-banner__step-counter">0.1</span>
-				<p class="the-banner__step-text">
-					С вами работает отдельная команда<br />
-					программистов, дизайнеров, контентщиков<br />
-					которые находятся в одном офисе и быстро согласовывают
-					работу между собой.
-				</p>
-			</div>
+			<div class="the-banner__steps">
+				<div class="the-banner__step">
+					<span class="the-banner__step-counter">0.1</span>
+					<p class="the-banner__step-text">
+						С вами работает отдельная команда<br />
+						программистов, дизайнеров, контентщиков<br />
+						которые находятся в одном офисе и быстро согласовывают
+						работу между собой.
+					</p>
+				</div>
 
-			<div class="the-banner__step">
-				<span class="the-banner__step-counter">0.2</span>
-				<p class="the-banner__step-text">
-					Работа разбита на этапы, мы<br />
-					показываем, что сделано, что<br />
-					будет делаться и все это<br />
-					согласовывается с вами.
-				</p>
-			</div>
+				<div class="the-banner__step">
+					<span class="the-banner__step-counter">0.2</span>
+					<p class="the-banner__step-text">
+						Работа разбита на этапы, мы<br />
+						показываем, что сделано, что<br />
+						будет делаться и все это<br />
+						согласовывается с вами.
+					</p>
+				</div>
 
-			<div class="the-banner__step">
-				<span class="the-banner__step-counter">0.3</span>
-				<p class="the-banner__step-text">
-					В договоре согласовываем<br />
-					все сроки, поэтапная оплата и<br />
-					есть рассрочка платежей.
-				</p>
+				<div class="the-banner__step">
+					<span class="the-banner__step-counter">0.3</span>
+					<p class="the-banner__step-text">
+						В договоре согласовываем<br />
+						все сроки, поэтапная оплата и<br />
+						есть рассрочка платежей.
+					</p>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -57,7 +59,6 @@
 		flex-direction: column;
 		justify-content: flex-end;
 		&__title {
-			text-transform: uppercase;
 			margin-bottom: 6rem;
 			&_accent {
 				color: $accent;

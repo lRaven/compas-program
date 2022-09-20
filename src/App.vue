@@ -79,7 +79,7 @@
 
 	section {
 		overflow: hidden;
-		padding: 16.5rem 3.5rem;
+		padding: 16rem 3.5rem;
 		background-color: $light-gray;
 	}
 
@@ -134,11 +134,13 @@
 	}
 
 	h1 {
+		text-transform: uppercase;
 		font-size: 12.8rem;
 		font-weight: 500;
 		line-height: 1.4;
 	}
 	h2 {
+		text-transform: uppercase;
 		font-size: 6.4rem;
 		font-weight: 500;
 		line-height: 1.4;

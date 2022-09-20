@@ -1,7 +1,11 @@
 <template>
-	<header class="the-header">
+	<header class="the-header" id="header">
 		<div class="the-header__container center">
-			<router-link :to="{ name: 'home' }" class="the-header__home">
+			<router-link
+				:to="{ name: 'home' }"
+				class="the-header__home"
+				@click="scroll()"
+			>
 				<img
 					src="/img/icon/logo-dark.svg"
 					alt="logo"
@@ -75,8 +79,16 @@
 </template>
 
 <script>
+	import { scroll } from "@/js/scroll";
+
 	export default {
 		name: "TheHeader",
+		methods: {
+			// bitch() {
+			// 	document.documentElement.scrollTo(0, 0);
+			// },
+			scroll,
+		},
 	};
 </script>
 
