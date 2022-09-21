@@ -1,6 +1,6 @@
 <template>
 	<section class="the-workflow">
-		<div class="the-workflow__container">
+		<div class="the-workflow__container center">
 			<h1 class="the-workflow__title">Xод работы</h1>
 
 			<div class="the-workflow__content">
@@ -62,9 +62,10 @@
 
 				<div class="the-workflow__col the-workflow__steps">
 					<h4 class="the-workflow__steps-title">
-						Вы видите промежуточные результаты и можете вносить
-						правки, в конечном итоге вы получите, то что хотите, а
-						не кота в мешке.
+						Вы видите промежуточные результаты и<br />
+						можете вносить правки, в конечном итоге<br />
+						вы получите, то что хотите, а не кота в<br />
+						мешке.
 					</h4>
 
 					<div class="the-workflow__step">
@@ -265,7 +266,6 @@
 				text-transform: uppercase;
 				margin-bottom: 12rem;
 				grid-column: 2/4;
-				max-width: 50rem;
 			}
 		}
 		&__step {

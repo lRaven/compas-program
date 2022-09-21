@@ -7,11 +7,14 @@
 			<the-benefits />
 			<the-projects v-model="projectsSectionPosition"></the-projects>
 			<the-workflow />
+			<the-questions />
 		</main>
 
 		<arrow-anchor-link
 			:projectsSectionPosition="projectsSectionPosition"
 		></arrow-anchor-link>
+
+		<the-footer />
 	</div>
 </template>
 
@@ -22,8 +25,11 @@
 	import TheBenefits from "@/components/TheBenefits.vue";
 	import TheProjects from "@/components/TheProjects.vue";
 	import TheWorkflow from "@/components/TheWorkflow.vue";
+	import TheQuestions from "@/components/TheQuestions.vue";
 
 	import ArrowAnchorLink from "@/components/ArrowAnchorLink.vue";
+
+	import TheFooter from "@/components/TheFooter.vue";
 
 	export default {
 		name: "PageHome",
@@ -34,8 +40,11 @@
 			TheBenefits,
 			TheProjects,
 			TheWorkflow,
+			TheQuestions,
 
 			ArrowAnchorLink,
+
+			TheFooter,
 		},
 		data: () => ({
 			projectsSectionPosition: {},

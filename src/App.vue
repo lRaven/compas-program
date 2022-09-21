@@ -91,15 +91,6 @@
 		background-color: $light-gray;
 	}
 
-	header {
-		padding: 3rem 3.5rem 2.4rem 3.5rem;
-	}
-
-	footer {
-		flex: 0 0 auto;
-		padding: 12rem 3.5rem 10rem 3.5rem;
-	}
-
 	input {
 		&::-webkit-outer-spin-button,
 		&::-webkit-inner-spin-button {

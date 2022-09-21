@@ -31,10 +31,11 @@
 		justify-content: center;
 		align-items: center;
 		gap: 2rem;
-		padding: 1.4rem 2.4rem;
-		border-radius: 2.5rem;
+		padding: 3.6rem;
+		border-radius: 9rem;
 		min-width: 13.8rem;
 		width: max-content;
+		font-size: $text-xl;
 		transition: all 0.2s ease;
 		&.reverse {
 			flex-direction: row-reverse;

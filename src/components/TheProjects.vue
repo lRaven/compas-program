@@ -241,9 +241,6 @@
 
 		&__btn {
 			width: 100%;
-			font-size: $text-xl;
-			padding: 3.6rem;
-			border-radius: 9rem;
 		}
 	}
 </style>
