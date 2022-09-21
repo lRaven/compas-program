@@ -35,7 +35,6 @@
 		border-radius: 2.5rem;
 		min-width: 13.8rem;
 		width: max-content;
-		font-size: 1.5rem;
 		transition: all 0.2s ease;
 		&.reverse {
 			flex-direction: row-reverse;
@@ -63,8 +62,7 @@
 			background-color: transparent;
 			border: 0.2rem solid $middle-gray;
 			&:hover {
-				border-color: $accent;
-				color: $accent;
+				background-color: $white;
 			}
 		}
 	}

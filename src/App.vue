@@ -7,6 +7,8 @@
 </template>
 
 <script>
+	import { mapActions } from "vuex";
+
 	export default {
 		watch: {
 			$route(to) {
@@ -17,6 +19,12 @@
 				//* срабатывает при переходе по router-link
 				document.querySelector("body").classList.remove("locked");
 			},
+		},
+		methods: {
+			...mapActions(["getDocumentWidth"]),
+		},
+		mounted() {
+			this.getDocumentWidth();
 		},
 	};
 </script>
@@ -30,12 +38,12 @@
 
 	body {
 		font-family: "Inter", sans-serif;
-		font-size: 1.6rem;
+		font-size: $text-m;
 		line-height: 1.4;
 		color: $black;
 		background-color: $bg;
-		@media (max-width: 767px) {
-			font-size: 1.2rem;
+		@media (max-width: 540px) {
+			font-size: $text-s;
 		}
 
 		&.locked {
@@ -135,23 +143,23 @@
 
 	h1 {
 		text-transform: uppercase;
-		font-size: 12.8rem;
+		font-size: $text-3xl;
 		font-weight: 500;
 		line-height: 1.4;
 	}
 	h2 {
 		text-transform: uppercase;
-		font-size: 6.4rem;
+		font-size: $text-2xl;
 		font-weight: 500;
 		line-height: 1.4;
 	}
 	h3 {
-		font-size: 3.2rem;
-		font-weight: 500;
+		font-size: $text-xl;
+		font-weight: 400;
 		line-height: 1.4;
 	}
 	h4 {
-		font-size: 2rem;
+		font-size: $text-l;
 		font-weight: 400;
 		line-height: 1.4;
 	}

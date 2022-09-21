@@ -217,7 +217,7 @@
 				display: flex;
 				align-items: center;
 				gap: 2rem;
-				font-size: 2rem;
+				font-size: $text-l;
 				width: max-content;
 
 				+ .the-projects__archive-project {
@@ -241,7 +241,7 @@
 
 		&__btn {
 			width: 100%;
-			font-size: 3.2rem;
+			font-size: $text-xl;
 			padding: 3.6rem;
 			border-radius: 9rem;
 		}

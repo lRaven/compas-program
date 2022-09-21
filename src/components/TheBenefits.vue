@@ -2,8 +2,8 @@
 	<section class="the-benefits" id="steps">
 		<div class="the-benefits__container center">
 			<h2 class="the-benefits__title">
-				Для предпринимателей которые хотят выделится на рынке и получить
-				сайт с
+				Для предпринимателей которые хотят выделиться на рынке и
+				получить сайт с
 				<span class="the-benefits__title_accent">индивидуальным</span>
 				функционалом.
 			</h2>
