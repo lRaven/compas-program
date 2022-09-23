@@ -77,7 +77,7 @@ const state = () => ({
 			link: '',
 		},
 	],
-	projects_archive: [
+	projectsArchive: [
 		{ id: 1, name: 'ПРОЕКТ-0.1', link: '' },
 		{ id: 2, name: 'ПРОЕКТ-0.2', link: '' },
 		{ id: 3, name: 'ПРОЕКТ-0.3', link: '' },

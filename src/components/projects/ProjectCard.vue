@@ -108,11 +108,18 @@
 		padding: 3rem;
 		border-radius: 7rem;
 		height: 88rem;
-		width: 88rem;
+		max-width: 88rem;
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
 		overflow: hidden;
+		@media (max-width: 767px) {
+			border-radius: 2.6rem;
+			max-width: 50rem;
+			max-height: 34.7rem;
+			padding: 1.5rem;
+		}
 
 		&__bg {
 			position: absolute;
@@ -131,20 +138,33 @@
 			display: flex;
 			gap: 2rem;
 			z-index: 1;
+			@media (max-width: 767px) {
+				gap: 1rem;
+			}
 		}
 
 		&__el {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			background-color: $white;
 			border-radius: 7rem;
 			padding: 2rem 11.6rem;
 			max-width: max-content;
+			@media (max-width: 767px) {
+				padding: 0.8rem 5.5rem;
+			}
 			&_small {
-				padding: 1rem 4rem;
+				padding: 0.5rem 3rem;
 			}
 		}
 		&__arrow {
 			width: 2.5rem;
 			height: 2.5rem;
+			@media (max-width: 767px) {
+				height: 1.3rem;
+				width: 1.3rem;
+			}
 			&-wrapper {
 				padding: 3rem;
 				display: flex;
@@ -152,12 +172,20 @@
 				justify-content: center;
 				border-radius: 50%;
 				background-color: $white;
+				@media (max-width: 767px) {
+					padding: 0;
+					width: 3.8rem;
+					height: 3.8rem;
+				}
 			}
 		}
 
 		&__year,
 		&__type {
 			margin-bottom: 2rem;
+			@media (max-width: 767px) {
+				margin-bottom: 1rem;
+			}
 		}
 
 		&__hidden-block {

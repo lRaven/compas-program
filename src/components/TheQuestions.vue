@@ -56,6 +56,21 @@
 				rgba($black, 0) 40.1%
 			);
 			opacity: 0.3;
+			@media (max-width: 1440px) {
+				width: 110vw;
+				height: 110vw;
+			}
+			@media (max-width: 1023px) {
+				transform: none;
+				left: -100%;
+				width: 210vw;
+				height: 210vw;
+				background: linear-gradient(
+					180deg,
+					$white 0%,
+					rgba($black, 0) 78.52%
+				);
+			}
 		}
 		&__arrow {
 			position: absolute;
@@ -63,6 +78,9 @@
 			height: 7rem;
 			transform: rotate(90deg);
 			opacity: 0.3;
+			@media (max-width: 1023px) {
+				display: none;
+			}
 		}
 
 		&__title {
@@ -78,6 +96,13 @@
 				display: flex;
 				align-items: center;
 				gap: 9.6rem;
+				@media (max-width: 1440px) {
+					gap: 6rem;
+				}
+				@media (max-width: 1023px) {
+					flex-direction: column;
+					gap: 3rem;
+				}
 				.r-button {
 					color: $white;
 					width: 100%;

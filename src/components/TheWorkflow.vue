@@ -1,7 +1,16 @@
 <template>
 	<section class="the-workflow">
 		<div class="the-workflow__container center">
-			<h1 class="the-workflow__title">Xод работы</h1>
+			<div class="the-workflow__header">
+				<h1 class="the-workflow__title">Xод работы</h1>
+
+				<img
+					src="/img/icon/arrow-triangle.svg"
+					alt="arrow"
+					class="the-workflow__arrow"
+					v-show="documentWidth <= 1023"
+				/>
+			</div>
 
 			<div class="the-workflow__content">
 				<div class="the-workflow__col the-workflow__company">
@@ -9,6 +18,7 @@
 						src="/img/icon/arrow-triangle.svg"
 						alt="arrow"
 						class="the-workflow__arrow"
+						v-show="documentWidth > 1440"
 					/>
 
 					<p class="the-workflow__company-title">O нас</p>
@@ -23,37 +33,33 @@
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						Все сотрудники имеют профильные<br />
-						квалификации.
+						Все сотрудники имеют профильные квалификации.
 					</p>
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						Основа проектов, генеральный директор<br />
-						ведёт общение с вами. Личный менеджер<br />
-						ведёт разработку бизнес логики.
+						Основа проектов, генеральный директор ведёт общение с
+						вами. Личный менеджер ведёт разработку бизнес логики.
 					</p>
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						Команда дизайна. Отвечает за составление<br />
-						прототипов, концептов, подбора палитры<br />
-						цветов, дизайн-макеты, применение<br />
-						пользовательского опыта и контент.
+						Команда дизайна. Отвечает за составление прототипов,
+						концептов, подбора палитры цветов, дизайн-макеты,
+						применение пользовательского опыта и контент.
 					</p>
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						Команда Backend разработки. Основная<br />
-						логика сайтов (регистрации на ресурсе,<br />
-						авторизации, хранение данных, обработка<br />
-						данных) Внедрения машинного обучения.
+						Команда Backend разработки. Основная логика сайтов
+						(регистрации на ресурсе, авторизации, хранение данных,
+						обработка данных) Внедрения машинного обучения.
 					</p>
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						Команда Frontend разработки (Разработка<br />
-						визуальной части)
+						Команда Frontend разработки (Разработка визуальной
+						части)
 					</p>
 					<p class="the-workflow__company-description">
 						С заботой о вашем продукте.
@@ -61,6 +67,12 @@
 				</div>
 
 				<div class="the-workflow__col the-workflow__steps">
+					<img
+						src="/img/icon/arrow-triangle.svg"
+						alt="arrow"
+						class="the-workflow__arrow"
+						v-show="documentWidth < 1440 && documentWidth > 1023"
+					/>
 					<h4 class="the-workflow__steps-title">
 						Вы видите промежуточные результаты и<br />
 						можете вносить правки, в конечном итоге<br />
@@ -196,8 +208,13 @@
 </template>
 
 <script>
+	import { mapState } from "vuex";
+
 	export default {
 		name: "TheWorkflow",
+		computed: {
+			...mapState(["documentWidth"]),
+		},
 	};
 </script>
 
@@ -208,15 +225,25 @@
 		background-color: $bg;
 		&__container {
 		}
-
-		&__title {
+		&__header {
+			display: flex;
+			flex-direction: column;
 			margin-bottom: 16rem;
+			@media (max-width: 1440px) {
+				margin-bottom: 5rem;
+			}
+			@media (max-width: 1023px) {
+				flex-direction: column-reverse;
+			}
 		}
 
 		&__content {
 			display: flex;
 			justify-content: space-between;
 			gap: 5rem;
+			@media (max-width: 1440px) {
+				flex-direction: column-reverse;
+			}
 		}
 		&__col {
 		}
@@ -225,30 +252,78 @@
 			height: 7rem;
 			transform: rotate(90deg);
 			margin-bottom: 25rem;
+			@media (max-width: 1440px) {
+				margin: 0;
+				width: 7rem;
+			}
+			@media (max-width: 1023px) {
+				transform: rotate(180deg);
+				margin-left: auto;
+			}
 		}
 
 		&__company {
+			@media (max-width: 1440px) {
+				display: grid;
+				grid-template-columns: max-content minmax(0, 68rem);
+				grid-gap: 0 10rem;
+			}
+			@media (max-width: 1023px) {
+				grid-gap: 0 5rem;
+			}
+			@media (max-width: 767px) {
+				display: block;
+			}
+
 			&-title {
 				text-transform: uppercase;
 				margin-bottom: 1rem;
 				color: $gray;
+				@media (max-width: 1440px) {
+					grid-column: 1/3;
+				}
 			}
 			&-name {
 				margin-bottom: 3rem;
+				font-size: $text-xl;
+				@media (max-width: 1440px) {
+					grid-column: 1/3;
+				}
 			}
 			&-photo {
 				border-radius: 2rem;
-				width: 38rem;
+				width: 100%;
+				max-width: 38rem;
 				height: 25rem;
 				object-fit: cover;
 				margin-bottom: 5rem;
+				@media (max-width: 1440px) {
+					grid-row: 3/8;
+					margin-bottom: 0;
+					height: 100%;
+				}
+				@media (max-width: 767px) {
+					margin-bottom: 5rem;
+				}
 			}
+
 			&-description {
+				font-size: 1.4rem;
+				color: $gray;
+
 				&_ttu {
 					text-transform: uppercase;
+					max-width: 36rem;
+					grid-column: 2/3;
+					@media (max-width: 1440px) {
+						max-width: 68rem;
+					}
 				}
 				+ .the-workflow__company-description {
 					margin-top: 3rem;
+					@media (max-width: 1440px) {
+						margin-top: 2rem;
+					}
 				}
 			}
 		}
@@ -260,12 +335,26 @@
 			display: grid;
 			grid-template-columns: 7rem 24rem 1fr;
 			grid-gap: 0 8rem;
+			@media (max-width: 1440px) {
+				max-width: 100%;
+			}
+			@media (max-width: 1023px) {
+				display: flex;
+				flex-direction: column;
+			}
 
 			&-title {
 				color: $gray;
 				text-transform: uppercase;
 				margin-bottom: 12rem;
 				grid-column: 2/4;
+				@media (max-width: 1440px) {
+					margin-left: auto;
+				}
+				@media (max-width: 767px) {
+					margin-bottom: 7rem;
+					margin-left: 0;
+				}
 			}
 		}
 		&__step {
@@ -276,9 +365,21 @@
 			grid-column: 1/4;
 			padding: 4rem 0;
 			border-bottom: 0.1rem solid #ebebeb;
+			@media (max-width: 1440px) {
+				grid-column: 2/4;
+			}
+			@media (max-width: 1023px) {
+				grid-column: 1/4;
+				grid-gap: 0 5rem;
+			}
+			@media (max-width: 767px) {
+				grid-template-columns: 2.5rem 1fr;
+				grid-gap: 2rem 3.8rem;
+			}
 
 			&-counter {
 				color: $gray;
+				font-size: $text-m;
 			}
 			&-name {
 				position: relative;
@@ -297,6 +398,9 @@
 				&-1,
 				&-2 {
 					transition: all 0.3s ease;
+					@media (max-width: 767px) {
+						font-size: $text-m;
+					}
 					width: max-content;
 				}
 				&-1 {
@@ -311,6 +415,9 @@
 				text-transform: uppercase;
 				color: $gray;
 				font-size: $text-s;
+				@media (max-width: 767px) {
+					grid-column: 2/3;
+				}
 			}
 		}
 	}

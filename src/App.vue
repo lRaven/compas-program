@@ -89,6 +89,9 @@
 		overflow: hidden;
 		padding: 16rem 3.5rem;
 		background-color: $light-gray;
+		@media (max-width: 767px) {
+			padding: 7rem 1.5rem;
+		}
 	}
 
 	input {
@@ -137,21 +140,36 @@
 		font-size: $text-3xl;
 		font-weight: 500;
 		line-height: 1.4;
+		@media (max-width: 767px) {
+			font-size: $text-2xl;
+		}
+		@media (max-width: 389px) {
+			font-size: 5rem;
+		}
 	}
 	h2 {
 		text-transform: uppercase;
 		font-size: $text-2xl;
 		font-weight: 500;
 		line-height: 1.4;
+		@media (max-width: 767px) {
+			font-size: 4.2rem;
+		}
 	}
 	h3 {
 		font-size: $text-xl;
 		font-weight: 400;
 		line-height: 1.4;
+		@media (max-width: 767px) {
+			font-size: 1.4rem;
+		}
 	}
 	h4 {
 		font-size: $text-l;
 		font-weight: 400;
 		line-height: 1.4;
+		@media (max-width: 767px) {
+			font-size: 1.4rem;
+		}
 	}
 </style>

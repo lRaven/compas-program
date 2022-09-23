@@ -64,79 +64,127 @@
 				</svg>
 			</router-link>
 
-			<nav class="the-header__nav">
-				<div class="the-header__nav-item">
-					<p class="the-header__nav-item-header">Портфолио</p>
-					<div class="the-header__nav-item-popup">
-						<a href="#" target="_blank" class="the-header__link">
-							Telegram
-						</a>
-						<a href="#" target="_blank" class="the-header__link">
-							WhatsApp
-						</a>
-						<a
-							href="#"
-							target="_blank"
-							:to="{ name: 'home' }"
-							class="the-header__link"
-						>
-							Viber
-						</a>
-					</div>
-				</div>
+			<transition mode="out-in">
+				<nav
+					class="the-header__nav"
+					v-show="isMobileMenuOpen || documentWidth > 767"
+				>
+					<svg
+						width="15"
+						height="15"
+						viewBox="0 0 15 15"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						v-if="documentWidth <= 767"
+						class="the-header__arrow"
+					>
+						<path
+							fill-rule="evenodd"
+							clip-rule="evenodd"
+							d="M0 0L15 3.97348e-07L15 15H13.9742L13.9742 1.56812L0.891661 14.8324L0.439638 14.3866L13.6174 1.02579L6.43325e-07 1.02579L0 0Z"
+							fill="white"
+						/>
+					</svg>
 
-				<div class="the-header__nav-item">
-					<p class="the-header__nav-item-header">Соц.сети</p>
-					<div class="the-header__nav-item-popup">
-						<a href="#" target="_blank" class="the-header__link">
-							Telegram
-						</a>
-						<a href="#" target="_blank" class="the-header__link">
-							WhatsApp
-						</a>
-						<a
-							href="#"
-							target="_blank"
-							:to="{ name: 'home' }"
-							class="the-header__link"
-						>
-							Viber
-						</a>
-					</div>
-				</div>
+					<router-link
+						:to="{ name: 'home' }"
+						class="the-header__link the-header__link_tdu"
+					>
+						Портфолио
+					</router-link>
 
-				<div class="the-header__nav-item">
-					<p class="the-header__nav-item-header">Контакты</p>
-					<div class="the-header__nav-item-popup">
+					<div
+						class="the-header__nav-item"
+						v-show="documentWidth > 767"
+					>
+						<p class="the-header__nav-item-header">Соц.сети</p>
+						<div class="the-header__nav-item-popup">
+							<a
+								href="#"
+								target="_blank"
+								class="the-header__nav-item-link"
+							>
+								Telegram
+							</a>
+							<a
+								href="#"
+								target="_blank"
+								class="the-header__nav-item-link"
+							>
+								WhatsApp
+							</a>
+							<a
+								href="#"
+								target="_blank"
+								:to="{ name: 'home' }"
+								class="the-header__nav-item-link"
+							>
+								Viber
+							</a>
+						</div>
+					</div>
+
+					<router-link
+						:to="{ name: 'home' }"
+						class="the-header__link the-header__link_tdu"
+					>
+						Контакты
+					</router-link>
+
+					<template v-if="documentWidth <= 767">
 						<a href="#" target="_blank" class="the-header__link">
 							Telegram
 						</a>
 						<a href="#" target="_blank" class="the-header__link">
 							WhatsApp
 						</a>
-						<a
-							href="#"
-							target="_blank"
-							:to="{ name: 'home' }"
-							class="the-header__link"
-						>
+						<a href="#" target="_blank" class="the-header__link">
 							Viber
 						</a>
-					</div>
-				</div>
-			</nav>
+					</template>
+				</nav>
+			</transition>
+
+			<button
+				type="button"
+				class="the-header__burger"
+				:class="{ open: isMobileMenuOpen }"
+				v-show="documentWidth <= 767"
+				@click="
+					isMobileMenuOpen
+						? (isMobileMenuOpen = false)
+						: (isMobileMenuOpen = true)
+				"
+			>
+				<span class="the-header__burger-line"></span>
+				<span class="the-header__burger-line"></span>
+			</button>
 		</div>
 	</header>
 </template>
 
 <script>
 	import { scroll } from "@/js/scroll";
+	import { mapState } from "vuex";
 
 	export default {
 		name: "TheHeader",
-		data: () => ({
-			isMobileMenuOpen: false,
-		}),
+		watch: {
+			isMobileMenuOpen() {
+				this.isMobileMenuOpen
+					? document.body.classList.add("locked")
+					: document.body.classList.remove("locked");
+			},
+			documentWidth() {
+				if (this.documentWidth > 767) {
+					this.isMobileMenuOpen = false;
+				}
+			},
+		},
+		data: () => ({ isMobileMenuOpen: false }),
+		computed: {
+			...mapState(["documentWidth"]),
+		},
 		methods: {
 			scroll,
 		},
@@ -154,6 +202,10 @@
 		right: 0;
 		pointer-events: none;
 		z-index: 3;
+		@media (max-width: 767px) {
+			padding: 1.5rem;
+		}
+
 		&__container {
 			display: flex;
 			align-items: center;
@@ -162,34 +214,70 @@
 		}
 		&__home {
 			pointer-events: all;
+			@media (max-width: 1023px) {
+				z-index: 1;
+			}
 		}
 		&__logo {
 			height: 6.7rem;
+			width: max-content;
+
+			@media (max-width: 1023px) {
+				height: 3.7rem;
+			}
+
 			path {
 				transition: all 0.3s ease;
 			}
 		}
 
 		&__nav {
+			pointer-events: all;
 			display: flex;
 			align-items: center;
-			gap: 2rem;
+			gap: 10rem;
+			@media (max-width: 1023px) {
+				gap: 5rem;
+			}
+			@media (max-width: 767px) {
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				height: 100vh;
+				padding: 1.5rem;
+				z-index: 1;
+				color: $white;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				justify-content: center;
+				gap: 2rem;
+			}
 			&-item {
 				text-transform: uppercase;
 				pointer-events: all;
 				position: relative;
 				width: 25rem;
+				@media (max-width: 1023px) {
+					width: 15rem;
+				}
+
 				&:hover {
 					.the-header__nav-item-popup {
 						transform: none;
 					}
 				}
+
 				&-header {
 					cursor: pointer;
 					position: relative;
 					display: inline;
 					font-size: 1.4rem;
 					padding: 0 4rem;
+					@media (max-width: 1023px) {
+						padding: 0 2rem;
+					}
 					&::after {
 						content: "";
 						position: absolute;
@@ -198,6 +286,13 @@
 						right: 4rem;
 						height: 0.1rem;
 						background-color: $dark;
+						@media (max-width: 1023px) {
+							left: 2rem;
+							right: 2rem;
+						}
+						@media (max-width: 767px) {
+							background-color: $white;
+						}
 					}
 				}
 				&-popup {
@@ -214,6 +309,12 @@
 					padding: 8.6rem 4rem 3.5rem 4rem;
 					z-index: -1;
 					transition: transform 0.2s ease;
+					@media (max-width: 1023px) {
+						top: -1rem;
+						padding: 5rem 1.5rem 1.5rem 1.5rem;
+						gap: 1rem;
+						border-radius: 2rem;
+					}
 					&::before {
 						content: "";
 						position: absolute;
@@ -222,22 +323,115 @@
 						right: 2.5rem;
 						height: 0.1rem;
 						background-color: rgba($dark, 0.2);
+						@media (max-width: 1023px) {
+							left: 1rem;
+							right: 1rem;
+							top: 4.5rem;
+						}
 					}
 					&.open {
 						transform: none;
 					}
 				}
+				&-link {
+					color: inherit;
+					opacity: 0.5;
+					font-size: 1.4rem;
+					transition: all 0.2s ease;
+					&:hover {
+						color: $accent;
+						opacity: 1;
+					}
+				}
 			}
 		}
-
 		&__link {
+			position: relative;
+			pointer-events: all;
+			text-transform: uppercase;
 			color: inherit;
-			opacity: 0.5;
 			font-size: 1.4rem;
-			transition: all 0.2s ease;
-			&:hover {
-				color: $accent;
-				opacity: 1;
+			@media (max-width: 767px) {
+				font-size: 2.4rem;
+			}
+
+			&:first-child {
+				margin-right: 7rem;
+				@media (max-width: 1023px) {
+					margin-right: 2rem;
+				}
+			}
+			&_tdu {
+				&::after {
+					content: "";
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					right: 0;
+					height: 0.1rem;
+					background-color: $dark;
+					@media (max-width: 767px) {
+						background-color: $white;
+					}
+				}
+			}
+		}
+		&__arrow {
+			position: absolute;
+			left: calc(100% + 2rem);
+			top: 1rem;
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+
+		&__burger {
+			position: relative;
+			pointer-events: all;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 0.5rem;
+			width: 4rem;
+			height: 4rem;
+			background-color: $accent;
+			border-radius: 50%;
+			transition: all 0.3s ease;
+			&::before {
+				content: "";
+				position: absolute;
+				left: calc(-125vmax + 2rem);
+				top: calc(-125vmax + 2rem);
+				height: 250vmax;
+				width: 250vmax;
+				border-radius: 50%;
+				background-color: $accent;
+				transition: all 0.3s ease;
+				pointer-events: none;
+				transform: scale(0);
+			}
+			&.open {
+				gap: 0;
+				&::before {
+					transform: scale(1);
+				}
+				.the-header__burger-line {
+					&:first-child {
+						transform: rotate(45deg);
+					}
+					&:nth-child(2) {
+						transform: rotate(-45deg);
+					}
+				}
+			}
+
+			&-line {
+				display: block;
+				width: 2rem;
+				height: 0.1rem;
+				background-color: $white;
+				z-index: 1;
+				transition: all 0.3s ease;
 			}
 		}
 	}

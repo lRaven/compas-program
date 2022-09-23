@@ -39,7 +39,15 @@
 		position: fixed;
 		bottom: 18rem;
 		right: 20rem;
-		z-index: 2;
+		transition: all 0.3s ease;
+		@media (max-width: 1440px) {
+			right: 3rem;
+			bottom: 6rem;
+		}
+		@media (max-width: 540px) {
+			right: 1.5rem;
+		}
+
 		&__button {
 			pointer-events: all;
 			width: 11.8rem;
@@ -48,6 +56,9 @@
 			margin-bottom: 10rem;
 			background-color: #eee;
 			transition: all 0.3s ease;
+			@media (max-width: 1440px) {
+				margin-bottom: 23rem;
+			}
 			&:hover {
 				background-color: $white;
 			}
@@ -60,6 +71,11 @@
 			position: relative;
 			width: max-content;
 			margin: auto;
+			transition: all 0.3s ease;
+			font-size: 1.4rem;
+			@media (max-width: 540px) {
+				color: $accent;
+			}
 			&::after {
 				content: "";
 				position: absolute;
@@ -68,6 +84,9 @@
 				right: 0;
 				height: 0.1rem;
 				background-color: $dark;
+				@media (max-width: 540px) {
+					background-color: $accent;
+				}
 			}
 		}
 	}

@@ -1,7 +1,9 @@
 <template>
 	<div
 		class="project-card-slider"
-		:style="`left: ${xPosition}px; top: ${yPosition}px`"
+		:style="`left: ${
+			documentWidth <= 767 ? '15' : xPosition
+		}px; top: ${yPosition}px`"
 	>
 		<h4 class="project-card-slider__description">ПЕРЕЙТИ</h4>
 		<div class="project-card-slider__body">
@@ -23,6 +25,8 @@
 </template>
 
 <script>
+	import { mapState } from "vuex";
+
 	export default {
 		name: "ProjectCardSlider",
 		props: {
@@ -41,6 +45,7 @@
 			},
 		},
 		computed: {
+			...mapState(["documentWidth"]),
 			slidesLength() {
 				if (this.slides) {
 					return this.slides.length;
@@ -84,6 +89,13 @@
 		width: 70rem;
 		height: 40rem;
 		transition: all 0.1s ease;
+		@media (max-width: 767px) {
+			width: calc(100vw - 3rem);
+			// height: 30rem;
+		}
+		@media (max-width: 540px) {
+			height: 30rem;
+		}
 
 		&__description {
 			background-color: $white;

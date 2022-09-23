@@ -37,6 +37,10 @@
 		width: max-content;
 		font-size: $text-xl;
 		transition: all 0.2s ease;
+		@media (max-width: 767px) {
+			padding: 2rem;
+			font-size: $text-m;
+		}
 		&.reverse {
 			flex-direction: row-reverse;
 		}

@@ -2,9 +2,11 @@
 	<section class="the-banner" id="banner">
 		<div class="the-banner__container center">
 			<h2 class="the-banner__title">
-				<span class="the-banner__title_accent"> Эксклюзивный </span>
+				<span class="the-banner__title_accent">
+					Эксклюзив&shy;ный
+				</span>
 				сайт с<br />
-				проработанным функционалом<br />
+				проработан&shy;ным функцио&shy;налом<br />
 				и дизайном под ваш запрос
 			</h2>
 
@@ -58,8 +60,15 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-end;
+		@media (max-width: 767px) {
+			padding-top: 25rem;
+			min-height: inherit;
+		}
 		&__title {
 			margin-bottom: 6rem;
+			@media (max-width: 767px) {
+				margin-bottom: 5rem;
+			}
 			&_accent {
 				color: $accent;
 			}
@@ -68,12 +77,31 @@
 		&__steps {
 			display: flex;
 			gap: 15rem;
+			@media (max-width: 1440px) {
+				gap: 5rem;
+				flex-wrap: wrap;
+			}
+			@media (max-width: 1023px) {
+				flex-direction: column;
+			}
 		}
 		&__step {
+			position: relative;
 			max-width: 45rem;
 			color: $gray;
+			@media (max-width: 1023px) {
+				&::after {
+					content: "";
+					position: absolute;
+					left: 0;
+					bottom: -1.5rem;
+					background-color: $accent;
+					height: 0.6rem;
+					width: 0.6rem;
+					border-radius: 50%;
+				}
+			}
 			&:nth-child(1) {
-				position: relative;
 				&::after {
 					content: "";
 					position: absolute;

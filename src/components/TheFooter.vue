@@ -99,6 +99,9 @@
 		left: 0;
 		right: 0;
 		padding: 0 3.5rem 7.5rem 3.5rem;
+		@media (max-width: 767px) {
+			padding: 0 1.5rem 5rem 1.5rem;
+		}
 
 		&__container {
 			display: flex;
@@ -109,12 +112,22 @@
 		}
 		&__logo {
 			height: 6.7rem;
+			width: max-content;
+			@media (max-width: 767px) {
+				height: 3.7rem;
+			}
 		}
 
 		&__nav {
 			display: flex;
 			align-items: center;
 			gap: 22rem;
+			@media (max-width: 1023px) {
+				gap: 5rem;
+			}
+			@media (max-width: 540px) {
+				display: none;
+			}
 		}
 		&__link {
 			text-transform: uppercase;

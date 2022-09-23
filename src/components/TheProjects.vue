@@ -25,59 +25,59 @@
 						:yPosition="sliderCoordinates.y"
 					></project-card-slider>
 				</transition>
-			</div>
 
-			<div class="the-projects__archive">
-				<p class="the-projects__archive-title">2022 Архив</p>
-				<ul class="the-projects__archive-list">
-					<li
-						class="the-projects__archive-project"
-						v-for="project in projects_archive"
-						:key="project.id"
-					>
-						<a
-							href="#"
-							target="_blank"
-							class="the-projects__archive-link"
+				<div class="the-projects__archive">
+					<p class="the-projects__archive-title">2022 Архив</p>
+					<ul class="the-projects__archive-list">
+						<li
+							class="the-projects__archive-project"
+							v-for="project in projectsArchive"
+							:key="project.id"
 						>
-							{{ project.name }}
-						</a>
+							<a
+								href="#"
+								target="_blank"
+								class="the-projects__archive-link"
+							>
+								{{ project.name }}
+							</a>
 
-						<svg
-							width="14"
-							height="14"
-							viewBox="0 0 14 14"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-							v-if="project.id === 1"
-						>
-							<path
-								fill-rule="evenodd"
-								clip-rule="evenodd"
-								d="M1.225 1L1.225 1.32638L12.6796 1.32638L12.6796 12.9941L13 12.9941L13 1L1.225 1Z"
-								fill="#14CF93"
-							/>
-							<path
-								fill-rule="evenodd"
-								clip-rule="evenodd"
-								d="M1.225 13L12.6796 1.6L12.4 1.32638L1 12.7676L1.225 13Z"
-								fill="#14CF93"
-							/>
-							<path
-								fill-rule="evenodd"
-								clip-rule="evenodd"
-								d="M1.225 1L1.225 1.32638L12.6796 1.32638L12.6796 12.9941L13 12.9941L13 1L1.225 1Z"
-								stroke="#14CF93"
-							/>
-							<path
-								fill-rule="evenodd"
-								clip-rule="evenodd"
-								d="M1.225 13L12.6796 1.6L12.4 1.32638L1 12.7676L1.225 13Z"
-								stroke="#14CF93"
-							/>
-						</svg>
-					</li>
-				</ul>
+							<svg
+								width="14"
+								height="14"
+								viewBox="0 0 14 14"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+								v-if="project.id === 1"
+							>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M1.225 1L1.225 1.32638L12.6796 1.32638L12.6796 12.9941L13 12.9941L13 1L1.225 1Z"
+									fill="#14CF93"
+								/>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M1.225 13L12.6796 1.6L12.4 1.32638L1 12.7676L1.225 13Z"
+									fill="#14CF93"
+								/>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M1.225 1L1.225 1.32638L12.6796 1.32638L12.6796 12.9941L13 12.9941L13 1L1.225 1Z"
+									stroke="#14CF93"
+								/>
+								<path
+									fill-rule="evenodd"
+									clip-rule="evenodd"
+									d="M1.225 13L12.6796 1.6L12.4 1.32638L1 12.7676L1.225 13Z"
+									stroke="#14CF93"
+								/>
+							</svg>
+						</li>
+					</ul>
+				</div>
 			</div>
 
 			<r-button
@@ -118,7 +118,7 @@
 		computed: {
 			...mapState({
 				projects: (state) => state.projects.projects,
-				projects_archive: (state) => state.projects.projects_archive,
+				projectsArchive: (state) => state.projects.projectsArchive,
 			}),
 		},
 		methods: {
@@ -163,11 +163,24 @@
 			margin-left: auto;
 			transform: rotate(180deg) translateX(22.5rem);
 			margin-bottom: 8rem;
+			@media (max-width: 1600px) {
+				transform: rotate(180deg);
+			}
+			@media (max-width: 1023px) {
+				margin-bottom: 6rem;
+			}
 		}
 		&__title {
 			text-align: center;
 			transform: translateX(15rem);
 			margin-bottom: 16rem;
+			@media (max-width: 1023px) {
+				transform: none;
+				text-align: left;
+			}
+			@media (max-width: 767px) {
+				margin-bottom: 3rem;
+			}
 		}
 		&__container {
 			display: flex;
@@ -181,23 +194,54 @@
 			justify-content: space-between;
 			gap: 16rem;
 			margin-bottom: 25rem;
+			@media (max-width: 1023px) {
+				margin-bottom: 7rem;
+			}
+			@media (max-width: 767px) {
+				gap: 7rem;
+				justify-content: flex-start;
+				flex-direction: column;
+				align-items: flex-start;
+			}
 
 			.project-card {
 				&:nth-child(2) {
 					height: 70rem;
 					width: 70rem;
+					margin-left: auto;
+					@media (max-width: 767px) {
+						margin-left: 0;
+						width: 100%;
+					}
 				}
 				&:nth-child(3) {
-					width: 123rem;
+					max-width: 123rem;
 					margin: auto;
+					@media (max-width: 767px) {
+						max-width: 50rem;
+					}
+					@media (max-width: 767px) {
+						margin-left: 0;
+					}
 				}
 				&:nth-child(4) {
 					height: 60rem;
 					width: 60rem;
 					transform: translateY(50%);
+					@media (max-width: 1720px) {
+						order: 2;
+						transform: none;
+						width: 100%;
+					}
 				}
 				&:nth-child(5) {
-					margin-right: auto;
+					margin-left: auto;
+					@media (max-width: 1720px) {
+						order: 1;
+					}
+					@media (max-width: 767px) {
+						margin-left: 0;
+					}
 				}
 			}
 		}
@@ -205,6 +249,14 @@
 		&__archive {
 			margin: 0 25rem 16rem auto;
 			width: max-content;
+			order: 3;
+			@media (max-width: 1300px) {
+				margin-right: 0;
+			}
+			@media (max-width: 767px) {
+				margin: 0;
+				margin-left: auto;
+			}
 			&-title {
 				text-transform: uppercase;
 				margin-bottom: 3rem;
