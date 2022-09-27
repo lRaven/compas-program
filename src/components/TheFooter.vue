@@ -1,5 +1,5 @@
 <template>
-	<footer class="the-footer">
+	<footer class="the-footer" id="footer">
 		<div class="the-footer__container center">
 			<router-link
 				:to="{ name: 'home' }"
@@ -65,14 +65,15 @@
 			</router-link>
 
 			<div class="the-footer__nav">
-				<router-link :to="{ name: 'home' }" class="the-footer__link">
-					Порфолио
-				</router-link>
+				<a
+					href="https://compas-pro.ru/portfolio"
+					target="_blank"
+					class="the-footer__link"
+				>
+					Портфолио
+				</a>
 				<router-link :to="{ name: 'home' }" class="the-footer__link">
 					Соц.сети
-				</router-link>
-				<router-link :to="{ name: 'home' }" class="the-footer__link">
-					Контакты
 				</router-link>
 			</div>
 		</div>

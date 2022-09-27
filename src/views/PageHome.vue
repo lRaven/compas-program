@@ -5,16 +5,20 @@
 		<main class="page-home__main main">
 			<the-banner />
 			<the-benefits />
-			<the-projects v-model="projectsSectionPosition"></the-projects>
+			<the-projects @openPopup="openPopup"></the-projects>
 			<the-workflow />
-			<the-questions />
+			<the-questions @openPopup="openPopup"></the-questions>
 		</main>
 
-		<arrow-anchor-link
-			:projectsSectionPosition="projectsSectionPosition"
-		></arrow-anchor-link>
-
 		<the-footer />
+
+		<transition mode="out-in" name="fade">
+			<quiz-popup
+				v-if="isPopupOpen"
+				:isPopupOpen="isPopupOpen"
+				@closePopup="closePopup"
+			></quiz-popup>
+		</transition>
 	</div>
 </template>
 
@@ -27,9 +31,9 @@
 	import TheWorkflow from "@/components/TheWorkflow.vue";
 	import TheQuestions from "@/components/TheQuestions.vue";
 
-	import ArrowAnchorLink from "@/components/ArrowAnchorLink.vue";
-
 	import TheFooter from "@/components/TheFooter.vue";
+
+	import QuizPopup from "@/components/quiz/quizPopup.vue";
 
 	export default {
 		name: "PageHome",
@@ -42,14 +46,21 @@
 			TheWorkflow,
 			TheQuestions,
 
-			ArrowAnchorLink,
-
 			TheFooter,
+
+			QuizPopup,
 		},
-		data: () => ({
-			projectsSectionPosition: {},
-		}),
-		methods: {},
+		data: () => ({ isPopupOpen: false }),
+		methods: {
+			openPopup() {
+				document.querySelector("body").classList.add("locked");
+				this.isPopupOpen = true;
+			},
+			closePopup() {
+				document.querySelector("body").classList.remove("locked");
+				this.isPopupOpen = false;
+			},
+		},
 	};
 </script>
 

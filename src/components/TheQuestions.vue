@@ -1,5 +1,5 @@
 <template>
-	<section class="the-questions">
+	<section class="the-questions" id="questions">
 		<div class="the-questions__container center">
 			<div class="the-questions__row">
 				<span class="the-questions__circle"></span>
@@ -20,16 +20,24 @@
 				<r-button
 					color="bordered"
 					text="Расчитать стоимость"
+					@click="this.$emit('openPopup')"
 				></r-button>
-				<r-button color="bordered" text="Задать вопрос"></r-button>
+				<r-button
+					color="bordered"
+					text="Задать вопрос"
+					@click="openLink('https://telegram.im/@compass_pro')"
+				></r-button>
 			</div>
 		</div>
 	</section>
 </template>
 
 <script>
+	import { openLink } from "@/js/openLink";
+
 	export default {
 		name: "TheQuestions",
+		methods: { openLink },
 	};
 </script>
 

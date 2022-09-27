@@ -86,12 +86,13 @@
 						/>
 					</svg>
 
-					<router-link
-						:to="{ name: 'home' }"
+					<a
+						href="https://compas-pro.ru/portfolio"
+						target="_blank"
 						class="the-header__link the-header__link_tdu"
 					>
 						Портфолио
-					</router-link>
+					</a>
 
 					<div
 						class="the-header__nav-item"
@@ -100,21 +101,21 @@
 						<p class="the-header__nav-item-header">Соц.сети</p>
 						<div class="the-header__nav-item-popup">
 							<a
-								href="#"
+								href="https://telegram.im/@compass_pro"
 								target="_blank"
 								class="the-header__nav-item-link"
 							>
 								Telegram
 							</a>
 							<a
-								href="#"
+								href="https://wa.me/79375596195"
 								target="_blank"
 								class="the-header__nav-item-link"
 							>
 								WhatsApp
 							</a>
 							<a
-								href="#"
+								href="viber://chat?number=%2B79375596195"
 								target="_blank"
 								:to="{ name: 'home' }"
 								class="the-header__nav-item-link"
@@ -127,6 +128,7 @@
 					<router-link
 						:to="{ name: 'home' }"
 						class="the-header__link the-header__link_tdu"
+						@click="scroll('#questions')"
 					>
 						Контакты
 					</router-link>

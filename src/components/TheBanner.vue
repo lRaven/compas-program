@@ -39,14 +39,21 @@
 						есть рассрочка платежей.
 					</p>
 				</div>
+
+				<arrow-anchor-link></arrow-anchor-link>
 			</div>
 		</div>
 	</section>
 </template>
 
 <script>
+	import ArrowAnchorLink from "@/components/ArrowAnchorLink.vue";
+
 	export default {
 		name: "TheBanner",
+		components: {
+			ArrowAnchorLink,
+		},
 	};
 </script>
 
@@ -54,6 +61,7 @@
 	@import "@/assets/scss/variables";
 
 	.the-banner {
+		position: relative;
 		min-height: 100vh;
 		background-color: $bg;
 		padding-bottom: 9.5rem;

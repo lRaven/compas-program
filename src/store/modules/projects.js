@@ -3,8 +3,8 @@ const state = () => ({
 		{
 			id: 1,
 			image: "/img/projects/project-1.jpg",
-			name: "Название",
-			type: "UiUx/Упаковка",
+			name: "Интернет-магазин «Колоток»",
+			type: "Интернет-магазин",
 			year: 2022,
 			slides: [
 				{ id: 1, image: "/img/projects/project-1.jpg" },
@@ -18,8 +18,8 @@ const state = () => ({
 		{
 			id: 2,
 			image: "/img/projects/project-2.jpg",
-			name: "Название",
-			type: "UiUx/Упаковка",
+			name: "Сайт GooRu",
+			type: "Парсинг сервис",
 			year: 2022,
 			slides: [
 				{ id: 1, image: "/img/projects/project-2.jpg" },
@@ -33,8 +33,8 @@ const state = () => ({
 		{
 			id: 3,
 			image: "/img/projects/project-3.jpg",
-			name: "Название",
-			type: "UiUx/Упаковка",
+			name: "ЖК Академический",
+			type: "Лендинг",
 			year: 2022,
 			slides: [
 				{ id: 1, image: "/img/projects/project-3-slide-1.jpg" },
@@ -49,8 +49,8 @@ const state = () => ({
 		{
 			id: 4,
 			image: "/img/projects/project-4.jpg",
-			name: "Название",
-			type: "UiUx/Упаковка",
+			name: "Квиз GooRU",
+			type: "Квиз",
 			year: 2022,
 			slides: [
 				{ id: 1, image: "/img/projects/project-4.jpg" },
@@ -64,8 +64,8 @@ const state = () => ({
 		{
 			id: 5,
 			image: "/img/projects/project-5.jpg",
-			name: "Название",
-			type: "UiUx/Упаковка",
+			name: "3DOM",
+			type: "Агрегатор недвижимости",
 			year: 2022,
 			slides: [
 				{ id: 1, image: "/img/projects/project-5.jpg" },

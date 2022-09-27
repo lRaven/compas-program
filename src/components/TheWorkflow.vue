@@ -1,5 +1,5 @@
 <template>
-	<section class="the-workflow">
+	<section class="the-workflow" id="workflow">
 		<div class="the-workflow__container center">
 			<div class="the-workflow__header">
 				<h1 class="the-workflow__title">Xод работы</h1>

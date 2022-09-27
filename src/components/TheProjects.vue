@@ -19,7 +19,10 @@
 
 				<transition mode="out-in" name="fade">
 					<project-card-slider
-						v-if="Object.keys(selectedProject).length > 0"
+						v-if="
+							Object.keys(selectedProject).length > 0 &&
+							documentWidth > 767
+						"
 						:slides="selectedProject.slides"
 						:xPosition="sliderCoordinates.x"
 						:yPosition="sliderCoordinates.y"
@@ -84,6 +87,7 @@
 				color="bordered"
 				text="Получить смету"
 				class="the-projects__btn"
+				@click="this.$emit('openPopup')"
 			></r-button>
 		</div>
 	</section>
@@ -101,14 +105,6 @@
 			ProjectCard,
 			ProjectCardSlider,
 		},
-		watch: {
-			yPosition: {
-				handler() {
-					this.$emit("update:modelValue", this.yPosition);
-				},
-				deep: true,
-			},
-		},
 		data: () => ({
 			selectedProject: {},
 			sliderCoordinates: {},
@@ -119,35 +115,8 @@
 			...mapState({
 				projects: (state) => state.projects.projects,
 				projectsArchive: (state) => state.projects.projectsArchive,
+				documentWidth: (state) => state.documentWidth,
 			}),
-		},
-		methods: {
-			getSectionPositionY() {
-				this.yPosition = {
-					relative: this.$refs.section.getBoundingClientRect().y,
-					absolute: this.$refs.section.offsetTop,
-				};
-			},
-
-			trackPageScrolling(setListener) {
-				if (setListener) {
-					document.addEventListener(
-						"scroll",
-						this.getSectionPositionY
-					);
-				} else {
-					document.removeEventListener(
-						"scroll",
-						this.getSectionPositionY
-					);
-				}
-			},
-		},
-		mounted() {
-			this.trackPageScrolling(true);
-		},
-		beforeUnmount() {
-			this.trackPageScrolling(false);
 		},
 	};
 </script>

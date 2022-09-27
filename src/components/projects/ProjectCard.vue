@@ -4,6 +4,7 @@
 		@mouseenter="onHoverCard"
 		@mouseleave="onLeaveCard"
 		@mousemove="onMouseMove"
+		@click="openLink('https://compas-pro.ru/portfolio')"
 	>
 		<img
 			:src="project.image"
@@ -61,6 +62,8 @@
 </template>
 
 <script>
+	import { openLink } from "@/js/openLink";
+
 	export default {
 		name: "ProjectCard",
 		props: {
@@ -78,6 +81,8 @@
 			},
 		}),
 		methods: {
+			openLink,
+
 			onHoverCard() {
 				this.isCardHover = true;
 				this.$emit("update:modelValue", this.project);
@@ -154,19 +159,25 @@
 			@media (max-width: 767px) {
 				padding: 0.8rem 5.5rem;
 			}
+			@media (max-width: 540px) {
+				padding: 0.8rem 2rem;
+			}
 			&_small {
 				padding: 0.5rem 3rem;
 			}
 		}
 		&__arrow {
 			width: 2.5rem;
+			min-width: 2.5rem;
 			height: 2.5rem;
 			@media (max-width: 767px) {
 				height: 1.3rem;
 				width: 1.3rem;
+				min-width: 1.3rem;
 			}
 			&-wrapper {
 				padding: 3rem;
+				height: max-content;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -175,6 +186,7 @@
 				@media (max-width: 767px) {
 					padding: 0;
 					width: 3.8rem;
+					min-width: 3.8rem;
 					height: 3.8rem;
 				}
 			}

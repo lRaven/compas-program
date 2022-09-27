@@ -3,13 +3,14 @@
 		<button
 			type="button"
 			class="arrow-anchor-link__button"
-			:class="{ reversed: projectsSectionPosition.relative < 0 }"
-			@click="scroll('#projects')"
+			@click="scroll('#workflow')"
 		>
 			<img src="/img/icon/arrow.svg" alt="arrow" />
 		</button>
 
-		<p class="arrow-anchor-link__description">Подробно</p>
+		<p class="arrow-anchor-link__description" @click="scroll('#workflow')">
+			Подробно
+		</p>
 	</div>
 </template>
 
@@ -18,15 +19,7 @@
 
 	export default {
 		name: "ArrowAnchorLink",
-		props: {
-			projectsSectionPosition: {
-				value: Object,
-				required: true,
-			},
-		},
-		methods: {
-			scroll,
-		},
+		methods: { scroll },
 	};
 </script>
 
@@ -36,8 +29,8 @@
 	.arrow-anchor-link {
 		pointer-events: none;
 		user-select: none;
-		position: fixed;
-		bottom: 18rem;
+		position: absolute;
+		bottom: 17rem;
 		right: 20rem;
 		transition: all 0.3s ease;
 		@media (max-width: 1440px) {
@@ -67,6 +60,7 @@
 			}
 		}
 		&__description {
+			pointer-events: all;
 			text-transform: uppercase;
 			position: relative;
 			width: max-content;
