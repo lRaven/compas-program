@@ -9,10 +9,13 @@ $bg: #fcfaf8;
 $white: #fff;
 
 $accent: #14cf93;
+$accent-pale: #bde0c5;
 $accent-dark: #253b39;
 $skin: #f5d6b1;
 $red: #fa6666;
 $yellow: #f3f636;
+$yellow-pale: #d9ed9f;
+$purple-pale: #9fb0ed;
 
 //* scrollbar
 $scrollbarBg: $bg;
@@ -22,7 +25,6 @@ $scrollbarBorder: 0.2rem solid $scrollbarBg;
 $scrollbarBorderRadius: calc($scrollbarWidth / 2);
 
 //* text
-
 $text-3xl: 12.8rem;
 $text-2xl: 6.4rem;
 $text-xl: 3.2rem;

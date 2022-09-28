@@ -50,7 +50,7 @@
 
 			QuizPopup,
 		},
-		data: () => ({ isPopupOpen: false }),
+		data: () => ({ isPopupOpen: true }),
 		methods: {
 			openPopup() {
 				document.querySelector("body").classList.add("locked");

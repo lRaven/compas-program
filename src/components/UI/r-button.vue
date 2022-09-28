@@ -1,5 +1,5 @@
 <template>
-	<button class="r-button" :class="color">
+	<button class="r-button" :class="[color, size]">
 		{{ text }}
 		<slot name="icon"></slot>
 	</button>
@@ -11,11 +11,15 @@
 		props: {
 			color: {
 				value: String,
-				default: "blue",
+				default: "green",
 			},
 			text: {
 				value: String,
 				default: "button",
+			},
+			size: {
+				value: String,
+				default: "default",
 			},
 		},
 	};
@@ -31,18 +35,20 @@
 		justify-content: center;
 		align-items: center;
 		gap: 2rem;
-		padding: 3.6rem;
+		font-size: $text-l;
+
+		padding: 2rem 3rem;
 		border-radius: 9rem;
 		min-width: 13.8rem;
 		width: max-content;
-		font-size: $text-xl;
 		transition: all 0.2s ease;
-		@media (max-width: 767px) {
-			padding: 2rem;
-			font-size: $text-m;
-		}
-		&.reverse {
-			flex-direction: row-reverse;
+		&.big {
+			font-size: $text-xl;
+			padding: 3.6rem;
+			@media (max-width: 767px) {
+				padding: 2rem;
+				font-size: $text-m;
+			}
 		}
 
 		&:active {
@@ -69,6 +75,13 @@
 			&:hover {
 				background-color: $white;
 			}
+		}
+		&.gray {
+			background-color: #dfe3e3;
+		}
+		&.green {
+			background-color: #bde0c5;
+			background-color: $accent-pale;
 		}
 	}
 </style>

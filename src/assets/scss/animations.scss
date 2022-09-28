@@ -13,7 +13,7 @@
 //* появление/скрытие "скольжение влево"
 .fade-left-enter-active,
 .fade-left-leave-active {
-	transition: all 0.35s ease;
+	transition: all 0.2s ease;
 }
 
 .fade-left-enter-from,
@@ -22,10 +22,10 @@
 	transform: translateX(-5rem);
 }
 
-//* появление/скрытие "скольжение влево"
+//* появление/скрытие
 .fade-enter-active,
 .fade-leave-active {
-	transition: all 0.35s ease;
+	transition: all 0.3s ease;
 }
 
 .fade-enter-from,

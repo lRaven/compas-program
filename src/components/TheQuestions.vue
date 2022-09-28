@@ -18,11 +18,13 @@
 
 			<div class="the-questions__row">
 				<r-button
+					size="big"
 					color="bordered"
 					text="Расчитать стоимость"
 					@click="this.$emit('openPopup')"
 				></r-button>
 				<r-button
+					size="big"
 					color="bordered"
 					text="Задать вопрос"
 					@click="openLink('https://telegram.im/@compass_pro')"

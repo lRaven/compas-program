@@ -85,6 +85,7 @@
 
 			<r-button
 				color="bordered"
+				size="big"
 				text="Получить смету"
 				class="the-projects__btn"
 				@click="this.$emit('openPopup')"
