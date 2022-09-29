@@ -36,7 +36,6 @@
 		align-items: center;
 		gap: 2rem;
 		font-size: $text-l;
-
 		padding: 2rem 3rem;
 		border-radius: 9rem;
 		min-width: 13.8rem;
@@ -57,13 +56,8 @@
 		}
 		&:disabled {
 			cursor: default;
-			color: $gray !important;
-			background-color: $gray !important;
-			border-color: $gray;
-			&:hover {
-				background-color: $gray;
-				border-color: $gray;
-			}
+			background-color: #dfe3e3 !important;
+			border-color: #dfe3e3;
 			&:active {
 				transform: none;
 			}
@@ -75,12 +69,17 @@
 			&:hover {
 				background-color: $white;
 			}
+			&:disabled {
+				border-color: #dfe3e3;
+			}
+		}
+		&.black {
+			background-color: $black;
 		}
 		&.gray {
 			background-color: #dfe3e3;
 		}
 		&.green {
-			background-color: #bde0c5;
 			background-color: $accent-pale;
 		}
 	}

@@ -1,13 +1,11 @@
 <template>
 	<label class="text-checkbox">
 		<input
-			type="checkbox"
+			type="radio"
+			:name="radioGroup"
 			class="text-checkbox__real"
-			v-model="isChecked"
-			@change.stop="
-				this.$emit('update:modelValue', selectedValue);
-				this.$emit('change', selectedValue, $event.target.checked);
-			"
+			:value="value"
+			@change.stop="this.$emit('update:modelValue', value)"
 		/>
 
 		<div
@@ -29,18 +27,25 @@
 		name: "TextCheckbox",
 		props: {
 			selectedValue: [String, Number],
-			types: Array,
+			value: [String, Number],
 			color: {
 				value: String,
 				default: "#1d1d1d",
 			},
 			text: {
 				value: [String, Number],
-				default: "checkbox",
+				default: "radio",
+			},
+			radioGroup: {
+				value: String,
+				default: "radio",
 			},
 		},
-
-		data: () => ({ isChecked: false }),
+		computed: {
+			isChecked() {
+				return this.value === this.selectedValue;
+			},
+		},
 	};
 </script>
 

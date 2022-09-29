@@ -5,6 +5,9 @@ import router from '@/router'
 
 import components from '@/components/UI'
 
+import Toast, { POSITION } from "vue-toastification"
+import "vue-toastification/dist/index.css"
+
 const app = createApp(App)
 
 for (const key in components) {
@@ -15,5 +18,11 @@ for (const key in components) {
 
 app.use(router)
 app.use(store)
+app.use(Toast,
+	{
+		position: POSITION.BOTTOM_RIGHT,
+		newestOnTop: false,
+	}
+)
 
 app.mount('#app')

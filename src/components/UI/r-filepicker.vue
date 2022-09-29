@@ -1,16 +1,22 @@
 <template>
 	<label class="r-filepicker">
-		<input type="file" class="r-filepicker__real" />
-		<div class="r-filepicker__fake">{{ description }}</div>
+		<input
+			type="file"
+			class="r-filepicker__real"
+			@change="
+				file = $event.target.files.item(0).name;
+				this.$emit('update:modelValue', $event.target.files.item(0));
+			"
+		/>
+		<div class="r-filepicker__fake">{{ file || description }}</div>
 	</label>
 </template>
 
 <script>
 	export default {
 		name: "rFilepicker",
-		props: {
-			description: String,
-		},
+		props: { description: String },
+		data: () => ({ file: null }),
 	};
 </script>
 
@@ -20,6 +26,8 @@
 			display: none;
 		}
 		&__fake {
+			user-select: none;
+			cursor: pointer;
 			background-color: #dfe3e3;
 			width: 100%;
 			padding: 2rem 3rem;

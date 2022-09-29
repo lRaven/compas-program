@@ -24,12 +24,20 @@
 		padding: 2rem 3rem;
 		background-color: $white;
 		border-radius: 1rem;
+		border: 0.2rem solid $white;
 		color: $black;
 		font-size: 2.4rem;
 		width: 100%;
 		resize: none;
+		transition: all 0.3s ease;
 		&::placeholder {
 			color: #bcbcbc;
+		}
+		&:hover {
+			border-color: #bcbcbc;
+		}
+		&:focus {
+			border-color: $accent-pale;
 		}
 	}
 </style>
