@@ -74,7 +74,8 @@
 			}
 		}
 		&.black {
-			background-color: $black;
+			background-color: $dark;
+			color: $white;
 		}
 		&.gray {
 			background-color: #dfe3e3;

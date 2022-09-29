@@ -4,17 +4,19 @@
 			type="radio"
 			:name="radioGroup"
 			class="text-checkbox__real"
+			:checked="isChecked"
 			:value="value"
 			@change.stop="this.$emit('update:modelValue', value)"
 		/>
 
 		<div
 			class="text-checkbox__fake"
-			:style="`background-color: ${isChecked ? color : '#DFE3E3'}`"
-			@mouseenter="$event.target.style = 'background-color:' + color"
+			:style="isChecked ? checkedStyles : uncheckedStyles"
+			@mouseenter="$event.target.style = checkedStyles"
 			@mouseleave="
-				if (!isChecked)
-					$event.target.style = 'background-color: #DFE3E3';
+				if (!isChecked) {
+					$event.target.style = uncheckedStyles;
+				}
 			"
 		>
 			{{ text }}
@@ -28,10 +30,6 @@
 		props: {
 			selectedValue: [String, Number],
 			value: [String, Number],
-			color: {
-				value: String,
-				default: "#1d1d1d",
-			},
 			text: {
 				value: [String, Number],
 				default: "radio",
@@ -40,10 +38,42 @@
 				value: String,
 				default: "radio",
 			},
+
+			//* style
+			designOptions: {
+				value: Object,
+				default: {
+					accentColor: "#1d1d1d",
+					defaultColor: "transparent",
+					isHasBorder: false,
+				},
+			},
 		},
 		computed: {
 			isChecked() {
 				return this.value === this.selectedValue;
+			},
+
+			checkedStyles() {
+				const bg = `background-color: ${this.designOptions.accentColor};`;
+				const border = `border-color: ${this.designOptions.accentColor};`;
+				const textColor = `color: #fff`;
+
+				if (this.designOptions.isHasBorder) {
+					return bg + border + textColor;
+				} else {
+					return bg;
+				}
+			},
+			uncheckedStyles() {
+				const bg = `background-color: ${this.designOptions.defaultColor};`;
+				const border = `border-color: ${this.designOptions.accentColor};`;
+
+				if (this.designOptions.isHasBorder) {
+					return bg + border;
+				} else {
+					return bg;
+				}
 			},
 		},
 	};
@@ -61,6 +91,7 @@
 			border-radius: 7rem;
 			font-size: 2.4rem;
 			transition: all 0.3s ease;
+			border: 0.2rem solid transparent;
 		}
 	}
 </style>

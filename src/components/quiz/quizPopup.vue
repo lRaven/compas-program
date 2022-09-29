@@ -82,7 +82,11 @@
 								<text-radio
 									v-for="(type, index) in quizData.prices"
 									:key="type.id"
-									:color="type.color"
+									:designOptions="{
+										accentColor: type.color,
+										defaultColor: '#DFE3E3',
+										isHasBorder: false,
+									}"
 									:text="type.description"
 									:selectedValue="quiz.price"
 									:value="index + 1"
@@ -101,7 +105,11 @@
 								<text-radio
 									v-for="(type, index) in quizData.deadlines"
 									:key="type.id"
-									:color="type.color"
+									:designOptions="{
+										accentColor: type.color,
+										defaultColor: '#DFE3E3',
+										isHasBorder: false,
+									}"
 									:text="type.description"
 									:selectedValue="quiz.deadline"
 									:value="index + 1"

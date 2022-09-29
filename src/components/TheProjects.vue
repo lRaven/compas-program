@@ -83,13 +83,7 @@
 				</div>
 			</div>
 
-			<r-button
-				color="bordered"
-				size="big"
-				text="Получить смету"
-				class="the-projects__btn"
-				@click="this.$emit('openPopup')"
-			></r-button>
+			<r-estimate />
 		</div>
 	</section>
 </template>
@@ -99,12 +93,14 @@
 
 	import ProjectCard from "@/components/projects/ProjectCard.vue";
 	import ProjectCardSlider from "@/components/projects/ProjectCardSlider.vue";
+	import rEstimate from "@/components/r-estimate.vue";
 
 	export default {
 		name: "TheProjects",
 		components: {
 			ProjectCard,
 			ProjectCardSlider,
+			rEstimate,
 		},
 		data: () => ({
 			selectedProject: {},
@@ -163,7 +159,6 @@
 			flex-wrap: wrap;
 			justify-content: space-between;
 			gap: 16rem;
-			margin-bottom: 25rem;
 			@media (max-width: 1023px) {
 				margin-bottom: 7rem;
 			}
