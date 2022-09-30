@@ -135,6 +135,7 @@
 							<form
 								class="quiz-popup__form"
 								@submit.prevent="sendForm"
+								ref="form"
 							>
 								<r-input
 									placeholder="Ваше имя"
@@ -356,6 +357,9 @@
 
 			async sendForm() {
 				try {
+					this.quiz.result_view = JSON.stringify(
+						this.quiz.result_view
+					);
 					const response = await sendQuiz(this.quiz);
 
 					if (response.status === 201) {
