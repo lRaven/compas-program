@@ -359,7 +359,6 @@
 					const response = await sendQuiz(this.quiz);
 
 					if (response.status === 201) {
-						console.log(response);
 						this.quizProgress.step = this.quizProgress.steps;
 					}
 					if (response.status === 400) {

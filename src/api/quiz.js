@@ -4,8 +4,6 @@ const baseURL = process.env.VUE_APP_BACKEND_BASEURL;
 
 function sendQuiz(quiz) {
 	try {
-		console.log(quiz);
-
 		const response = axios.post(`${baseURL}/notification/`, { ...quiz },
 			{
 				headers: { "Content-Type": "multipart/form-data", },
