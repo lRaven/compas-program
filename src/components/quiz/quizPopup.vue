@@ -17,18 +17,19 @@
 					<transition mode="out-in" name="fade-left">
 						<div
 							class="quiz-popup__slide quiz-popup__slide-1"
-							v-show="quizData.progress.step === 1"
+							v-show="quizProgress.step === 1"
 						>
 							<p class="quiz-popup__slide-title">
 								Как должен выглядеть результат?
 							</p>
 							<div class="quiz-popup__slide-1-row">
 								<text-checkbox
-									v-for="(type, index) in quizData.types"
-									:key="type.id"
-									:color="type.color"
-									:text="type.description"
-									:types="quiz.types"
+									v-for="(
+										result, index
+									) in quizData.result_view"
+									:key="result.id"
+									:color="result.color"
+									:text="result.description"
 									:selectedValue="index + 1"
 									@change="collectTypes"
 								>
@@ -36,7 +37,7 @@
 							</div>
 							<r-input
 								placeholder="Свой вариант"
-								v-model.trim="quiz.types_personal"
+								v-model.trim="quiz.result_view_self"
 							></r-input>
 						</div>
 					</transition>
@@ -44,7 +45,7 @@
 					<transition mode="out-in" name="fade-left">
 						<div
 							class="quiz-popup__slide quiz-popup__slide-2"
-							v-show="quizData.progress.step === 2"
+							v-show="quizProgress.step === 2"
 						>
 							<p class="quiz-popup__slide-title">
 								Как должен выглядеть результат?
@@ -53,16 +54,17 @@
 							<div class="quiz-popup__slide-2-details">
 								<r-textarea
 									placeholder="Мне нужно..."
-									v-model="quiz.details.description"
+									v-model.trim="quiz.wishes"
 								></r-textarea>
 								<r-input
 									type="url"
 									placeholder="Вставить ссылку на референс"
-									v-model="quiz.details.link"
+									v-model.trim="quiz.url_reference"
+									v-model:valid="urlValid"
 								></r-input>
 								<r-filepicker
 									description="Прикрепить материал"
-									v-model="quiz.details.file"
+									v-model="quiz.file"
 								></r-filepicker>
 							</div>
 						</div>
@@ -71,7 +73,7 @@
 					<transition mode="out-in" name="fade-left">
 						<div
 							class="quiz-popup__slide quiz-popup__slide-3"
-							v-show="quizData.progress.step === 3"
+							v-show="quizProgress.step === 3"
 						>
 							<p
 								class="quiz-popup__slide-title quiz-popup__slide-3-title"
@@ -80,18 +82,18 @@
 							</p>
 							<div class="quiz-popup__slide-3-row">
 								<text-radio
-									v-for="(type, index) in quizData.prices"
-									:key="type.id"
+									v-for="(cost, index) in quizData.cost"
+									:key="cost.id"
 									:designOptions="{
-										accentColor: type.color,
+										accentColor: cost.color,
 										defaultColor: '#DFE3E3',
 										isHasBorder: false,
 									}"
-									:text="type.description"
-									:selectedValue="quiz.price"
+									:text="cost.description"
+									:selectedValue="quiz.cost"
 									:value="index + 1"
-									radioGroup="prices"
-									v-model="quiz.price"
+									radioGroup="cost"
+									v-model.number="quiz.cost"
 								>
 								</text-radio>
 							</div>
@@ -103,18 +105,18 @@
 							</p>
 							<div class="quiz-popup__slide-3-row">
 								<text-radio
-									v-for="(type, index) in quizData.deadlines"
-									:key="type.id"
+									v-for="(period, index) in quizData.period"
+									:key="period.id"
 									:designOptions="{
-										accentColor: type.color,
+										accentColor: period.color,
 										defaultColor: '#DFE3E3',
 										isHasBorder: false,
 									}"
-									:text="type.description"
-									:selectedValue="quiz.deadline"
+									:text="period.description"
+									:selectedValue="quiz.period"
 									:value="index + 1"
-									radioGroup="deadlines"
-									v-model="quiz.deadline"
+									radioGroup="period"
+									v-model.number="quiz.period"
 								>
 								</text-radio>
 							</div>
@@ -124,7 +126,7 @@
 					<transition mode="out-in" name="fade-left">
 						<div
 							class="quiz-popup__slide quiz-popup__slide-4"
-							v-show="quizData.progress.step === 4"
+							v-show="quizProgress.step === 4"
 						>
 							<p class="quiz-popup__slide-title">
 								Расскажите о себе
@@ -136,21 +138,19 @@
 							>
 								<r-input
 									placeholder="Ваше имя"
-									v-model="quiz.contacts.name"
+									v-model.trim="quiz.first_name"
 								></r-input>
 								<r-input
 									placeholder="Где вы работаете"
-									v-model="quiz.contacts.job"
+									v-model.trim="quiz.work_place"
 								></r-input>
 								<r-input
 									placeholder="Как с вами связаться"
-									v-model="quiz.contacts.link"
+									v-model.trim="quiz.connector"
 								></r-input>
 								<r-input
 									placeholder="За что отвечаете в компании"
-									v-model="
-										quiz.contacts.scope_of_responsibility
-									"
+									v-model.trim="quiz.responsibilities"
 								></r-input>
 								<r-button
 									:disabled="!isFormValid"
@@ -165,7 +165,7 @@
 					<transition mode="out-in" name="fade-left">
 						<div
 							class="quiz-popup__slide quiz-popup__slide-end"
-							v-show="quizData.progress.step === 5"
+							v-show="quizProgress.step === 5"
 						>
 							<p class="quiz-popup__slide-title">
 								Ваша заявка отправлена
@@ -188,41 +188,37 @@
 				<div class="quiz-popup__bottom">
 					<r-button
 						:class="{
-							center:
-								quizData.progress.step ===
-								quizData.progress.steps,
+							center: quizProgress.step === quizProgress.steps,
 						}"
 						text="Назад"
 						:color="
-							quizData.progress.step === quizData.progress.steps
+							quizProgress.step === quizProgress.steps
 								? 'green'
 								: 'gray'
 						"
-						v-show="quizData.progress.step > 1"
-						@click="quizData.progress.step--"
+						v-show="quizProgress.step > 1"
+						@click="quizProgress.step--"
 					></r-button>
 
 					<div
 						class="quiz-popup__bottom-col"
-						v-show="
-							quizData.progress.step < quizData.progress.steps
-						"
+						v-show="quizProgress.step < quizProgress.steps"
 					>
 						<span class="quiz-popup__bottom-counter">
 							{{
-								quizData.progress.step +
+								quizProgress.step +
 								"/" +
-								(quizData.progress.steps - 1)
+								(quizProgress.steps - 1)
 							}}
 						</span>
 
 						<r-button
 							:disabled="
-								this.quizData.progress.step >=
-								this.quizData.progress.steps - 1
+								this.quizProgress.step >=
+								this.quizProgress.steps - 1
 							"
 							text="Дальше"
-							@click="quizData.progress.step++"
+							@click="quizProgress.step++"
 						></r-button>
 					</div>
 				</div>
@@ -244,45 +240,73 @@
 				default: false,
 			},
 		},
+		watch: {
+			"quiz.result_view_self"() {
+				const resultViewLength = this.quizData.result_view.length + 1;
+
+				if (this.quiz.result_view_self.length > 0) {
+					const find = this.quiz.result_view.find(
+						(el) => el === resultViewLength
+					);
+
+					if (!find) {
+						this.quiz.result_view.push(resultViewLength);
+					}
+				} else {
+					this.quiz.result_view = this.quiz.result_view.filter(
+						(el) => el !== resultViewLength
+					);
+				}
+			},
+		},
 		computed: {
 			isFormValid() {
-				const valid = Object.values(this.quiz.contacts).find((el) => {
-					return el.length === 0;
-				});
+				const firstNameLength = this.quiz.first_name.length;
+				const workPlaceLength = this.quiz.work_place.length;
+				const connectorLength = this.quiz.connector.length;
+				const responsibilitiesLength =
+					this.quiz.responsibilities.length;
 
-				if (valid === "") {
-					return false;
-				} else return true;
+				if (
+					firstNameLength > 0 &&
+					workPlaceLength > 0 &&
+					connectorLength > 0 &&
+					responsibilitiesLength > 0 &&
+					this.urlValid
+				) {
+					return true;
+				} else return false;
 			},
 		},
 		data: () => ({
 			isPopupContentVisible: false,
 
-			quiz: {
-				types: [],
-				types_personal: null,
+			urlValid: false,
 
-				details: {
-					description: null,
-					link: null,
-					file: null,
-				},
-				price: null,
-				deadline: null,
-				contacts: {
-					name: "",
-					job: "",
-					link: "",
-					scope_of_responsibility: "",
-				},
+			quiz: {
+				result_view: [],
+				result_view_self: "",
+
+				wishes: "",
+				url_reference: "",
+				file: "",
+
+				cost: null,
+				period: null,
+
+				first_name: "",
+				work_place: "",
+				connector: "",
+				responsibilities: "",
+			},
+
+			quizProgress: {
+				steps: 5,
+				step: 1,
 			},
 
 			quizData: {
-				progress: {
-					steps: 5,
-					step: 1,
-				},
-				types: [
+				result_view: [
 					{ id: 1, description: "Вебсайт", color: "#9FB0ED" },
 					{
 						id: 2,
@@ -302,7 +326,7 @@
 						color: "#9FB0ED",
 					},
 				],
-				prices: [
+				cost: [
 					{ id: 1, description: "до 500 тыс.", color: "#9FB0ED" },
 					{
 						id: 2,
@@ -312,7 +336,7 @@
 					{ id: 3, description: "от 3 до 5 млн.", color: "#ED9F9F" },
 					{ id: 4, description: "больше 5 млн.", color: "#9FEDA7" },
 				],
-				deadlines: [
+				period: [
 					{ id: 1, description: "1-3 месяца", color: "#9FB0ED" },
 					{ id: 2, description: "6-12 месяцев", color: "#E7ED9F" },
 					{ id: 3, description: "12+ месяцев", color: "#ED9F9F" },
@@ -322,9 +346,9 @@
 		methods: {
 			collectTypes(value, checked) {
 				if (checked) {
-					this.quiz.types.push(value);
+					this.quiz.result_view.push(value);
 				} else {
-					this.quiz.types = this.quiz.types.filter(
+					this.quiz.result_view = this.quiz.result_view.filter(
 						(el) => el !== value
 					);
 				}
@@ -334,10 +358,9 @@
 				try {
 					const response = await sendQuiz(this.quiz);
 
-					if (response.status) {
+					if (response.status === 201) {
 						console.log(response);
-						this.quizData.progress.step =
-							this.quizData.progress.steps;
+						this.quizProgress.step = this.quizProgress.steps;
 					}
 					if (response.status === 400) {
 						const error_list = returnErrorMessages(response.data);

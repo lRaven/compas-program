@@ -29,7 +29,6 @@
 		name: "TextCheckbox",
 		props: {
 			selectedValue: [String, Number],
-			types: Array,
 			color: {
 				value: String,
 				default: "#1d1d1d",

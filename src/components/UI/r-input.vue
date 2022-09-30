@@ -4,7 +4,10 @@
 		:placeholder="placeholder"
 		:value="modelValue"
 		class="r-input"
-		@input="this.$emit('update:modelValue', $event.target.value)"
+		@input="
+			this.$emit('update:modelValue', $event.target.value);
+			this.$emit('update:valid', $event.target.checkValidity());
+		"
 	/>
 </template>
 
