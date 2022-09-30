@@ -33,6 +33,10 @@
 			padding: 2rem 3rem;
 			border-radius: 1rem;
 			font-size: 2.4rem;
+			@media (max-width: 767px) {
+				font-size: 1.8rem;
+				padding: 2rem;
+			}
 		}
 	}
 </style>

@@ -159,6 +159,7 @@
 			flex-wrap: wrap;
 			justify-content: space-between;
 			gap: 16rem;
+			margin-bottom: 16rem;
 			@media (max-width: 1023px) {
 				margin-bottom: 7rem;
 			}
@@ -196,6 +197,8 @@
 					@media (max-width: 1720px) {
 						order: 2;
 						transform: none;
+					}
+					@media (max-width: 767px) {
 						width: 100%;
 					}
 				}

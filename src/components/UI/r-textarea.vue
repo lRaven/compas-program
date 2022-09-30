@@ -38,6 +38,9 @@
 			height: 100%;
 			resize: none;
 			padding-right: 2rem;
+			@media (max-width: 767px) {
+				font-size: 1.8rem;
+			}
 			&::placeholder {
 				color: #bcbcbc;
 			}

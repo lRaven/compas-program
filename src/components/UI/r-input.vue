@@ -37,6 +37,9 @@
 		font-size: 2.4rem;
 		width: 100%;
 		transition: all 0.3s ease;
+		@media (max-width: 767px) {
+			font-size: 1.8rem;
+		}
 		&::placeholder {
 			color: #bcbcbc;
 		}

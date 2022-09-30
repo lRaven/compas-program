@@ -12,7 +12,11 @@
 					selectedEstimate = null;
 				"
 			>
-				<img src="/img/icon/cross.svg" alt="close" />
+				<img
+					src="/img/icon/cross.svg"
+					alt="close"
+					class="r-estimate__close-icon"
+				/>
 			</button>
 
 			<text-radio
@@ -740,6 +744,10 @@
 			background-color: $white;
 			padding: 6rem;
 			border-radius: 4.8rem;
+			@media (max-width: 767px) {
+				padding: 3rem 2rem;
+				border-radius: 2rem;
+			}
 		}
 
 		&__close {
@@ -747,6 +755,19 @@
 			position: absolute;
 			right: 0;
 			top: 0;
+			@media (max-width: 540px) {
+				position: static;
+				margin-left: auto;
+			}
+
+			&-icon {
+				width: 3rem;
+				height: 3rem;
+				@media (max-width: 767px) {
+					width: 2rem;
+					height: 2rem;
+				}
+			}
 		}
 
 		&__top {
@@ -757,6 +778,11 @@
 			gap: 2rem;
 			&.open {
 				margin-bottom: 3rem;
+
+				@media (max-width: 540px) {
+					flex-direction: column;
+					padding-right: 0;
+				}
 			}
 		}
 		&__main {
@@ -767,15 +793,26 @@
 				border-color: $dark;
 				border-radius: 3rem;
 				padding: 6rem 1.5rem 6rem 6rem;
+				@media (max-width: 767px) {
+					padding: 2rem 1.5rem 2rem 1.5rem;
+					margin-bottom: 3rem;
+					border-radius: 2rem;
+				}
 			}
 		}
 		&__text {
 			white-space: pre-wrap;
 			font-size: 2.4rem;
+			@media (max-width: 767px) {
+				font-size: 1.8rem;
+			}
 			&-wrapper {
 				max-height: 60rem;
 				overflow-y: auto;
 				padding-right: 4.5rem;
+				@media (max-width: 767px) {
+					padding-right: 1rem;
+				}
 
 				//* chrome/safari
 				&::-webkit-scrollbar-track {
@@ -793,15 +830,25 @@
 		&__bottom {
 			display: flex;
 			gap: 2rem;
+			@media (max-width: 470px) {
+				flex-direction: column;
+			}
 		}
 
 		.r-button {
 			width: 100%;
 			&.open {
 				font-size: 2.4rem;
+				@media (max-width: 767px) {
+					font-size: 1.8rem;
+					padding: 2rem;
+				}
 			}
 			&:first-child {
 				width: max-content;
+				@media (max-width: 470px) {
+					width: inherit;
+				}
 			}
 		}
 	}

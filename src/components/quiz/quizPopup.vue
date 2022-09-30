@@ -406,6 +406,14 @@
 		justify-content: center;
 		align-items: center;
 		z-index: 4;
+		padding: 5rem 0;
+		overflow-y: auto;
+		@media (max-height: 800px) {
+			display: block;
+		}
+		@media (max-width: 540px) {
+			padding: 0;
+		}
 
 		&__content {
 			display: grid;
@@ -416,6 +424,20 @@
 			border-radius: 4.8rem;
 			width: calc(100vw - 6rem);
 			min-height: 73rem;
+			@media (max-height: 800px) {
+				min-height: max-content;
+				margin: auto;
+			}
+			@media (max-width: 767px) {
+				border-radius: 2rem;
+				padding: 3rem 2rem;
+				min-height: max-content;
+			}
+			@media (max-width: 540px) {
+				height: 100vh;
+				width: 100vw;
+				border-radius: 0;
+			}
 		}
 
 		&__close {
@@ -428,6 +450,9 @@
 			display: grid;
 			grid-template-columns: 1fr;
 			margin-bottom: 10rem;
+			@media (max-width: 767px) {
+				margin-bottom: 5rem;
+			}
 		}
 		&__slide {
 			grid-area: 1/1;
@@ -440,6 +465,10 @@
 			&-title {
 				font-size: 4rem;
 				margin-bottom: 10rem;
+				text-align: center;
+				@media (max-width: 767px) {
+					margin-bottom: 5rem;
+				}
 			}
 
 			&-1 {
@@ -450,6 +479,10 @@
 					justify-content: center;
 					gap: 2rem;
 					margin-bottom: 2rem;
+					@media (max-width: 540px) {
+						flex-direction: column;
+						width: 100%;
+					}
 				}
 				.r-input {
 					max-width: 63.5rem;
@@ -462,6 +495,11 @@
 					grid-template-columns: repeat(2, 1fr);
 					grid-template-rows: repeat(2, max-content);
 					grid-gap: 2rem;
+					@media (max-width: 767px) {
+						display: flex;
+						flex-direction: column;
+						width: 100%;
+					}
 					.r-textarea {
 						grid-row: 1/3;
 					}
@@ -477,6 +515,10 @@
 					flex-wrap: wrap;
 					justify-content: center;
 					gap: 2rem;
+					@media (max-width: 540px) {
+						flex-direction: column;
+						width: 100%;
+					}
 					+ .quiz-popup__slide-title {
 						margin-top: 6rem;
 					}
@@ -516,6 +558,9 @@
 			justify-content: space-between;
 			align-items: center;
 			gap: 5rem;
+			@media (max-width: 540px) {
+				flex-direction: column-reverse;
+			}
 			&-col {
 				display: flex;
 				align-items: center;
@@ -524,6 +569,14 @@
 			}
 			&-counter {
 				color: $middle-gray;
+			}
+
+			.r-button {
+				&:nth-child(1) {
+					@media (max-width: 540px) {
+						width: 100%;
+					}
+				}
 			}
 		}
 	}

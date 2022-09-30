@@ -85,6 +85,7 @@
 			display: none;
 		}
 		&__fake {
+			text-align: center;
 			user-select: none;
 			cursor: pointer;
 			padding: 2rem 3rem;
@@ -92,6 +93,10 @@
 			font-size: 2.4rem;
 			transition: all 0.3s ease;
 			border: 0.2rem solid transparent;
+			@media (max-width: 767px) {
+				padding: 2rem;
+				font-size: 1.8rem;
+			}
 		}
 	}
 </style>
