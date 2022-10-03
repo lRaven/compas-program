@@ -35,7 +35,9 @@
 			font-size: 2.4rem;
 			@media (max-width: 767px) {
 				font-size: 1.8rem;
-				padding: 2rem;
+			}
+			@media (max-width: 540px) {
+				padding: 1.5rem;
 			}
 		}
 	}

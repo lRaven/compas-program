@@ -406,13 +406,14 @@
 		justify-content: center;
 		align-items: center;
 		z-index: 4;
-		padding: 5rem 0;
+		padding: 3rem;
 		overflow-y: auto;
 		@media (max-height: 800px) {
 			display: block;
 		}
 		@media (max-width: 540px) {
 			padding: 0;
+			overflow: hidden;
 		}
 
 		&__content {
@@ -422,7 +423,8 @@
 			padding: 6rem;
 			background-color: #f8f8f8;
 			border-radius: 4.8rem;
-			width: calc(100vw - 6rem);
+			max-width: 180rem;
+			width: 100%;
 			min-height: 73rem;
 			@media (max-height: 800px) {
 				min-height: max-content;
@@ -437,6 +439,7 @@
 				height: 100vh;
 				width: 100vw;
 				border-radius: 0;
+				overflow-y: auto;
 			}
 		}
 
@@ -502,6 +505,9 @@
 					}
 					.r-textarea {
 						grid-row: 1/3;
+						@media (max-width: 767px) {
+							height: 15rem;
+						}
 					}
 				}
 			}
@@ -544,11 +550,18 @@
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
 			grid-gap: 2rem;
+			@media (max-width: 767px) {
+				grid-template-columns: 1fr;
+				width: 100%;
+			}
 
 			.r-button {
 				grid-column: 1/3;
 				width: 100%;
 				color: $gray;
+				@media (max-width: 767px) {
+					grid-column: inherit;
+				}
 			}
 		}
 

@@ -28,6 +28,9 @@
 		border-radius: 1rem;
 		border: 0.2rem solid $white;
 		transition: all 0.3s ease;
+		@media (max-width: 540px) {
+			padding: 1.5rem;
+		}
 		&:hover {
 			border-color: #bcbcbc;
 		}

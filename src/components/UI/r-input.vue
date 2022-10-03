@@ -40,6 +40,9 @@
 		@media (max-width: 767px) {
 			font-size: 1.8rem;
 		}
+		@media (max-width: 540px) {
+			padding: 1.5rem;
+		}
 		&::placeholder {
 			color: #bcbcbc;
 		}
