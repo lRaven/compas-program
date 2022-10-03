@@ -202,7 +202,9 @@
 
 					<div
 						class="quiz-popup__bottom-col"
-						v-show="quizProgress.step < quizProgress.steps"
+						v-show="
+							this.quizProgress.step < this.quizProgress.steps - 1
+						"
 					>
 						<span class="quiz-popup__bottom-counter">
 							{{
@@ -213,10 +215,6 @@
 						</span>
 
 						<r-button
-							:disabled="
-								this.quizProgress.step >=
-								this.quizProgress.steps - 1
-							"
 							text="Дальше"
 							@click="quizProgress.step++"
 						></r-button>
@@ -324,14 +322,18 @@
 					},
 				],
 				cost: [
-					{ id: 1, description: "до 500 тыс.", color: "#9FB0ED" },
+					{ id: 1, description: "до 30 тыс.", color: "#9FB0ED" },
 					{
 						id: 2,
-						description: "от 500 тыс. до 1 млн.",
+						description: "от 30 до 100 тыс.",
 						color: "#E7ED9F",
 					},
-					{ id: 3, description: "от 3 до 5 млн.", color: "#ED9F9F" },
-					{ id: 4, description: "больше 5 млн.", color: "#9FEDA7" },
+					{
+						id: 3,
+						description: "от 100 до 300 тыс.",
+						color: "#ED9F9F",
+					},
+					{ id: 4, description: "больше 300 тыс.", color: "#9FEDA7" },
 				],
 				period: [
 					{ id: 1, description: "1-3 месяца", color: "#9FB0ED" },
