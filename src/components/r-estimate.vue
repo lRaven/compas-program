@@ -154,6 +154,143 @@
 						стоимость.
 					</p>
 				</template>
+
+				<template v-if="selectedEstimate === 2">
+					<p class="r-estimate__text r-estimate__text_bd">
+						Разработка IOS/ANDROID приложения, утверждение и
+						согласование проводится на всех этапах работ
+					</p>
+					<br />
+
+					<p class="r-estimate__text">
+						Разработка ведётся “под ключ”! Этапы и виды работ:
+					</p>
+					<p class="r-estimate__text r-estimate__text_bd">Этап 1:</p>
+					<ul class="r-estimate__list">
+						<li class="r-estimate__list-item r-estimate__text">
+							Сбор всей информации которая будет подана в
+							приложении. Проведение аналитики и глубокого
+							анализа, разрабатываемого ПО. Онлайн и офлайн
+							встречи - по желанию заказчика.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Реализация технического задания, детальная
+							проработка и согласование.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Построение ПРОТОТИПА страниц приложения,
+							представление будущего приложения в виде блоков и
+							пометок, утверждение блоков.
+						</li>
+					</ul>
+					<br />
+
+					<p class="r-estimate__text r-estimate__text_bd">Этап 2:</p>
+					<ul class="r-estimate__list">
+						<li class="r-estimate__list-item r-estimate__text">
+							UX/Ui-анализ, подготовка карты приложения.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Подготовка дизайна, определяется стилистика, цвета и
+							основные “Акценты” для выражения пожеланий заказчика
+							и реализация результатов проведённого UX/Ui анализа.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Реализация уникального макета приложения, выбираются
+							основные страницы и представляются нескольких видах,
+							внесение правок и замечаний, утверждение макета.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Реализация Дизайна приложения, внесение правок и
+							замечаний, утверждение готового дизайна.
+						</li>
+					</ul>
+					<br />
+
+					<p class="r-estimate__text r-estimate__text_bd">Этап 3:</p>
+					<ul class="r-estimate__list">
+						<li class="r-estimate__list-item r-estimate__text">
+							Постановка задач, определение чётких сроков, работа
+							проводится по 2х недельным этапам, на каждом из
+							этапов реализуется минимальная жизнеспособная версия
+							приложения, которую можно протестировать.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Реализация API интерфейсов приложения,
+							программирование backend (серверной) части
+							приложения, базы данных.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Реализация визуальной части приложения, интеграция с
+							API.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Тестирование функционала приложения, тестирование
+							производится специалистами отдела QA, а так же к
+							тестированию привлекается заказчик (если ему это
+							необходимо), внесение правок и замечаний,
+							утверждение реализованного функционала.
+						</li>
+					</ul>
+					<br />
+
+					<p class="r-estimate__text r-estimate__text_bd">Этап 4:</p>
+					<ul class="r-estimate__list">
+						<li class="r-estimate__list-item r-estimate__text">
+							Загрузка приложения в AppStore и Google Play.
+							Настройка и повторное тестирование.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Подключение аналитики и метрик.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Передача исходных данных приложения заказчику,
+							обучение управления приложением.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Переход в долгосрочную поддержку и сотрудничество.
+						</li>
+					</ul>
+					<br />
+
+					<p class="r-estimate__text r-estimate__text_bd">Этап 5*:</p>
+					<ul class="r-estimate__list">
+						<li class="r-estimate__list-item r-estimate__text">
+							Маркетинговые исследования, целевая аудитория,
+							построение Интеллект-карты - от идеи, до цели.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Эквайринг - оплата онлайн, настройка кассы,
+							автоматизация получения чеков.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Продающий и креативный копирайтинг, формирование
+							уникального торгового предложения из маркетингового
+							исследования.
+						</li>
+						<li class="r-estimate__list-item r-estimate__text">
+							Корректирование развития приложения во временном
+							анализе с использованием аналитических метрик.
+						</li>
+					</ul>
+					<br />
+
+					<p class="r-estimate__text r-estimate__text_bd">
+						СТОИМОСТЬ: от
+						<span class="r-estimate__text_accent">100 000</span>
+						рублей.
+					</p>
+					<p class="r-estimate__text r-estimate__text_bd">
+						СРОКИ РЕАЛИЗАЦИИ: от
+						<span class="r-estimate__text_accent">60</span>
+						рабочих дней.
+					</p>
+					<br />
+					<p class="r-estimate__text r-estimate__text_bd">
+						*этап 5, является дополнительным и не входит в основную
+						стоимость.
+					</p>
+				</template>
 			</div>
 		</div>
 
