@@ -60,7 +60,6 @@
 									type="url"
 									placeholder="Вставить ссылку на референс"
 									v-model.trim="quiz.url_reference"
-									v-model:valid="urlValid"
 								></r-input>
 								<r-filepicker
 									description="Прикрепить материал"
@@ -272,8 +271,7 @@
 					firstNameLength > 0 &&
 					workPlaceLength > 0 &&
 					connectorLength > 0 &&
-					responsibilitiesLength > 0 &&
-					this.urlValid
+					responsibilitiesLength > 0
 				) {
 					return true;
 				} else return false;
@@ -281,8 +279,6 @@
 		},
 		data: () => ({
 			isPopupContentVisible: false,
-
-			urlValid: false,
 
 			quiz: {
 				result_view: [],
@@ -292,8 +288,8 @@
 				url_reference: "",
 				file: "",
 
-				cost: null,
-				period: null,
+				cost: "",
+				period: "",
 
 				first_name: "",
 				work_place: "",
@@ -364,18 +360,36 @@
 
 					if (response.status === 201) {
 						this.quizProgress.step = this.quizProgress.steps;
-					}
-					if (response.status === 400) {
-						const error_list = returnErrorMessages(response.data);
-						error_list.forEach((el) => {
-							this.toast.error(el);
-						});
+
+						if (typeof this.quiz.result_view === "string") {
+							this.quiz.result_view = JSON.parse(
+								this.quiz.result_view
+							);
+						}
 					}
 				} catch (err) {
-					this.toast.error(
-						"Что-то пошло не так. Повторите попытку позже."
-					);
-					throw new Error(err);
+					if (typeof this.quiz.result_view === "string") {
+						this.quiz.result_view = JSON.parse(
+							this.quiz.result_view
+						);
+					}
+
+					const error_list = returnErrorMessages(err.response.data);
+					error_list.forEach((el) => {
+						this.toast.error(el);
+					});
+				}
+			},
+
+			resetForm() {
+				for (const key in this.quiz) {
+					if (Object.hasOwnProperty.call(this.quiz, key)) {
+						if (Array.isArray(this.quiz[key])) {
+							this.quiz[key] = [];
+						} else {
+							this.quiz[key] = "";
+						}
+					}
 				}
 			},
 		},

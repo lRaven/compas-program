@@ -91,7 +91,6 @@
 		transition: all 0.1s ease;
 		@media (max-width: 767px) {
 			width: calc(100vw - 3rem);
-			// height: 30rem;
 		}
 		@media (max-width: 540px) {
 			height: 30rem;
