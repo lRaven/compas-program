@@ -156,7 +156,7 @@
 			font-size: 4.2rem;
 		}
 		@media (max-width: 425px) {
-			font-size: 3.2rem;
+			font-size: $text-xl;
 		}
 	}
 	h3 {
