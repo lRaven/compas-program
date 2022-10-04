@@ -144,7 +144,7 @@
 			font-size: $text-2xl;
 		}
 		@media (max-width: 389px) {
-			font-size: 5rem;
+			font-size: $text-xl;
 		}
 	}
 	h2 {
@@ -154,6 +154,9 @@
 		line-height: 1.4;
 		@media (max-width: 767px) {
 			font-size: 4.2rem;
+		}
+		@media (max-width: 425px) {
+			font-size: 3.2rem;
 		}
 	}
 	h3 {
