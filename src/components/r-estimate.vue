@@ -830,6 +830,8 @@
 </template>
 
 <script>
+	import { openLink } from "@/js/openLink";
+
 	export default {
 		name: "rEstimate",
 		watch: {
@@ -890,8 +892,10 @@
 			selectedEstimate: null,
 		}),
 		methods: {
-			async downloadPdf() {
-				console.log("download");
+			downloadPdf() {
+				openLink(
+					`${process.env.VUE_APP_BACKEND_BASEURL}/media-smeta/smeta.pdf/`
+				);
 			},
 		},
 	};
