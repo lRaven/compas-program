@@ -52,6 +52,9 @@
 			@media (max-width: 1440px) {
 				margin-bottom: 23rem;
 			}
+			@media (max-width: 540px) {
+				margin-bottom: 15rem;
+			}
 			&:hover {
 				background-color: $white;
 			}

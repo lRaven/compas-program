@@ -74,6 +74,8 @@
 		}
 		&__title {
 			margin-bottom: 6rem;
+			position: relative;
+			z-index: 1;
 			@media (max-width: 767px) {
 				margin-bottom: 5rem;
 			}
@@ -124,9 +126,13 @@
 			&-counter {
 				margin-bottom: 2rem;
 				display: block;
+				position: relative;
+				z-index: 1;
 			}
 			&-text {
 				text-transform: uppercase;
+				position: relative;
+				z-index: 1;
 			}
 		}
 	}
