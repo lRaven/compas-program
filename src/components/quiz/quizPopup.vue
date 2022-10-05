@@ -45,7 +45,7 @@
 					<transition mode="out-in" name="fade-left">
 						<div
 							class="quiz-popup__slide quiz-popup__slide-2"
-							v-show="quizProgress.step === 2"
+							v-if="false"
 						>
 							<p class="quiz-popup__slide-title">
 								Как должен выглядеть результат?
@@ -71,15 +71,15 @@
 
 					<transition mode="out-in" name="fade-left">
 						<div
-							class="quiz-popup__slide quiz-popup__slide-3"
-							v-show="quizProgress.step === 3"
+							class="quiz-popup__slide quiz-popup__slide-2"
+							v-show="quizProgress.step === 2"
 						>
 							<p
-								class="quiz-popup__slide-title quiz-popup__slide-3-title"
+								class="quiz-popup__slide-title quiz-popup__slide-2-title"
 							>
 								Оптимальная стоимость
 							</p>
-							<div class="quiz-popup__slide-3-row">
+							<div class="quiz-popup__slide-2-row">
 								<text-radio
 									v-for="(cost, index) in quizData.cost"
 									:key="cost.id"
@@ -98,11 +98,11 @@
 							</div>
 
 							<p
-								class="quiz-popup__slide-title quiz-popup__slide-3-title"
+								class="quiz-popup__slide-title quiz-popup__slide-2-title"
 							>
 								Оптимальный срок
 							</p>
-							<div class="quiz-popup__slide-3-row">
+							<div class="quiz-popup__slide-2-row">
 								<text-radio
 									v-for="(period, index) in quizData.period"
 									:key="period.id"
@@ -124,11 +124,12 @@
 
 					<transition mode="out-in" name="fade-left">
 						<div
-							class="quiz-popup__slide quiz-popup__slide-4"
-							v-show="quizProgress.step === 4"
+							class="quiz-popup__slide"
+							v-show="quizProgress.step === 3"
 						>
 							<p class="quiz-popup__slide-title">
-								Расскажите о себе
+								Укажите контактные данные,<br />
+								чтобы мы отправили Вам смету вашего проекта.
 							</p>
 
 							<form
@@ -140,23 +141,24 @@
 									placeholder="Ваше имя"
 									v-model.trim="quiz.first_name"
 								></r-input>
-								<r-input
+								<!-- <r-input
 									placeholder="Где вы работаете"
 									v-model.trim="quiz.work_place"
-								></r-input>
+								></r-input> -->
 								<r-input
-									placeholder="Как с вами связаться"
+									placeholder="Номер телефона"
+									type="tel"
 									v-model.trim="quiz.connector"
 								></r-input>
-								<r-input
+								<!-- <r-input
 									placeholder="За что отвечаете в компании"
 									v-model.trim="quiz.responsibilities"
-								></r-input>
+								></r-input> -->
 								<r-button
 									:disabled="!isFormValid"
 									type="submit"
 									color="bordered"
-									text="Отправить"
+									text="Рассчитать смету"
 								></r-button>
 							</form>
 						</div>
@@ -165,7 +167,7 @@
 					<transition mode="out-in" name="fade-left">
 						<div
 							class="quiz-popup__slide quiz-popup__slide-end"
-							v-show="quizProgress.step === 5"
+							v-show="quizProgress.step === 4"
 						>
 							<p class="quiz-popup__slide-title">
 								Ваша заявка отправлена
@@ -259,17 +261,11 @@
 		},
 		computed: {
 			isFormValid() {
-				const firstNameLength = this.quiz.first_name.length;
-				const workPlaceLength = this.quiz.work_place.length;
-				const connectorLength = this.quiz.connector.length;
-				const responsibilitiesLength =
-					this.quiz.responsibilities.length;
-
 				if (
-					firstNameLength > 0 &&
-					workPlaceLength > 0 &&
-					connectorLength > 0 &&
-					responsibilitiesLength > 0
+					this.quiz.first_name &&
+					// this.quiz.work_place &&
+					this.quiz.connector
+					// && this.quiz.responsibilities
 				) {
 					return true;
 				} else return false;
@@ -280,23 +276,23 @@
 
 			quiz: {
 				result_view: [],
-				result_view_self: "",
+				result_view_self: null,
 
-				wishes: "",
-				url_reference: "",
-				file: "",
+				wishes: null,
+				url_reference: null,
+				file: null,
 
-				cost: "",
-				period: "",
+				cost: null,
+				period: null,
 
-				first_name: "",
-				work_place: "",
-				connector: "",
-				responsibilities: "",
+				first_name: null,
+				work_place: null,
+				connector: null,
+				responsibilities: null,
 			},
 
 			quizProgress: {
-				steps: 5,
+				steps: 4,
 				step: 1,
 			},
 
@@ -488,6 +484,9 @@
 				@media (max-width: 767px) {
 					margin-bottom: 5rem;
 				}
+				@media (max-width: 540px) {
+					font-size: 3rem;
+				}
 			}
 
 			&-1 {
@@ -508,27 +507,27 @@
 				}
 			}
 
-			&-2 {
-				&-details {
-					display: grid;
-					grid-template-columns: repeat(2, 1fr);
-					grid-template-rows: repeat(2, max-content);
-					grid-gap: 2rem;
-					@media (max-width: 767px) {
-						display: flex;
-						flex-direction: column;
-						width: 100%;
-					}
-					.r-textarea {
-						grid-row: 1/3;
-						@media (max-width: 767px) {
-							height: 15rem;
-						}
-					}
-				}
-			}
+			// &-2 {
+			// 	&-details {
+			// 		display: grid;
+			// 		grid-template-columns: repeat(2, 1fr);
+			// 		grid-template-rows: repeat(2, max-content);
+			// 		grid-gap: 2rem;
+			// 		@media (max-width: 767px) {
+			// 			display: flex;
+			// 			flex-direction: column;
+			// 			width: 100%;
+			// 		}
+			// 		.r-textarea {
+			// 			grid-row: 1/3;
+			// 			@media (max-width: 767px) {
+			// 				height: 15rem;
+			// 			}
+			// 		}
+			// 	}
+			// }
 
-			&-3 {
+			&-2 {
 				&-title {
 					margin-bottom: 4rem;
 				}
@@ -563,11 +562,16 @@
 		}
 
 		&__form {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			grid-gap: 2rem;
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+			width: 100%;
+			max-width: 70rem;
+			// display: grid;
+			// grid-template-columns: repeat(2, 1fr);
+			// grid-gap: 2rem;
 			@media (max-width: 767px) {
-				grid-template-columns: 1fr;
+				// grid-template-columns: 1fr;
 				width: 100%;
 			}
 
