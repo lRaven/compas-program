@@ -140,6 +140,11 @@
 								<r-input
 									placeholder="Ваше имя"
 									v-model.trim="quiz.first_name"
+									:errorMessage="
+										v$.quiz.first_name.$errors.length > 0
+											? 'Обязательное поле'
+											: null
+									"
 								></r-input>
 								<!-- <r-input
 									placeholder="Где вы работаете"
@@ -149,13 +154,17 @@
 									placeholder="Номер телефона"
 									type="tel"
 									v-model.trim="quiz.connector"
+									:errorMessage="
+										v$.quiz.connector.$errors.length > 0
+											? 'Обязательное поле'
+											: null
+									"
 								></r-input>
 								<!-- <r-input
 									placeholder="За что отвечаете в компании"
 									v-model.trim="quiz.responsibilities"
 								></r-input> -->
 								<r-button
-									:disabled="!isFormValid"
 									type="submit"
 									color="bordered"
 									text="Рассчитать смету"
@@ -232,6 +241,9 @@
 	import { returnErrorMessages } from "@/js/returnErrorMessages";
 	import { useToast } from "vue-toastification";
 
+	import { useVuelidate } from "@vuelidate/core";
+	import { required } from "@vuelidate/validators";
+
 	export default {
 		name: "quizPopup",
 		props: {
@@ -261,14 +273,16 @@
 		},
 		computed: {
 			isFormValid() {
-				if (
-					this.quiz.first_name &&
-					// this.quiz.work_place &&
-					this.quiz.connector
-					// && this.quiz.responsibilities
-				) {
-					return true;
-				} else return false;
+				// if (
+				// 	this.quiz.first_name &&
+				// 	// this.quiz.work_place &&
+				// 	this.quiz.connector
+				// 	// && this.quiz.responsibilities
+				// ) {
+				// 	return true;
+				// } else return false;
+
+				return true;
 			},
 		},
 		data: () => ({
@@ -338,6 +352,12 @@
 				],
 			},
 		}),
+		validations: () => ({
+			quiz: {
+				first_name: { required },
+				connector: { required },
+			},
+		}),
 		methods: {
 			collectTypes(value, checked) {
 				if (checked) {
@@ -350,32 +370,37 @@
 			},
 
 			async sendForm() {
-				try {
-					this.quiz.result_view = JSON.stringify(
-						this.quiz.result_view
-					);
-					const response = await sendQuiz(this.quiz);
+				this.v$.$validate();
+				if (!this.v$.$invalid) {
+					try {
+						this.quiz.result_view = JSON.stringify(
+							this.quiz.result_view
+						);
+						const response = await sendQuiz(this.quiz);
 
-					if (response.status === 201) {
-						this.quizProgress.step = this.quizProgress.steps;
+						if (response.status === 201) {
+							this.quizProgress.step = this.quizProgress.steps;
 
+							if (typeof this.quiz.result_view === "string") {
+								this.quiz.result_view = JSON.parse(
+									this.quiz.result_view
+								);
+							}
+						}
+					} catch (err) {
 						if (typeof this.quiz.result_view === "string") {
 							this.quiz.result_view = JSON.parse(
 								this.quiz.result_view
 							);
 						}
-					}
-				} catch (err) {
-					if (typeof this.quiz.result_view === "string") {
-						this.quiz.result_view = JSON.parse(
-							this.quiz.result_view
-						);
-					}
 
-					const error_list = returnErrorMessages(err.response.data);
-					error_list.forEach((el) => {
-						this.toast.error(el);
-					});
+						const error_list = returnErrorMessages(
+							err.response.data
+						);
+						error_list.forEach((el) => {
+							this.toast.error(el);
+						});
+					}
 				}
 			},
 
@@ -398,7 +423,7 @@
 		},
 		setup() {
 			const toast = useToast();
-			return { toast };
+			return { toast, v$: useVuelidate() };
 		},
 	};
 </script>
