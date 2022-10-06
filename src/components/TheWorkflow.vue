@@ -5,7 +5,7 @@
 				<h1 class="the-workflow__title">Xод работы</h1>
 
 				<img
-					src="/img/icon/arrow-triangle.svg"
+					src="/img/icons/arrow-triangle.svg"
 					alt="arrow"
 					class="the-workflow__arrow"
 					v-show="documentWidth <= 1023"
@@ -15,7 +15,7 @@
 			<div class="the-workflow__content">
 				<div class="the-workflow__col the-workflow__company">
 					<img
-						src="/img/icon/arrow-triangle.svg"
+						src="/img/icons/arrow-triangle.svg"
 						alt="arrow"
 						class="the-workflow__arrow"
 						v-show="documentWidth > 1440"
@@ -33,33 +33,33 @@
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						Все сотрудники имеют профильные квалификации.
+						НАШИ СОТРУДНИКИ ИМЕЮТ ПРОФИЛЬНЫЕ КВАЛИФИКАЦИИ.
 					</p>
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						Основа проектов, генеральный директор ведёт общение с
-						вами. Личный менеджер ведёт разработку бизнес логики.
+						ГЕНЕРАЛЬНЫЙ ДИРЕКТОР ВЕДЕТ ОБЩЕНИЕ С ВАМИ. ЛИЧНЫЙ
+						МЕНЕДЖЕР ЗАНИМАЕТСЯ РАЗРАБОТКОЙ БИЗНЕС-ЛОГИКИ.
 					</p>
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						Команда дизайна. Отвечает за составление прототипов,
-						концептов, подбора палитры цветов, дизайн-макеты,
-						применение пользовательского опыта и контент.
+						КОМАНДА ДИЗАЙНЕРОВ ОТВЕЧАЕТ ЗА СОСТАВЛЕНИЕ ПРОТОТИПОВ,
+						КОНЦЕПТОВ, ПОДБОР ПАЛИТРЫ ЦВЕТОВ, ДИЗАЙН-МАКЕТЫ,
+						ПРИМЕНЕНИЕ ПОЛЬЗОВАТЕЛЬСКОГО ОПЫТА И КОНТЕНТ.
 					</p>
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						Команда Backend разработки. Основная логика сайтов
-						(регистрации на ресурсе, авторизации, хранение данных,
-						обработка данных) Внедрения машинного обучения.
+						КОМАНДА BACKEND-РАЗРАБОТКИ ПРОРАБАТЫВАЕТ ОСНОВНУЮ ЛОГИКУ
+						САЙТОВ (РЕГИСТРАЦИЯ НА РЕСУРСЕ, АВТОРИЗАЦИЯ, ХРАНЕНИЕ
+						ДАННЫХ, ОБРАБОТКА ДАННЫХ, ВНЕДРЕНИЕ МАШИННОГО ОБУЧЕНИЯ).
 					</p>
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						Команда Frontend разработки (Разработка визуальной
-						части)
+						КОМАНДА FRONTEND-РАЗРАБОТКИ ЗАНИМАЕТСЯ РАЗРАБОТКОЙ
+						ВИЗУАЛЬНОЙ ЧАСТИ.
 					</p>
 					<p class="the-workflow__company-description">
 						С заботой о вашем продукте.
@@ -68,7 +68,7 @@
 
 				<div class="the-workflow__col the-workflow__steps">
 					<img
-						src="/img/icon/arrow-triangle.svg"
+						src="/img/icons/arrow-triangle.svg"
 						alt="arrow"
 						class="the-workflow__arrow"
 						v-show="documentWidth < 1440 && documentWidth > 1023"
@@ -91,7 +91,7 @@
 							</h3>
 						</div>
 						<p class="the-workflow__step-description">
-							Вы оставляете заявку и наши менеджеры<br />
+							Вы оставляете заявку, и наши менеджеры<br />
 							связываются с вами.
 						</p>
 					</div>
@@ -140,8 +140,7 @@
 						</div>
 						<p class="the-workflow__step-description">
 							Разбиваем всю работу на этапы, утверждаем<br />
-							сроки выполнения, цену и подписываем<br />
-							договор.
+							сроки выполнения и цену, подписываем договор.
 						</p>
 					</div>
 
@@ -168,9 +167,9 @@
 							<h3 class="the-workflow__step-name-2">Забота</h3>
 						</div>
 						<p class="the-workflow__step-description">
-							Ведём протокол совещаний, все ваши пожелания и
-							правки<br />
-							будут учтены, чтобы ничего не было упущено.
+							Ведём протокол совещаний, учитываем все ваши
+							пожелания<br />
+							и правки, чтобы ничего не было упущено.
 						</p>
 					</div>
 
@@ -187,7 +186,7 @@
 						<p class="the-workflow__step-description">
 							Сдаём проект, проводим обучение по пользованию
 							сервисами,<br />
-							выдаём всю документацию (инструкцию по пользованию)
+							выдаём всю документацию и инструкцию по пользованию.
 						</p>
 					</div>
 
@@ -198,7 +197,7 @@
 							<h3 class="the-workflow__step-name-2">Поддержка</h3>
 						</div>
 						<p class="the-workflow__step-description">
-							Остаёмся на ежедневной поддержке.
+							Остаёмся на связи для ежедневной поддержки.
 						</p>
 					</div>
 				</div>

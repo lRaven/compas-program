@@ -10,7 +10,7 @@
 					class="quiz-popup__close"
 					@click="this.$emit('closePopup')"
 				>
-					<img src="/img/icon/cross.svg" alt="close" />
+					<img src="/img/icons/cross.svg" alt="close" />
 				</button>
 
 				<div class="quiz-popup__slides">
@@ -179,7 +179,7 @@
 							</p>
 
 							<img
-								src="/img/icon/face.svg"
+								src="/img/icons/face.svg"
 								alt="face"
 								class="quiz-popup__slide-end-icon"
 							/>
@@ -298,7 +298,7 @@
 
 			quizData: {
 				result_view: [
-					{ id: 1, description: "Вебсайт", color: "#9FB0ED" },
+					{ id: 1, description: "Веб-сайт", color: "#9FB0ED" },
 					{
 						id: 2,
 						description: "Мобильное приложение",
@@ -310,7 +310,7 @@
 						description: "Внутренний продукт",
 						color: "#9FEDA7",
 					},
-					{ id: 5, description: "Дизайн система", color: "#FFC9AA" },
+					{ id: 5, description: "Дизайн-система", color: "#FFC9AA" },
 					{
 						id: 6,
 						description: "Бренд для компании или продукта",

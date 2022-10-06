@@ -2,7 +2,7 @@
 	<section class="the-projects" id="projects" ref="section">
 		<div class="the-projects__container center">
 			<img
-				src="/img/icon/arrow-triangle.svg"
+				src="/img/icons/arrow-triangle.svg"
 				alt="arrow"
 				class="the-projects__arrow"
 			/>

@@ -3,10 +3,14 @@ import App from '@/App.vue'
 import store from '@/store'
 import router from '@/router'
 
-import components from '@/components/UI'
+import Vuelidate from 'vuelidate'
 
 import Toast, { POSITION } from "vue-toastification"
 import "vue-toastification/dist/index.css"
+
+import components from '@/components/UI'
+
+import '@/registerServiceWorker'
 
 const app = createApp(App)
 
@@ -24,5 +28,6 @@ app.use(Toast,
 		newestOnTop: false,
 	}
 )
+app.use(Vuelidate)
 
 app.mount('#app')

@@ -14,29 +14,29 @@
 				<div class="the-banner__step">
 					<span class="the-banner__step-counter">0.1</span>
 					<p class="the-banner__step-text">
-						С вами работает отдельная команда<br />
-						программистов, дизайнеров, контентщиков<br />
-						которые находятся в одном офисе и быстро согласовывают
-						работу между собой.
+						С ВАМИ РАБОТАЕТ ОТДЕЛЬНАЯ КОМАНДА<br />
+						ПРОГРАММИСТОВ, ДИЗАЙНЕРОВ И КОНТЕНТЩИКОВ,<br />
+						КОТОРЫЕ НАХОДЯТСЯ В ОДНОМ ОФИСЕ И БЫСТРО СОГЛАСОВЫВАЮТ
+						РАБОТУ МЕЖДУ СОБОЙ.
 					</p>
 				</div>
 
 				<div class="the-banner__step">
 					<span class="the-banner__step-counter">0.2</span>
 					<p class="the-banner__step-text">
-						Работа разбита на этапы, мы<br />
-						показываем, что сделано, что<br />
-						будет делатся и все это<br />
-						согласовывается с вами.
+						РАБОТА РАЗБИТА НА ЭТАПЫ.<br />
+						МЫ ПОКАЗЫВАЕМ, ЧТО УЖЕ СДЕЛАНО И ЧТО БУДЕТ ДЕЛАТЬСЯ.<br />
+						ВСЕ ЭТО СОГЛАСОВЫВАЕТСЯ С ВАМИ.
 					</p>
 				</div>
 
 				<div class="the-banner__step">
 					<span class="the-banner__step-counter">0.3</span>
 					<p class="the-banner__step-text">
-						В договоре согласовываем<br />
-						все сроки, поэтапная оплата и<br />
-						есть рассрочка платежей.
+						В ДОГОВОРЕ СОГЛАСОВЫВАЕМ<br />
+						СРОКИ РАБОТЫ И ПОЭТАПНУЮ ОПЛАТУ.<br />
+						ТАКЖЕ У ВАС ЕСТЬ ВОЗМОЖНОСТЬ<br />
+						ОФОРМИТЬ РАССРОЧКУ ПЛАТЕЖА.
 					</p>
 				</div>
 
@@ -73,6 +73,7 @@
 			min-height: inherit;
 		}
 		&__title {
+			pointer-events: none;
 			margin-bottom: 6rem;
 			position: relative;
 			z-index: 1;
@@ -96,6 +97,7 @@
 			}
 		}
 		&__step {
+			pointer-events: none;
 			position: relative;
 			max-width: 45rem;
 			color: $gray;

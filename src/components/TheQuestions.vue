@@ -5,7 +5,7 @@
 				<span class="the-questions__circle"></span>
 
 				<img
-					src="/img/icon/arrow-triangle.svg"
+					src="/img/icons/arrow-triangle.svg"
 					class="the-questions__arrow"
 					alt="arrow"
 				/>
@@ -20,7 +20,7 @@
 				<r-button
 					size="big"
 					color="bordered"
-					text="Расчитать стоимость"
+					text="Рассчитать стоимость"
 					@click="this.$emit('openPopup')"
 				></r-button>
 				<r-button

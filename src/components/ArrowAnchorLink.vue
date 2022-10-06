@@ -5,7 +5,7 @@
 			class="arrow-anchor-link__button"
 			@click="scroll('#workflow')"
 		>
-			<img src="/img/icon/arrow.svg" alt="arrow" />
+			<img src="/img/icons/arrow.svg" alt="arrow" />
 		</button>
 
 		<p class="arrow-anchor-link__description" @click="scroll('#workflow')">
@@ -64,6 +64,7 @@
 		}
 		&__description {
 			pointer-events: all;
+			cursor: pointer;
 			text-transform: uppercase;
 			position: relative;
 			width: max-content;
