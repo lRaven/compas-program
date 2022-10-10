@@ -134,13 +134,25 @@
 					</router-link>
 
 					<template v-if="documentWidth <= 767">
-						<a href="#" target="_blank" class="the-header__link">
+						<a
+							href="https://telegram.im/@compass_pro"
+							target="_blank"
+							class="the-header__link"
+						>
 							Telegram
 						</a>
-						<a href="#" target="_blank" class="the-header__link">
+						<a
+							href="https://wa.me/79375596195"
+							target="_blank"
+							class="the-header__link"
+						>
 							WhatsApp
 						</a>
-						<a href="#" target="_blank" class="the-header__link">
+						<a
+							href="viber://chat?number=%2B79375596195"
+							target="_blank"
+							class="the-header__link"
+						>
 							Viber
 						</a>
 					</template>
@@ -245,8 +257,8 @@
 				position: absolute;
 				left: 0;
 				right: 0;
-				top: 0;
-				height: 100vh;
+				top: 5.5rem;
+				height: calc(100vh - 5.5rem);
 				padding: 1.5rem;
 				z-index: 1;
 				color: $white;
