@@ -121,9 +121,17 @@
 			}),
 
 			bgColor() {
+				const colors = [
+					"#9FB0ED",
+					"#E7ED9F",
+					"#D8F5FF",
+					"#9FEDA7",
+					"#ED9F9F",
+				];
+
 				if (Object.keys(this.selectedProject).length > 0) {
-					return "#d8f5ff";
-				} else return "#f2f2f2";
+					return colors[this.selectedProject.id - 1];
+				} else return "#F2F2F2";
 			},
 		},
 	};
