@@ -1,5 +1,10 @@
 <template>
-	<section class="the-projects" id="projects" ref="section">
+	<section
+		class="the-projects"
+		:style="`background-color: ${bgColor}`"
+		id="projects"
+		ref="section"
+	>
 		<div class="the-projects__container center">
 			<img
 				src="/img/icons/arrow-triangle.svg"
@@ -114,6 +119,12 @@
 				projectsArchive: (state) => state.projects.projectsArchive,
 				documentWidth: (state) => state.documentWidth,
 			}),
+
+			bgColor() {
+				if (Object.keys(this.selectedProject).length > 0) {
+					return "#d8f5ff";
+				} else return "#f2f2f2";
+			},
 		},
 	};
 </script>
@@ -123,6 +134,7 @@
 
 	.the-projects {
 		position: static;
+		transition: all 0.2s ease;
 		&__arrow {
 			height: 7rem;
 			width: max-content;
