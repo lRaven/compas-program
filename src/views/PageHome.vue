@@ -23,20 +23,20 @@
 </template>
 
 <script>
-	import TheHeader from "@/components/TheHeader.vue";
+	import TheHeader from '@/components/TheHeader.vue';
 
-	import TheBanner from "@/components/TheBanner.vue";
-	import TheBenefits from "@/components/TheBenefits.vue";
-	import TheProjects from "@/components/TheProjects.vue";
-	import TheWorkflow from "@/components/TheWorkflow.vue";
-	import TheQuestions from "@/components/TheQuestions.vue";
+	import TheBanner from '@/components/TheBanner.vue';
+	import TheBenefits from '@/components/TheBenefits.vue';
+	import TheProjects from '@/components/TheProjects.vue';
+	import TheWorkflow from '@/components/TheWorkflow.vue';
+	import TheQuestions from '@/components/TheQuestions.vue';
 
-	import TheFooter from "@/components/TheFooter.vue";
+	import TheFooter from '@/components/TheFooter.vue';
 
-	import QuizPopup from "@/components/quiz/quizPopup.vue";
+	import QuizPopup from '@/components/quiz/quizPopup.vue';
 
 	export default {
-		name: "PageHome",
+		name: 'PageHome',
 		components: {
 			TheHeader,
 
@@ -53,11 +53,11 @@
 		data: () => ({ isPopupOpen: false }),
 		methods: {
 			openPopup() {
-				document.querySelector("body").classList.add("locked");
+				document.querySelector('body').classList.add('locked');
 				this.isPopupOpen = true;
 			},
 			closePopup() {
-				document.querySelector("body").classList.remove("locked");
+				document.querySelector('body').classList.remove('locked');
 				this.isPopupOpen = false;
 			},
 		},

@@ -7,21 +7,21 @@
 </template>
 
 <script>
-	import { mapActions } from "vuex";
+	import { mapActions } from 'vuex';
 
 	export default {
 		watch: {
 			$route(to) {
-				document.title = to.meta.title || "Default Title";
+				document.title = to.meta.title || 'Default Title';
 			},
 
-			"$route.path"() {
+			'$route.path'() {
 				//* срабатывает при переходе по router-link
-				document.querySelector("body").classList.remove("locked");
+				document.querySelector('body').classList.remove('locked');
 			},
 		},
 		methods: {
-			...mapActions(["getDocumentWidth"]),
+			...mapActions(['getDocumentWidth']),
 		},
 		mounted() {
 			this.getDocumentWidth();
@@ -30,14 +30,14 @@
 </script>
 
 <style lang="scss">
-	@import "@/assets/scss/variables";
-	@import "@/assets/scss/fonts";
+	@import '@/assets/scss/variables';
+	@import '@/assets/scss/fonts';
 
-	@import "@/assets/scss/animations";
-	@import "@/assets/scss/center";
+	@import '@/assets/scss/animations';
+	@import '@/assets/scss/center';
 
 	body {
-		font-family: "Inter", sans-serif;
+		font-family: 'Inter', sans-serif;
 		font-size: $text-m;
 		line-height: 1.4;
 		color: $black;
@@ -105,7 +105,7 @@
 		&:hover {
 			-moz-appearance: number-input;
 		}
-		&[type="text"] {
+		&[type='text'] {
 			::-ms-clear {
 				display: none;
 				width: 0;
@@ -117,7 +117,7 @@
 				height: 0;
 			}
 		}
-		&[type="search"] {
+		&[type='search'] {
 			&::-webkit-search-decoration,
 			&::-webkit-search-cancel-button,
 			&::-webkit-search-results-button,

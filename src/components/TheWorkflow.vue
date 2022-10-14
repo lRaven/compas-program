@@ -38,28 +38,27 @@
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						ГЕНЕРАЛЬНЫЙ ДИРЕКТОР ВЕДЕТ ОБЩЕНИЕ С ВАМИ. ЛИЧНЫЙ
-						МЕНЕДЖЕР ЗАНИМАЕТСЯ РАЗРАБОТКОЙ БИЗНЕС-ЛОГИКИ.
+						ГЕНЕРАЛЬНЫЙ ДИРЕКТОР ВЕДЕТ ОБЩЕНИЕ С ВАМИ. ЛИЧНЫЙ МЕНЕДЖЕР
+						ЗАНИМАЕТСЯ РАЗРАБОТКОЙ БИЗНЕС-ЛОГИКИ.
 					</p>
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						КОМАНДА ДИЗАЙНЕРОВ ОТВЕЧАЕТ ЗА СОСТАВЛЕНИЕ ПРОТОТИПОВ,
-						КОНЦЕПТОВ, ПОДБОР ПАЛИТРЫ ЦВЕТОВ, ДИЗАЙН-МАКЕТЫ,
-						ПРИМЕНЕНИЕ ПОЛЬЗОВАТЕЛЬСКОГО ОПЫТА И КОНТЕНТ.
+						КОМАНДА ДИЗАЙНЕРОВ ОТВЕЧАЕТ ЗА СОСТАВЛЕНИЕ ПРОТОТИПОВ, КОНЦЕПТОВ,
+						ПОДБОР ПАЛИТРЫ ЦВЕТОВ, ДИЗАЙН-МАКЕТЫ, ПРИМЕНЕНИЕ ПОЛЬЗОВАТЕЛЬСКОГО
+						ОПЫТА И КОНТЕНТ.
 					</p>
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						КОМАНДА BACKEND-РАЗРАБОТКИ ПРОРАБАТЫВАЕТ ОСНОВНУЮ ЛОГИКУ
-						САЙТОВ (РЕГИСТРАЦИЯ НА РЕСУРСЕ, АВТОРИЗАЦИЯ, ХРАНЕНИЕ
-						ДАННЫХ, ОБРАБОТКА ДАННЫХ, ВНЕДРЕНИЕ МАШИННОГО ОБУЧЕНИЯ).
+						КОМАНДА BACKEND-РАЗРАБОТКИ ПРОРАБАТЫВАЕТ ОСНОВНУЮ ЛОГИКУ САЙТОВ
+						(РЕГИСТРАЦИЯ НА РЕСУРСЕ, АВТОРИЗАЦИЯ, ХРАНЕНИЕ ДАННЫХ, ОБРАБОТКА
+						ДАННЫХ, ВНЕДРЕНИЕ МАШИННОГО ОБУЧЕНИЯ).
 					</p>
 					<p
 						class="the-workflow__company-description the-workflow__company-description_ttu"
 					>
-						КОМАНДА FRONTEND-РАЗРАБОТКИ ЗАНИМАЕТСЯ РАЗРАБОТКОЙ
-						ВИЗУАЛЬНОЙ ЧАСТИ.
+						КОМАНДА FRONTEND-РАЗРАБОТКИ ЗАНИМАЕТСЯ РАЗРАБОТКОЙ ВИЗУАЛЬНОЙ ЧАСТИ.
 					</p>
 					<p class="the-workflow__company-description">
 						С заботой о вашем продукте.
@@ -74,21 +73,17 @@
 						v-show="documentWidth < 1440 && documentWidth > 1023"
 					/>
 					<h4 class="the-workflow__steps-title">
-						Вы видите промежуточные результаты и<br />
-						можете вносить правки, в конечном итоге<br />
-						вы получите, то что хотите, а не кота в<br />
-						мешке.
+						Вы контролируете промежуточные результаты и<br />
+						имеете возможность вносить правки, чтобы в<br />
+						конечном итоге получить желаемый результат, а не<br />
+						кота в мешке.
 					</h4>
 
 					<div class="the-workflow__step">
 						<p class="the-workflow__step-counter">0.1</p>
 						<div class="the-workflow__step-name">
-							<h3 class="the-workflow__step-name-1">
-								Знакомство
-							</h3>
-							<h3 class="the-workflow__step-name-2">
-								Знакомство
-							</h3>
+							<h3 class="the-workflow__step-name-1">Знакомство</h3>
+							<h3 class="the-workflow__step-name-2">Знакомство</h3>
 						</div>
 						<p class="the-workflow__step-description">
 							Вы оставляете заявку, и наши менеджеры<br />
@@ -99,19 +94,13 @@
 					<div class="the-workflow__step">
 						<p class="the-workflow__step-counter">0.2</p>
 						<div class="the-workflow__step-name">
-							<h3 class="the-workflow__step-name-1">
-								Исследование
-							</h3>
-							<h3 class="the-workflow__step-name-2">
-								Исследование
-							</h3>
+							<h3 class="the-workflow__step-name-1">Исследование</h3>
+							<h3 class="the-workflow__step-name-2">Исследование</h3>
 						</div>
 
 						<p class="the-workflow__step-description">
-							Вы приезжаете в офис, где за чашкой кофе мы
-							обсуждаем ваш<br />
-							проект. Если нет возможности приехать, пообщаемся
-							по<br />
+							Вы приезжаете в офис, где за чашкой кофе мы обсуждаем ваш<br />
+							проект. Если нет возможности приехать, пообщаемся по<br />
 							видеосвязи.
 						</p>
 					</div>
@@ -119,12 +108,8 @@
 					<div class="the-workflow__step">
 						<p class="the-workflow__step-counter">0.3</p>
 						<div class="the-workflow__step-name">
-							<h3 class="the-workflow__step-name-1">
-								Согласование
-							</h3>
-							<h3 class="the-workflow__step-name-2">
-								Согласование
-							</h3>
+							<h3 class="the-workflow__step-name-1">Согласование</h3>
+							<h3 class="the-workflow__step-name-2">Согласование</h3>
 						</div>
 						<p class="the-workflow__step-description">
 							Составляем ТЗ на основании<br />
@@ -147,12 +132,8 @@
 					<div class="the-workflow__step">
 						<p class="the-workflow__step-counter">0.5</p>
 						<div class="the-workflow__step-name">
-							<h3 class="the-workflow__step-name-1">
-								Разработка
-							</h3>
-							<h3 class="the-workflow__step-name-2">
-								Разработка
-							</h3>
+							<h3 class="the-workflow__step-name-1">Разработка</h3>
+							<h3 class="the-workflow__step-name-2">Разработка</h3>
 						</div>
 						<p class="the-workflow__step-description">
 							Декомпозируем задачи и<br />
@@ -167,8 +148,7 @@
 							<h3 class="the-workflow__step-name-2">Забота</h3>
 						</div>
 						<p class="the-workflow__step-description">
-							Ведём протокол совещаний, учитываем все ваши
-							пожелания<br />
+							Ведём протокол совещаний, учитываем все ваши пожелания<br />
 							и правки, чтобы ничего не было упущено.
 						</p>
 					</div>
@@ -176,17 +156,12 @@
 					<div class="the-workflow__step">
 						<p class="the-workflow__step-counter">0.7</p>
 						<div class="the-workflow__step-name">
-							<h3 class="the-workflow__step-name-1">
-								Сдача проекта
-							</h3>
-							<h3 class="the-workflow__step-name-2">
-								Сдача проекта
-							</h3>
+							<h3 class="the-workflow__step-name-1">Сдача проекта</h3>
+							<h3 class="the-workflow__step-name-2">Сдача проекта</h3>
 						</div>
 						<p class="the-workflow__step-description">
-							Сдаём проект, проводим обучение по пользованию
-							сервисами,<br />
-							выдаём всю документацию и инструкцию по пользованию.
+							Сдаём проект, проводим обучение, выдаём<br />
+							необходимую документацию по работе с сервисом.
 						</p>
 					</div>
 
@@ -207,18 +182,18 @@
 </template>
 
 <script>
-	import { mapState } from "vuex";
+	import { mapState } from 'vuex';
 
 	export default {
-		name: "TheWorkflow",
+		name: 'TheWorkflow',
 		computed: {
-			...mapState(["documentWidth"]),
+			...mapState(['documentWidth']),
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
-	@import "@/assets/scss/variables";
+	@import '@/assets/scss/variables';
 
 	.the-workflow {
 		background-color: $bg;

@@ -2,9 +2,7 @@
 	<section class="the-banner" id="banner">
 		<div class="the-banner__container center">
 			<h2 class="the-banner__title">
-				<span class="the-banner__title_accent">
-					Эксклюзив&shy;ный
-				</span>
+				<span class="the-banner__title_accent"> Эксклюзив&shy;ный </span>
 				сайт с<br />
 				проработан&shy;ным функцио&shy;налом<br />
 				и дизайном под ваш запрос
@@ -16,8 +14,8 @@
 					<p class="the-banner__step-text">
 						С ВАМИ РАБОТАЕТ ОТДЕЛЬНАЯ КОМАНДА<br />
 						ПРОГРАММИСТОВ, ДИЗАЙНЕРОВ И КОНТЕНТЩИКОВ,<br />
-						КОТОРЫЕ НАХОДЯТСЯ В ОДНОМ ОФИСЕ И БЫСТРО СОГЛАСОВЫВАЮТ
-						РАБОТУ МЕЖДУ СОБОЙ.
+						КОТОРЫЕ НАХОДЯТСЯ В ОДНОМ ОФИСЕ И БЫСТРО СОГЛАСОВЫВАЮТ РАБОТУ МЕЖДУ
+						СОБОЙ.
 					</p>
 				</div>
 
@@ -33,10 +31,9 @@
 				<div class="the-banner__step">
 					<span class="the-banner__step-counter">0.3</span>
 					<p class="the-banner__step-text">
-						В ДОГОВОРЕ СОГЛАСОВЫВАЕМ<br />
-						СРОКИ РАБОТЫ И ПОЭТАПНУЮ ОПЛАТУ.<br />
-						ТАКЖЕ У ВАС ЕСТЬ ВОЗМОЖНОСТЬ<br />
-						ОФОРМИТЬ РАССРОЧКУ ПЛАТЕЖА.
+						В договоре прописываем сроки работы<br />
+						и условия поэтапной оплаты.<br />
+						Также у вас есть возможность оформить рассрочку платежа.
 					</p>
 				</div>
 
@@ -47,10 +44,10 @@
 </template>
 
 <script>
-	import ArrowAnchorLink from "@/components/ArrowAnchorLink.vue";
+	import ArrowAnchorLink from '@/components/ArrowAnchorLink.vue';
 
 	export default {
-		name: "TheBanner",
+		name: 'TheBanner',
 		components: {
 			ArrowAnchorLink,
 		},
@@ -58,7 +55,7 @@
 </script>
 
 <style lang="scss" scoped>
-	@import "@/assets/scss/variables";
+	@import '@/assets/scss/variables';
 
 	.the-banner {
 		position: relative;
@@ -87,7 +84,7 @@
 
 		&__steps {
 			display: flex;
-			gap: 15rem;
+			gap: 10rem;
 			@media (max-width: 1440px) {
 				gap: 5rem;
 				flex-wrap: wrap;
@@ -103,7 +100,7 @@
 			color: $gray;
 			@media (max-width: 1023px) {
 				&::after {
-					content: "";
+					content: '';
 					position: absolute;
 					left: 0;
 					bottom: -1.5rem;
@@ -115,7 +112,7 @@
 			}
 			&:nth-child(1) {
 				&::after {
-					content: "";
+					content: '';
 					position: absolute;
 					left: 0;
 					bottom: -1.5rem;

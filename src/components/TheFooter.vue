@@ -72,9 +72,9 @@
 				>
 					Портфолио
 				</a>
-				<router-link :to="{ name: 'home' }" class="the-footer__link">
+				<!-- <router-link :to="{ name: 'home' }" class="the-footer__link">
 					Соц.сети
-				</router-link>
+				</router-link> -->
 			</div>
 		</div>
 	</footer>
