@@ -2,126 +2,50 @@
 	<section class="the-benefits" id="benefits">
 		<div class="the-benefits__container center">
 			<h2 class="the-benefits__title">
-				Для предприни&shy;ма&shy;телей, которые хотят выделиться на
-				рынке и получить сайт с
-				<span class="the-benefits__title_accent">
-					индивиду&shy;аль&shy;ным
-				</span>
-				функциона&shy;лом.
+				Для предпринимателей, которые хотят
+				<span class="the-benefits__title_accent">выделиться </span>на рынке и
+				получить сайт с индивидуальным функционалом
 			</h2>
-			<img
-				src="/img/icons/arrow-triangle.svg"
-				class="the-benefits__arrow"
-				alt="arrow"
-			/>
 
 			<div class="the-benefits__content">
-				<div class="the-benefits__steps">
+				<div class="the-benefits__col the-benefits__steps">
 					<div
 						class="the-benefits__step"
-						@mouseenter="selectedBenefit = 1"
+						:class="{ active: selectedBenefit === benefit.id }"
+						v-for="benefit in benefits"
+						:key="benefit.id"
+						@mouseenter="selectedBenefit = benefit.id"
 						@mouseleave="selectedBenefit = null"
 					>
-						<span
-							class="the-benefits__step-counter"
-							:class="{ active: selectedBenefit === 1 }"
-						>
-							0.1
-						</span>
-						<h4
-							class="the-benefits__step-text"
-							:class="{ active: selectedBenefit === 1 }"
-						>
-							РАЗРАБАТЫВАЕМ ВНУТРЕННЮЮ CRM-СИСТЕМУ<br />
-							ДЛЯ ОБРАБОТКИ ЗАЯВОК И КОНТРОЛЯ<br />
-							МЕНЕДЖЕРОВ. БОЛЬШЕ НЕ ПОТРЕБУЕТСЯ<br />
-							ПОЛЬЗОВАТЬСЯ СТОРОННИМИ СЕРВИСАМИ.
-						</h4>
+						<p class="the-benefits__step-description">
+							{{ benefit.text }}
+						</p>
+
+						<img
+							class="the-benefits__step-image"
+							:class="{ active: selectedBenefit === benefit.id }"
+							:src="benefit.image"
+							alt="image"
+						/>
 					</div>
 
-					<div
-						class="the-benefits__step"
-						@mouseenter="selectedBenefit = 2"
-						@mouseleave="selectedBenefit = null"
-					>
-						<span
-							class="the-benefits__step-counter"
-							:class="{ active: selectedBenefit === 2 }"
-						>
-							0.2
-						</span>
-						<h4
-							class="the-benefits__step-text"
-							:class="{ active: selectedBenefit === 2 }"
-						>
-							НЕСТАНДАРТНОЕ РЕШЕНИЕ. МЫ ВНИКАЕМ В ВАШ<br />
-							ПРОЕКТ, АНАЛИЗИРУЕМ, ЧТО НЕОБХОДИМО<br />
-							ИМЕННО ВАМ, И ПРЕДЛАГАЕМ, КАК ЭТОГО ДОСТИЧЬ.
-						</h4>
-					</div>
-
-					<div
-						class="the-benefits__step"
-						@mouseenter="selectedBenefit = 3"
-						@mouseleave="selectedBenefit = null"
-					>
-						<span
-							class="the-benefits__step-counter"
-							:class="{ active: selectedBenefit === 3 }"
-						>
-							0.3
-						</span>
-						<h4
-							class="the-benefits__step-text"
-							:class="{ active: selectedBenefit === 3 }"
-						>
-							УТВЕРЖДАЕМ МАКЕТ, ПРОТОТИП И ДИЗАЙН.<br />
-							КОНЕЧНЫЙ РЕЗУЛЬТАТ БУДЕТ ТАКИМ, КАКИМ МЫ<br />
-							ЗАПЛАНИРОВАЛИ ЕГО ИЗНАЧАЛЬНО.
-						</h4>
-					</div>
+					<r-button
+						color="accent"
+						text="Рассчитать стоимость проекта"
+						@click="scroll('#questions')"
+					></r-button>
 				</div>
 
-				<div class="the-benefits__cards">
+				<div class="the-benefits__col the-benefits__cards">
 					<div
+						v-for="benefit in benefits"
+						:key="benefit.id"
 						class="the-benefits__card"
-						:class="{ active: selectedBenefit === 1 }"
-						@mouseenter="selectedBenefit = 1"
+						:class="{ active: selectedBenefit === benefit.id }"
+						:style="`background: url(${benefit.image}) center / cover no-repeat;`"
+						@mouseenter="selectedBenefit = benefit.id"
 						@mouseleave="selectedBenefit = null"
 					></div>
-					<div
-						class="the-benefits__card"
-						:class="{ active: selectedBenefit === 2 }"
-						@mouseenter="selectedBenefit = 2"
-						@mouseleave="selectedBenefit = null"
-					></div>
-					<div
-						class="the-benefits__card"
-						:class="{ active: selectedBenefit === 3 }"
-						@mouseenter="selectedBenefit = 3"
-						@mouseleave="selectedBenefit = null"
-					></div>
-					<!-- <img
-						src="/img/steps/step-1.jpg"
-						class="the-benefits__card"
-						alt="card-1"
-					/> -->
-					<!-- <img
-						src="/img/steps/step-2.jpg"
-						class="the-benefits__card"
-						:class="{ active: selectedBenefit === 2 }"
-						alt="card-2"
-						@mouseenter="selectedBenefit = 2"
-						@mouseleave="selectedBenefit = null"
-					/>
-					<img
-						src="/img/steps/step-3.jpg"
-						class="the-benefits__card"
-						:class="{ active: selectedBenefit === 3 }"
-						alt="card-3"
-						@mouseenter="selectedBenefit = 3"
-						@mouseleave="selectedBenefit = null"
-					/> -->
 				</div>
 			</div>
 		</div>
@@ -129,121 +53,189 @@
 </template>
 
 <script>
+	import { ref } from 'vue';
+	import { scroll } from '@/js/scroll';
+
 	export default {
-		name: "TheBenefits",
-		data: () => ({ selectedBenefit: null }),
+		name: 'TheBenefits',
+		setup() {
+			const benefits = [
+				{
+					id: 1,
+					text: 'Разрабатываем внутреннюю CRM-систему для обработки заявок и контроля менеджеров. Больше не придётся пользоваться сторонними сервисами',
+					image: '/img/steps/step-1.jpg',
+				},
+				{
+					id: 2,
+					text: 'Нешаблонное решение. Мы вникаем в ваш проект, выясняем, что нужно конкретно вам, и сразу предлагаем план реализации',
+					image: '/img/steps/step-2.jpg',
+				},
+				{
+					id: 3,
+					text: 'Конечный результат будет таким, каким его обговорили вначале. Утверждаем макет, прототип и дизайн',
+					image: '/img/steps/step-3.jpg',
+				},
+			];
+			const selectedBenefit = ref(null);
+
+			return { benefits, selectedBenefit, scroll };
+		},
 	};
 </script>
 
 <style lang="scss" scoped>
-	@import "@/assets/scss/variables";
+	@import '@/assets/scss/variables';
 
 	.the-benefits {
-		padding-bottom: 26rem;
+		@media (min-width: 1320px) {
+			padding-bottom: 0;
+		}
+		@media (max-width: 1320px) {
+			position: relative;
+
+			&::before {
+				content: '';
+				position: absolute;
+				right: 0;
+				top: 11rem;
+				width: 17rem;
+				height: 17rem;
+				transform: scale(-1, 1);
+				background: url('/public/img/icons/logo-3d.png') center / contain
+					no-repeat;
+			}
+		}
 		@media (max-width: 767px) {
 			padding-bottom: 0;
 		}
 
 		&__container {
 			position: relative;
+			padding-bottom: 8rem;
 			&::after {
-				content: "";
+				content: '';
 				position: absolute;
-				left: 14rem;
-				bottom: -26rem;
+				left: 0;
+				bottom: 0;
 				right: 0;
 				height: 0.1rem;
 				background-color: #c9c9c9;
 				transition: all 0.3s ease;
-				@media (max-width: 1520px) {
-					left: 0;
-				}
-				@media (max-width: 767px) {
-					bottom: 0;
-				}
 			}
 		}
 
 		&__title {
-			margin-bottom: 11rem;
+			@media (max-width: 1320px) {
+				margin-bottom: 15rem;
+			}
+			@media (max-width: 767px) {
+				margin-bottom: 4rem;
+			}
 			&_accent {
 				color: $accent;
-			}
-		}
-		&__arrow {
-			height: 7rem;
-			transform: rotate(90deg);
-			margin-bottom: 5rem;
-			@media (max-width: 1023px) {
-				display: none;
 			}
 		}
 
 		&__content {
 			display: flex;
 			justify-content: space-between;
-			gap: 5rem;
-			@media (max-width: 1520px) {
-				flex-direction: column;
+		}
+
+		&__col {
+			@media (min-width: 1321px) {
+				padding-top: 15rem;
 			}
 		}
 
 		&__steps {
-			margin-left: 14rem;
-			@media (max-width: 1520px) {
-				margin-left: 0;
-				display: flex;
-				justify-content: space-between;
-				gap: 5rem;
-			}
-			@media (max-width: 1023px) {
-				flex-direction: column;
+			.r-button {
+				@media (max-width: 1320px) {
+					width: 100%;
+				}
+				@media (max-width: 425px) {
+					font-size: $text-m;
+				}
 			}
 		}
-
 		&__step {
 			cursor: pointer;
-			color: $gray;
-			@media (max-width: 1520px) {
-				max-width: 42.5rem;
+			max-width: 41rem;
+			@media (max-width: 1320px) and (min-width: 768px) {
+				max-width: 100%;
+				display: grid;
+				grid-gap: 5rem;
+				grid-template-columns: 1fr 1fr;
 			}
+			@media (max-width: 767px) {
+				max-width: 100%;
+			}
+
+			&-description {
+				font-family: 'Roboto', sans-serif;
+				color: $dark;
+				padding-bottom: 2rem;
+				border-bottom: 0.2rem solid $accent;
+				transition: color 0.2s ease;
+				height: max-content;
+				@media (max-width: 1320px) {
+					margin-bottom: 2rem;
+				}
+				&.active {
+					color: $black;
+				}
+			}
+			&-image {
+				width: 100%;
+				height: 30rem;
+				object-fit: cover;
+				border-radius: 1.3rem;
+				filter: grayscale(1);
+				transition: all 0.5s ease;
+				&.active {
+					filter: grayscale(0);
+				}
+				@media (min-width: 1321px) {
+					display: none;
+				}
+			}
+
 			+ .the-benefits__step {
 				margin-top: 8rem;
-				@media (max-width: 1520px) {
-					margin-top: 0;
-				}
 			}
-			&-counter {
-				margin-bottom: 1rem;
-				display: block;
-				transition: color 0.5s ease;
-				&.active {
-					color: $black;
-				}
-			}
-			&-text {
-				text-transform: uppercase;
-				transition: color 0.5s ease;
-				&.active {
-					color: $black;
-				}
+			+ .r-button {
+				height: max-content;
+				margin-top: 8rem;
 			}
 		}
 
 		&__cards {
+			position: relative;
+			padding-left: 5rem;
+			padding-bottom: 20rem;
 			display: grid;
-			width: 85rem;
-			height: 60rem;
-			@media (max-width: 1520px) {
-				display: flex;
-				justify-content: space-between;
-				gap: 5rem;
-				width: 100%;
-				height: max-content;
+			width: 90rem;
+			z-index: 1;
+			@media (max-width: 1320px) {
+				display: none;
 			}
-			@media (max-width: 767px) {
-				flex-direction: column;
-				padding-bottom: 7rem;
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				z-index: -1;
+			}
+			&::before {
+				background: url('/public/img/icons/logo-3d.png') top right / auto 47rem
+					no-repeat;
+			}
+			&::after {
+				background: url('/public/img/icons/logo-3d.png') bottom right / auto
+					30rem no-repeat;
+				transform: scale(-1, 1);
 			}
 		}
 		&__card {
@@ -255,28 +247,13 @@
 			border-radius: 1.3rem;
 			object-fit: cover;
 			transition: all 0.5s ease;
-			@media (max-width: 1520px) {
-				width: 100%;
-				max-width: 42.5rem;
-			}
-			@media (max-width: 1200px) {
-				height: 37rem;
-			}
 			&.active {
 				z-index: 1;
 				filter: grayscale(0);
 			}
 			&:nth-child(1) {
 				transform: rotate(-6deg);
-				background: url("/public/img/steps/step-1.jpg") center / cover
-					no-repeat;
-				@media (max-width: 1520px) {
-					transform: none;
-				}
-				@media (max-width: 767px) {
-					height: 37rem;
-					width: 26rem;
-				}
+
 				&.active {
 					transform: none;
 				}
@@ -284,40 +261,16 @@
 			&:nth-child(2) {
 				transform: translate(18rem, 3.5rem) rotate(-3.5deg);
 				transform-origin: 50%;
-				background: url("/public/img/steps/step-2.jpg") center / cover
-					no-repeat;
-				@media (max-width: 1520px) {
-					transform: none;
-				}
-				@media (max-width: 767px) {
-					height: 28rem;
-					width: 20rem;
-					margin-left: auto;
-				}
+
 				&.active {
 					transform: translate(18rem, 3.5rem) rotate(3.5deg);
-					@media (max-width: 1520px) {
-						transform: none;
-					}
 				}
 			}
 			&:nth-child(3) {
 				transform: translate(38rem, 9rem);
-				background: url("/public/img/steps/step-3.jpg") center / cover
-					no-repeat;
-				@media (max-width: 1520px) {
-					transform: none;
-				}
-				@media (max-width: 767px) {
-					height: 33rem;
-					width: 23rem;
-					margin: 0 auto;
-				}
+
 				&.active {
 					transform: translate(38rem, 9rem) rotate(6.5deg);
-					@media (max-width: 1520px) {
-						transform: none;
-					}
 				}
 			}
 		}

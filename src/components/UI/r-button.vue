@@ -7,26 +7,26 @@
 
 <script>
 	export default {
-		name: "rButton",
+		name: 'rButton',
 		props: {
 			color: {
 				value: String,
-				default: "green",
+				default: 'accent',
 			},
 			text: {
 				value: String,
-				default: "button",
+				default: 'button',
 			},
 			size: {
 				value: String,
-				default: "default",
+				default: 'default',
 			},
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
-	@import "@/assets/scss/variables";
+	@import '@/assets/scss/variables';
 
 	.r-button {
 		user-select: none;
@@ -65,7 +65,7 @@
 
 		&.bordered {
 			background-color: transparent;
-			border: 0.2rem solid $middle-gray;
+			border: 0.2rem solid #bcbcbc;
 			&:hover {
 				background-color: $white;
 			}
@@ -82,6 +82,10 @@
 		}
 		&.green {
 			background-color: $accent-pale;
+		}
+		&.accent {
+			background-color: $accent;
+			color: $white;
 		}
 	}
 </style>

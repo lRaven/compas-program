@@ -2,11 +2,12 @@
 
 # Frameworks, libraries, technologies:
 
--   Vue (VueX, Vue Router)
--   SCSS
--   vue-toastification
--   vuelidate
--   axios
+- Vue (VueX, Vue Router)
+- SCSS
+- vue-toastification
+- vuelidate
+- Axios
+- Swiper
 
 ## Project setup
 

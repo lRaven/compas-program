@@ -13,18 +13,11 @@
 			:class="{ gray: isCardHover }"
 		/>
 
-		<div
-			class="project-card__hidden-block"
-			:class="{ visible: isCardHover }"
-		>
-			<h4
-				class="project-card__year project-card__el project-card__el_small"
-			>
+		<div class="project-card__hidden-block" :class="{ visible: isCardHover }">
+			<h4 class="project-card__year project-card__el project-card__el_small">
 				{{ project.year }}
 			</h4>
-			<h4
-				class="project-card__year project-card__el project-card__el_small"
-			>
+			<h4 class="project-card__year project-card__el project-card__el_small">
 				{{ project.type }}
 			</h4>
 		</div>
@@ -62,58 +55,62 @@
 </template>
 
 <script>
-	import { openLink } from "@/js/openLink";
+	import { ref } from 'vue';
+	import { openLink } from '@/js/openLink';
 
 	export default {
-		name: "ProjectCard",
+		name: 'ProjectCard',
 		props: {
 			project: {
 				value: Object,
 				required: true,
 			},
 		},
-		data: () => ({
-			isCardHover: false,
+		setup(props, { emit }) {
+			const isCardHover = ref(false);
+			const onHoverCard = () => {
+				isCardHover.value = true;
+				emit('update:modelValue', props.project);
+			};
+			const onLeaveCard = () => {
+				isCardHover.value = false;
+				emit('update:modelValue', {});
+			};
 
-			sliderCoordinates: {
-				x: 0,
-				y: 0,
-			},
-		}),
-		methods: {
-			openLink,
-
-			onHoverCard() {
-				this.isCardHover = true;
-				this.$emit("update:modelValue", this.project);
-			},
-			onLeaveCard() {
-				this.isCardHover = false;
-				this.$emit("update:modelValue", {});
-			},
-
-			onMouseMove(event) {
-				this.sliderCoordinates = {
+			const sliderCoordinates = ref({ x: 0, y: 0 });
+			const onMouseMove = (event) => {
+				sliderCoordinates.value = {
 					x: event.pageX - 20,
 					y: event.pageY - 20,
 				};
 
-				this.$emit("update:slider", this.sliderCoordinates);
-			},
+				emit('update:slider', sliderCoordinates.value);
+			};
+
+			return {
+				isCardHover,
+				onHoverCard,
+				onLeaveCard,
+
+				sliderCoordinates,
+				onMouseMove,
+
+				openLink,
+			};
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
-	@import "@/assets/scss/variables";
+	@import '@/assets/scss/variables';
 
 	.project-card {
 		cursor: pointer;
 		position: relative;
 		padding: 3rem;
 		border-radius: 7rem;
-		height: 88rem;
-		max-width: 88rem;
+		height: 75rem;
+		max-width: 75rem;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
@@ -154,7 +151,7 @@
 			justify-content: center;
 			background-color: $white;
 			border-radius: 7rem;
-			padding: 2rem 11.6rem;
+			padding: 2rem 6rem;
 			max-width: max-content;
 			@media (max-width: 767px) {
 				padding: 0.8rem 5.5rem;

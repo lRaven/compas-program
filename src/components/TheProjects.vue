@@ -6,12 +6,14 @@
 		ref="section"
 	>
 		<div class="the-projects__container center">
-			<img
-				src="/img/icons/arrow-triangle.svg"
-				alt="arrow"
-				class="the-projects__arrow"
-			/>
-			<h1 class="the-projects__title">Проекты</h1>
+			<div class="the-projects__header">
+				<h1 class="the-projects__title">Портфолио</h1>
+				<img
+					src="/img/icons/arrow-triangle.svg"
+					alt="arrow"
+					class="the-projects__arrow"
+				/>
+			</div>
 
 			<div class="the-projects__list">
 				<project-card
@@ -25,8 +27,7 @@
 				<transition mode="out-in" name="fade">
 					<project-card-slider
 						v-if="
-							Object.keys(selectedProject).length > 0 &&
-							documentWidth > 767
+							Object.keys(selectedProject).length > 0 && documentWidth > 767
 						"
 						:slides="selectedProject.slides"
 						:xPosition="sliderCoordinates.x"
@@ -42,11 +43,7 @@
 							v-for="project in projectsArchive"
 							:key="project.id"
 						>
-							<a
-								href="#"
-								target="_blank"
-								class="the-projects__archive-link"
-							>
+							<a href="#" target="_blank" class="the-projects__archive-link">
 								{{ project.name }}
 							</a>
 
@@ -88,89 +85,127 @@
 				</div>
 			</div>
 
+			<div class="the-projects__slider">
+				<r-slider
+					v-if="documentWidth <= 767"
+					sliderId="projects"
+					:slides="projects"
+					v-model="selectedProjectId"
+				></r-slider>
+				<div class="the-projects__slider-bottom">
+					<p class="the-projects__project-name">{{ selectedProject.name }}</p>
+					<div class="the-projects__project-info">
+						<p class="the-projects__project-info-value">
+							{{ selectedProject.year }}
+						</p>
+						<p class="the-projects__project-info-value">
+							{{ selectedProject.type }}
+						</p>
+					</div>
+				</div>
+			</div>
+
 			<r-estimate />
 		</div>
 	</section>
 </template>
 
 <script>
-	import { mapState } from "vuex";
+	import { useStore } from 'vuex';
+	import { ref, computed, watch } from 'vue';
+	import { scroll } from '@/js/scroll';
 
-	import ProjectCard from "@/components/projects/ProjectCard.vue";
-	import ProjectCardSlider from "@/components/projects/ProjectCardSlider.vue";
-	import rEstimate from "@/components/r-estimate.vue";
+	import ProjectCard from '@/components/projects/ProjectCard.vue';
+	import ProjectCardSlider from '@/components/projects/ProjectCardSlider.vue';
+	import rSlider from '@/components/r-slider.vue';
+	import rEstimate from '@/components/r-estimate.vue';
 
 	export default {
-		name: "TheProjects",
+		name: 'TheProjects',
 		components: {
 			ProjectCard,
 			ProjectCardSlider,
+			rSlider,
 			rEstimate,
 		},
-		data: () => ({
-			selectedProject: {},
-			sliderCoordinates: {},
 
-			yPosition: {},
-		}),
-		computed: {
-			...mapState({
-				projects: (state) => state.projects.projects,
-				projectsArchive: (state) => state.projects.projectsArchive,
-				documentWidth: (state) => state.documentWidth,
-			}),
+		setup() {
+			const store = useStore();
 
-			bgColor() {
-				const colors = [
-					"#9FB0ED",
-					"#E7ED9F",
-					"#D8F5FF",
-					"#9FEDA7",
-					"#ED9F9F",
-				];
+			const documentWidth = computed(() => store.state.documentWidth);
+			watch(documentWidth, () => {
+				if (documentWidth.value > 767) selectedProject.value = {};
+			});
 
-				if (Object.keys(this.selectedProject).length > 0) {
-					return colors[this.selectedProject.id - 1];
-				} else return "#F2F2F2";
-			},
+			const projects = computed(() => store.state.projects.projects);
+			const projectsArchive = computed(
+				() => store.state.projects.projectsArchive
+			);
+
+			const selectedProject = ref({});
+			const selectedProjectId = ref(null);
+			watch(selectedProjectId, () => {
+				selectedProject.value = projects.value.find(
+					(project) => project.id === selectedProjectId.value
+				);
+			});
+
+			const sliderCoordinates = ref({});
+			const bgColor = computed(() => {
+				const colors = ['#9fb0ed', '#e7ed9f', '#d8f5ff', '#9feda7', '#ed9f9f'];
+
+				if (Object.keys(selectedProject.value).length > 0) {
+					if (documentWidth.value > 767) {
+						return colors[selectedProject.value.id - 1];
+					} else return '#f2f2f2';
+				} else return '#f2f2f2';
+			});
+
+			return {
+				documentWidth,
+				scroll,
+
+				projects,
+				projectsArchive,
+
+				selectedProject,
+				selectedProjectId,
+				sliderCoordinates,
+				bgColor,
+			};
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
-	@import "@/assets/scss/variables";
+	@import '@/assets/scss/variables';
 
 	.the-projects {
 		position: static;
 		transition: all 0.2s ease;
+		padding-bottom: 12rem;
+
+		&__header {
+			display: flex;
+			align-items: flex-end;
+			gap: 12rem;
+			margin-bottom: 4rem;
+		}
 		&__arrow {
 			height: 7rem;
 			width: max-content;
-			margin-left: auto;
-			transform: rotate(180deg) translateX(22.5rem);
-			margin-bottom: 8rem;
-			@media (max-width: 1600px) {
-				transform: rotate(180deg);
-			}
-			@media (max-width: 1023px) {
-				margin-bottom: 6rem;
-			}
-		}
-		&__title {
-			text-align: center;
-			transform: translateX(15rem);
-			margin-bottom: 16rem;
-			@media (max-width: 1023px) {
-				transform: none;
-				text-align: left;
-			}
+			transform: rotate(90deg);
 			@media (max-width: 767px) {
-				margin-bottom: 3rem;
+				display: none;
 			}
 		}
 		&__container {
 			display: flex;
 			flex-direction: column;
+			padding-bottom: 5rem;
+			@media (min-width: 768px) {
+				border-bottom: 0.2rem solid #c9c9c9;
+			}
 		}
 
 		&__list {
@@ -178,22 +213,19 @@
 			align-items: flex-end;
 			flex-wrap: wrap;
 			justify-content: space-between;
-			gap: 16rem;
+			gap: 12rem;
 			margin-bottom: 16rem;
 			@media (max-width: 1023px) {
 				margin-bottom: 7rem;
 			}
 			@media (max-width: 767px) {
-				gap: 7rem;
-				justify-content: flex-start;
-				flex-direction: column;
-				align-items: flex-start;
+				display: none;
 			}
 
 			.project-card {
 				&:nth-child(2) {
-					height: 70rem;
-					width: 70rem;
+					height: 65rem;
+					width: 65rem;
 					margin-left: auto;
 					@media (max-width: 767px) {
 						margin-left: 0;
@@ -211,22 +243,17 @@
 					}
 				}
 				&:nth-child(4) {
+					align-self: flex-start;
 					height: 60rem;
 					width: 60rem;
-					transform: translateY(50%);
-					@media (max-width: 1720px) {
-						order: 2;
-						transform: none;
-					}
+
 					@media (max-width: 767px) {
 						width: 100%;
 					}
 				}
 				&:nth-child(5) {
 					margin-left: auto;
-					@media (max-width: 1720px) {
-						order: 1;
-					}
+
 					@media (max-width: 767px) {
 						margin-left: 0;
 					}
@@ -235,9 +262,10 @@
 		}
 
 		&__archive {
-			margin: 0 25rem 16rem auto;
+			margin: 0 10rem 0 auto;
 			width: max-content;
 			order: 3;
+			font-family: 'Roboto', sans-serif;
 			@media (max-width: 1300px) {
 				margin-right: 0;
 			}
@@ -268,7 +296,7 @@
 				position: relative;
 				color: inherit;
 				&::after {
-					content: "";
+					content: '';
 					position: absolute;
 					left: 0;
 					right: 0;
@@ -279,8 +307,29 @@
 			}
 		}
 
-		&__btn {
-			width: 100%;
+		&__slider {
+			margin-bottom: 4rem;
+			border-bottom: 0.2rem solid #c9c9c9;
+			@media (min-width: 768px) {
+				display: none;
+			}
+
+			.r-slider {
+				margin-bottom: 2.5rem;
+			}
+		}
+
+		&__project {
+			&-name {
+				font-family: 'Roboto', sans-serif;
+				font-size: 2.4rem;
+			}
+			&-info {
+				font-family: 'Roboto', sans-serif;
+				display: flex;
+				gap: 2rem;
+				margin-bottom: 1rem;
+			}
 		}
 	}
 </style>

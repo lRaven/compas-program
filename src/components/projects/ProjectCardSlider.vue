@@ -1,9 +1,7 @@
 <template>
 	<div
 		class="project-card-slider"
-		:style="`left: ${
-			documentWidth <= 767 ? '15' : xPosition
-		}px; top: ${yPosition}px`"
+		:style="`left: ${xPosition}px; top: ${yPosition}px`"
 	>
 		<h4 class="project-card-slider__description">ПЕРЕЙТИ</h4>
 		<div class="project-card-slider__body">
@@ -25,10 +23,10 @@
 </template>
 
 <script>
-	import { mapState } from "vuex";
+	import { ref, computed, onMounted } from 'vue';
 
 	export default {
-		name: "ProjectCardSlider",
+		name: 'ProjectCardSlider',
 		props: {
 			slides: {
 				value: Array,
@@ -37,50 +35,44 @@
 			xPosition: Number,
 			yPosition: Number,
 		},
-		watch: {
-			slidesLength() {
-				if (this.slidesLength) {
-					this.changeSlides();
-				}
-			},
-		},
-		computed: {
-			...mapState(["documentWidth"]),
-			slidesLength() {
-				if (this.slides) {
-					return this.slides.length;
+		setup(props) {
+			const numberOfSlide = ref(1);
+			const slidesLength = computed(() => {
+				if (props.slides) {
+					return props.slides.length;
 				} else return 0;
-			},
-		},
-		data: () => ({ numberOfSlide: 1 }),
-		methods: {
-			incrementSlide() {
-				if (this.numberOfSlide >= this.slidesLength)
-					this.numberOfSlide = 1;
-				this.numberOfSlide++;
-			},
-
-			changeSlides() {
+			});
+			const incrementSlide = () => {
+				if (numberOfSlide.value >= slidesLength.value) numberOfSlide.value = 0;
+				numberOfSlide.value++;
+			};
+			const changeSlides = () => {
 				setTimeout(() => {
-					if (this.slidesLength) {
-						this.incrementSlide();
-						this.changeSlides();
+					if (slidesLength.value) {
+						incrementSlide();
+						changeSlides();
 					} else {
-						this.numberOfSlide = 1;
+						numberOfSlide.value = 1;
 					}
 				}, 1500);
-			},
-		},
-		mounted() {
-			if (this.slidesLength) {
-				this.changeSlides();
-			}
+			};
+
+			onMounted(() => {
+				if (slidesLength.value) changeSlides();
+			});
+
+			return {
+				numberOfSlide,
+				incrementSlide,
+				changeSlides,
+				slidesLength,
+			};
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
-	@import "@/assets/scss/variables";
+	@import '@/assets/scss/variables';
 
 	.project-card-slider {
 		pointer-events: none;

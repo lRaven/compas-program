@@ -7,24 +7,23 @@
 </template>
 
 <script>
-	import { mapActions } from 'vuex';
+	import { watch } from 'vue';
+	import { useRoute } from 'vue-router';
+	import { useStore } from 'vuex';
 
 	export default {
-		watch: {
-			$route(to) {
-				document.title = to.meta.title || 'Default Title';
-			},
+		setup() {
+			const store = useStore();
+			store.dispatch('getDocumentWidth');
 
-			'$route.path'() {
-				//* срабатывает при переходе по router-link
-				document.querySelector('body').classList.remove('locked');
-			},
-		},
-		methods: {
-			...mapActions(['getDocumentWidth']),
-		},
-		mounted() {
-			this.getDocumentWidth();
+			const route = useRoute();
+			const routePath = route.path;
+			watch(route, (to) => {
+				document.title = to.meta.title || 'Default Title';
+
+				if (route.path !== routePath)
+					document.querySelector('body').classList.remove('locked');
+			});
 		},
 	};
 </script>
@@ -136,9 +135,9 @@
 	}
 
 	h1 {
-		text-transform: uppercase;
 		font-size: $text-3xl;
 		font-weight: 500;
+		font-family: 'Roboto', sans-serif;
 		line-height: 1.4;
 		@media (max-width: 767px) {
 			font-size: $text-2xl;
@@ -148,15 +147,18 @@
 		}
 	}
 	h2 {
-		text-transform: uppercase;
 		font-size: $text-2xl;
-		font-weight: 500;
-		line-height: 1.4;
+		font-family: 'Roboto', sans-serif;
+		line-height: 1.1;
+		color: $dark;
 		@media (max-width: 767px) {
-			font-size: 4.2rem;
+			font-size: 4.6rem;
 		}
 		@media (max-width: 425px) {
 			font-size: $text-xl;
+		}
+		@media (max-width: 375px) {
+			font-size: 3rem;
 		}
 	}
 	h3 {

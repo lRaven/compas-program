@@ -9,5 +9,7 @@ module.exports = defineConfig({
 			args[0].yandexMetrica = process.env.VUE_APP_META_YANDEX_METRICA;
 			return args;
 		})
-	}
+	},
+
+	pwa: { name: 'Compas Pro' },
 })

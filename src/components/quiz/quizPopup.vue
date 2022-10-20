@@ -6,10 +6,7 @@
 				v-show="isPopupContentVisible"
 				@click.stop
 			>
-				<button
-					class="quiz-popup__close"
-					@click="this.$emit('closePopup')"
-				>
+				<button class="quiz-popup__close" @click="this.$emit('closePopup')">
 					<img src="/img/icons/cross.svg" alt="close" />
 				</button>
 
@@ -24,9 +21,7 @@
 							</p>
 							<div class="quiz-popup__slide-1-row">
 								<text-checkbox
-									v-for="(
-										result, index
-									) in quizData.result_view"
+									v-for="(result, index) in quizData.result_view"
 									:key="result.id"
 									:color="result.color"
 									:text="result.description"
@@ -43,10 +38,7 @@
 					</transition>
 
 					<transition mode="out-in" name="fade-left">
-						<div
-							class="quiz-popup__slide quiz-popup__slide-2"
-							v-if="false"
-						>
+						<div class="quiz-popup__slide quiz-popup__slide-2" v-if="false">
 							<p class="quiz-popup__slide-title">
 								Как должен выглядеть результат?
 							</p>
@@ -74,9 +66,7 @@
 							class="quiz-popup__slide quiz-popup__slide-2"
 							v-show="quizProgress.step === 2"
 						>
-							<p
-								class="quiz-popup__slide-title quiz-popup__slide-2-title"
-							>
+							<p class="quiz-popup__slide-title quiz-popup__slide-2-title">
 								Оптимальная стоимость
 							</p>
 							<div class="quiz-popup__slide-2-row">
@@ -97,9 +87,7 @@
 								</text-radio>
 							</div>
 
-							<p
-								class="quiz-popup__slide-title quiz-popup__slide-2-title"
-							>
+							<p class="quiz-popup__slide-title quiz-popup__slide-2-title">
 								Оптимальный срок
 							</p>
 							<div class="quiz-popup__slide-2-row">
@@ -123,10 +111,7 @@
 					</transition>
 
 					<transition mode="out-in" name="fade-left">
-						<div
-							class="quiz-popup__slide"
-							v-show="quizProgress.step === 3"
-						>
+						<div class="quiz-popup__slide" v-show="quizProgress.step === 3">
 							<p class="quiz-popup__slide-title">
 								Укажите контактные данные,<br />
 								чтобы мы отправили Вам смету вашего проекта.
@@ -178,13 +163,11 @@
 							class="quiz-popup__slide quiz-popup__slide-end"
 							v-show="quizProgress.step === 4"
 						>
-							<p class="quiz-popup__slide-title">
-								Ваша заявка отправлена
-							</p>
+							<p class="quiz-popup__slide-title">Ваша заявка отправлена</p>
 
 							<p class="quiz-popup__slide-end-description">
-								Ваша заявка отправлена, в ближайщее время с вами
-								свяжется наш менеджер.
+								Ваша заявка отправлена, в ближайщее время с вами свяжется наш
+								менеджер.
 							</p>
 
 							<img
@@ -202,31 +185,22 @@
 							center: quizProgress.step === quizProgress.steps,
 						}"
 						text="Назад"
-						:color="
-							quizProgress.step === quizProgress.steps
-								? 'green'
-								: 'gray'
-						"
+						:color="quizProgress.step === quizProgress.steps ? 'green' : 'gray'"
 						v-show="quizProgress.step > 1"
 						@click="quizProgress.step--"
 					></r-button>
 
 					<div
 						class="quiz-popup__bottom-col"
-						v-show="
-							this.quizProgress.step < this.quizProgress.steps - 1
-						"
+						v-show="this.quizProgress.step < this.quizProgress.steps - 1"
 					>
 						<span class="quiz-popup__bottom-counter">
-							{{
-								quizProgress.step +
-								"/" +
-								(quizProgress.steps - 1)
-							}}
+							{{ quizProgress.step + '/' + (quizProgress.steps - 1) }}
 						</span>
 
 						<r-button
 							text="Дальше"
+							color="green"
 							@click="quizProgress.step++"
 						></r-button>
 					</div>
@@ -237,15 +211,15 @@
 </template>
 
 <script>
-	import { sendQuiz } from "@/api/quiz";
-	import { returnErrorMessages } from "@/js/returnErrorMessages";
-	import { useToast } from "vue-toastification";
+	import { sendQuiz } from '@/api/quiz';
+	import { returnErrorMessages } from '@/js/returnErrorMessages';
+	import { useToast } from 'vue-toastification';
 
-	import { useVuelidate } from "@vuelidate/core";
-	import { required } from "@vuelidate/validators";
+	import { useVuelidate } from '@vuelidate/core';
+	import { required } from '@vuelidate/validators';
 
 	export default {
-		name: "quizPopup",
+		name: 'quizPopup',
 		props: {
 			isPopupOpen: {
 				value: Boolean,
@@ -253,7 +227,7 @@
 			},
 		},
 		watch: {
-			"quiz.result_view_self"() {
+			'quiz.result_view_self'() {
 				const resultViewLength = this.quizData.result_view.length + 1;
 
 				if (this.quiz.result_view_self.length > 0) {
@@ -312,43 +286,43 @@
 
 			quizData: {
 				result_view: [
-					{ id: 1, description: "Веб-сайт", color: "#9FB0ED" },
+					{ id: 1, description: 'Веб-сайт', color: '#9FB0ED' },
 					{
 						id: 2,
-						description: "Мобильное приложение",
-						color: "#E7ED9F",
+						description: 'Мобильное приложение',
+						color: '#E7ED9F',
 					},
-					{ id: 3, description: "Личный кабинет", color: "#ED9F9F" },
+					{ id: 3, description: 'Личный кабинет', color: '#ED9F9F' },
 					{
 						id: 4,
-						description: "Внутренний продукт",
-						color: "#9FEDA7",
+						description: 'Внутренний продукт',
+						color: '#9FEDA7',
 					},
-					{ id: 5, description: "Дизайн-система", color: "#FFC9AA" },
+					{ id: 5, description: 'Дизайн-система', color: '#FFC9AA' },
 					{
 						id: 6,
-						description: "Бренд для компании или продукта",
-						color: "#9FB0ED",
+						description: 'Бренд для компании или продукта',
+						color: '#9FB0ED',
 					},
 				],
 				cost: [
-					{ id: 1, description: "до 30 тыс.", color: "#9FB0ED" },
+					{ id: 1, description: 'до 30 тыс.', color: '#9FB0ED' },
 					{
 						id: 2,
-						description: "от 30 до 100 тыс.",
-						color: "#E7ED9F",
+						description: 'от 30 до 100 тыс.',
+						color: '#E7ED9F',
 					},
 					{
 						id: 3,
-						description: "от 100 до 300 тыс.",
-						color: "#ED9F9F",
+						description: 'от 100 до 300 тыс.',
+						color: '#ED9F9F',
 					},
-					{ id: 4, description: "больше 300 тыс.", color: "#9FEDA7" },
+					{ id: 4, description: 'больше 300 тыс.', color: '#9FEDA7' },
 				],
 				period: [
-					{ id: 1, description: "1-3 месяца", color: "#9FB0ED" },
-					{ id: 2, description: "6-12 месяцев", color: "#E7ED9F" },
-					{ id: 3, description: "12+ месяцев", color: "#ED9F9F" },
+					{ id: 1, description: '1-3 месяца', color: '#9FB0ED' },
+					{ id: 2, description: '6-12 месяцев', color: '#E7ED9F' },
+					{ id: 3, description: '12+ месяцев', color: '#ED9F9F' },
 				],
 			},
 		}),
@@ -373,30 +347,22 @@
 				this.v$.$validate();
 				if (!this.v$.$invalid) {
 					try {
-						this.quiz.result_view = JSON.stringify(
-							this.quiz.result_view
-						);
+						this.quiz.result_view = JSON.stringify(this.quiz.result_view);
 						const response = await sendQuiz(this.quiz);
 
 						if (response.status === 201) {
 							this.quizProgress.step = this.quizProgress.steps;
 
-							if (typeof this.quiz.result_view === "string") {
-								this.quiz.result_view = JSON.parse(
-									this.quiz.result_view
-								);
+							if (typeof this.quiz.result_view === 'string') {
+								this.quiz.result_view = JSON.parse(this.quiz.result_view);
 							}
 						}
 					} catch (err) {
-						if (typeof this.quiz.result_view === "string") {
-							this.quiz.result_view = JSON.parse(
-								this.quiz.result_view
-							);
+						if (typeof this.quiz.result_view === 'string') {
+							this.quiz.result_view = JSON.parse(this.quiz.result_view);
 						}
 
-						const error_list = returnErrorMessages(
-							err.response.data
-						);
+						const error_list = returnErrorMessages(err.response.data);
 						error_list.forEach((el) => {
 							this.toast.error(el);
 						});
@@ -410,7 +376,7 @@
 						if (Array.isArray(this.quiz[key])) {
 							this.quiz[key] = [];
 						} else {
-							this.quiz[key] = "";
+							this.quiz[key] = '';
 						}
 					}
 				}
@@ -429,7 +395,7 @@
 </script>
 
 <style lang="scss" scoped>
-	@import "@/assets/scss/variables";
+	@import '@/assets/scss/variables';
 
 	.quiz-popup {
 		cursor: pointer;
@@ -626,7 +592,7 @@
 				margin-left: auto;
 			}
 			&-counter {
-				color: $middle-gray;
+				color: #bcbcbc;
 			}
 
 			.r-button {

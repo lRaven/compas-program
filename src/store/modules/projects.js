@@ -83,7 +83,8 @@ const state = () => ({
 		{ id: 3, name: 'ПРОЕКТ-0.3', link: '' },
 		{ id: 4, name: 'ПРОЕКТ-0.4', link: '' },
 		{ id: 5, name: 'ПРОЕКТ-0.5', link: '' },
-		{ id: 6, name: '2021', link: '' },
+		{ id: 6, name: 'ПРОЕКТ-0.6', link: '' },
+		{ id: 7, name: '2021', link: '' },
 	]
 })
 

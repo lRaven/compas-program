@@ -35,6 +35,8 @@
 
 	import QuizPopup from '@/components/quiz/quizPopup.vue';
 
+	import { ref } from 'vue';
+
 	export default {
 		name: 'PageHome',
 		components: {
@@ -50,16 +52,18 @@
 
 			QuizPopup,
 		},
-		data: () => ({ isPopupOpen: false }),
-		methods: {
-			openPopup() {
+		setup() {
+			const isPopupOpen = ref(false);
+			const openPopup = () => {
 				document.querySelector('body').classList.add('locked');
-				this.isPopupOpen = true;
-			},
-			closePopup() {
+				isPopupOpen.value = true;
+			};
+			const closePopup = () => {
 				document.querySelector('body').classList.remove('locked');
-				this.isPopupOpen = false;
-			},
+				isPopupOpen.value = false;
+			};
+
+			return { isPopupOpen, openPopup, closePopup };
 		},
 	};
 </script>
@@ -68,7 +72,5 @@
 	.page-home {
 		overflow: hidden;
 		position: relative;
-		&__main {
-		}
 	}
 </style>
