@@ -18,7 +18,7 @@
 				size="big"
 				color="bordered"
 				text="Рассчитать стоимость"
-				@click="this.$emit('openPopup')"
+				@click="$emit('open-popup')"
 			></r-button>
 			<r-button
 				size="big"

@@ -6,8 +6,8 @@
 			:value="modelValue"
 			class="r-input__input"
 			@input="
-				this.$emit('update:modelValue', $event.target.value);
-				this.$emit('update:valid', $event.target.checkValidity());
+				$emit('update:modelValue', $event.target.value);
+				$emit('update:valid', $event.target.checkValidity());
 			"
 		/>
 
@@ -17,7 +17,7 @@
 
 <script>
 	export default {
-		name: "rInput",
+		name: 'rInput',
 		props: {
 			modelValue: String,
 			type: {
@@ -31,7 +31,7 @@
 </script>
 
 <style lang="scss" scoped>
-	@import "@/assets/scss/variables";
+	@import '@/assets/scss/variables';
 
 	.r-input {
 		width: 100%;

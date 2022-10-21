@@ -32,7 +32,7 @@
 					<r-button
 						color="accent"
 						text="Рассчитать стоимость проекта"
-						@click="scroll('#questions')"
+						@click="$emit('open-popup')"
 					></r-button>
 				</div>
 
@@ -54,7 +54,6 @@
 
 <script>
 	import { ref } from 'vue';
-	import { scroll } from '@/js/scroll';
 
 	export default {
 		name: 'TheBenefits',
@@ -78,7 +77,7 @@
 			];
 			const selectedBenefit = ref(null);
 
-			return { benefits, selectedBenefit, scroll };
+			return { benefits, selectedBenefit };
 		},
 	};
 </script>
@@ -87,11 +86,9 @@
 	@import '@/assets/scss/variables';
 
 	.the-benefits {
-		@media (min-width: 1320px) {
-			padding-bottom: 0;
-		}
-		@media (max-width: 1320px) {
+		@media (max-width: 1390px) {
 			position: relative;
+			padding-bottom: 0;
 
 			&::before {
 				content: '';
@@ -125,7 +122,7 @@
 		}
 
 		&__title {
-			@media (max-width: 1320px) {
+			@media (max-width: 1390px) {
 				margin-bottom: 15rem;
 			}
 			@media (max-width: 767px) {
@@ -142,14 +139,17 @@
 		}
 
 		&__col {
-			@media (min-width: 1321px) {
+			@media (min-width: 1391px) {
 				padding-top: 15rem;
 			}
 		}
 
 		&__steps {
 			.r-button {
-				@media (max-width: 1320px) {
+				@media (min-width: 767px) {
+					padding: 2.6rem 8rem;
+				}
+				@media (max-width: 1390px) {
 					width: 100%;
 				}
 				@media (max-width: 425px) {
@@ -159,8 +159,8 @@
 		}
 		&__step {
 			cursor: pointer;
-			max-width: 41rem;
-			@media (max-width: 1320px) and (min-width: 768px) {
+			max-width: 49rem;
+			@media (max-width: 1390px) and (min-width: 768px) {
 				max-width: 100%;
 				display: grid;
 				grid-gap: 5rem;
@@ -172,12 +172,13 @@
 
 			&-description {
 				font-family: 'Roboto', sans-serif;
+				font-size: $text-l;
 				color: $dark;
 				padding-bottom: 2rem;
 				border-bottom: 0.2rem solid $accent;
 				transition: color 0.2s ease;
 				height: max-content;
-				@media (max-width: 1320px) {
+				@media (max-width: 1390px) {
 					margin-bottom: 2rem;
 				}
 				&.active {
@@ -194,7 +195,7 @@
 				&.active {
 					filter: grayscale(0);
 				}
-				@media (min-width: 1321px) {
+				@media (min-width: 1391px) {
 					display: none;
 				}
 			}
@@ -215,7 +216,7 @@
 			display: grid;
 			width: 90rem;
 			z-index: 1;
-			@media (max-width: 1320px) {
+			@media (max-width: 1390px) {
 				display: none;
 			}
 			&::before,

@@ -6,7 +6,7 @@
 			class="text-checkbox__real"
 			:checked="isChecked"
 			:value="value"
-			@change.stop="this.$emit('update:modelValue', value)"
+			@change.stop="$emit('update:modelValue', value)"
 		/>
 
 		<div
@@ -25,56 +25,63 @@
 </template>
 
 <script>
+	import { computed } from 'vue';
+
 	export default {
-		name: "TextCheckbox",
+		name: 'TextCheckbox',
 		props: {
 			selectedValue: [String, Number],
 			value: [String, Number],
 			text: {
 				value: [String, Number],
-				default: "radio",
+				default: 'radio',
 			},
 			radioGroup: {
 				value: String,
-				default: "radio",
+				default: 'radio',
 			},
 
 			//* style
 			designOptions: {
 				value: Object,
 				default: {
-					accentColor: "#1d1d1d",
-					defaultColor: "transparent",
+					accentColor: '#1d1d1d',
+					defaultColor: 'transparent',
 					isHasBorder: false,
 				},
 			},
 		},
-		computed: {
-			isChecked() {
-				return this.value === this.selectedValue;
-			},
+		setup(props) {
+			const isChecked = computed(() => props.value === props.selectedValue);
 
-			checkedStyles() {
-				const bg = `background-color: ${this.designOptions.accentColor};`;
-				const border = `border-color: ${this.designOptions.accentColor};`;
+			const checkedStyles = computed(() => {
+				const bg = `background-color: ${props.designOptions.accentColor};`;
+				const border = `border-color: ${props.designOptions.accentColor};`;
 				const textColor = `color: #fff`;
 
-				if (this.designOptions.isHasBorder) {
+				if (props.designOptions.isHasBorder) {
 					return bg + border + textColor;
 				} else {
 					return bg;
 				}
-			},
-			uncheckedStyles() {
-				const bg = `background-color: ${this.designOptions.defaultColor};`;
-				const border = `border-color: ${this.designOptions.accentColor};`;
+			});
+			const uncheckedStyles = computed(() => {
+				const bg = `background-color: ${props.designOptions.defaultColor};`;
+				const border = `border-color: ${props.designOptions.accentColor};`;
 
-				if (this.designOptions.isHasBorder) {
+				if (props.designOptions.isHasBorder) {
 					return bg + border;
 				} else {
 					return bg;
 				}
-			},
+			});
+
+			return {
+				isChecked,
+
+				checkedStyles,
+				uncheckedStyles,
+			};
 		},
 	};
 </script>

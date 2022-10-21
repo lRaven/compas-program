@@ -19,20 +19,20 @@
 				/>
 			</button>
 
-			<text-radio
+			<TextRadio
 				v-for="(item, index) in estimateList"
 				:key="item.id"
-				:designOptions="{
+				:design-options="{
 					accentColor: item.color,
 					defaultColor: 'transparent',
 					isHasBorder: true,
 				}"
 				:text="item.description"
-				:selectedValue="selectedEstimate"
+				:selected-value="selectedEstimate"
 				:value="index + 1"
-				radioGroup="estimate"
+				radio-group="estimate"
 				v-model="selectedEstimate"
-			></text-radio>
+			></TextRadio>
 		</div>
 
 		<div class="r-estimate__main" :class="{ open: selectedEstimate }">
@@ -727,9 +727,9 @@
 			></r-button>
 			<r-button
 				:class="{ open: isEstimateOpen }"
+				class="r-estimate__start"
 				:color="isEstimateOpen ? 'black' : 'accent'"
-				:size="{ big: !isEstimateOpen }"
-				:text="isEstimateOpen ? 'Скачать всё' : 'Получить смету'"
+				:text="isEstimateOpen ? 'Скачать всё' : 'Рассчитать стоимость проекта'"
 				@click="
 					isEstimateOpen ? (isDownloadPdf = true) : (isEstimateOpen = true)
 				"
@@ -739,34 +739,14 @@
 </template>
 
 <script>
+	import { ref, computed, watch } from 'vue';
 	import { openLink } from '@/js/openLink';
 
 	export default {
 		name: 'rEstimate',
 		setup() {
-			return {};
-		},
-		watch: {
-			isDownloadPdf() {
-				if (this.isDownloadPdf) {
-					this.downloadPdf();
-					setTimeout(() => {
-						this.isDownloadPdf = false;
-					}, 2000);
-				}
-			},
-		},
-		computed: {
-			selectedEstimateFull() {
-				return (
-					this.estimateList.find((el) => el.id === this.selectedEstimate) || {}
-				);
-			},
-		},
-		data: () => ({
-			isEstimateOpen: false,
-			isDownloadPdf: false,
-			estimateList: [
+			const isEstimateOpen = ref(false);
+			const estimateList = [
 				{
 					id: 1,
 					description: 'Веб-сайт',
@@ -797,16 +777,35 @@
 					description: 'Дизайн-система',
 					color: '#383838',
 				},
-			],
+			];
 
-			selectedEstimate: null,
-		}),
-		methods: {
-			downloadPdf() {
-				openLink(
-					`${process.env.VUE_APP_BACKEND_BASEURL}/media-smeta/smeta.pdf/`
-				);
-			},
+			const selectedEstimate = ref(null);
+			const selectedEstimateFull = computed(() =>
+				estimateList.value.find((el) => el.id === selectedEstimate.value)
+			);
+
+			const isDownloadPdf = ref(false);
+			watch(isDownloadPdf, () => {
+				if (isDownloadPdf.value) {
+					openLink(
+						`${process.env.VUE_APP_BACKEND_BASEURL}/media-smeta/smeta.pdf/`
+					);
+					setTimeout(() => {
+						isDownloadPdf.value = false;
+					}, 2000);
+				}
+			});
+
+			return {
+				isEstimateOpen,
+				estimateList,
+
+				selectedEstimate,
+				selectedEstimateFull,
+
+				isDownloadPdf,
+				openLink,
+			};
 		},
 	};
 </script>
@@ -948,6 +947,12 @@
 				@media (max-width: 470px) {
 					width: inherit;
 				}
+			}
+		}
+
+		&__start {
+			@media (min-width: 767px) {
+				padding: 2.6rem 8rem;
 			}
 		}
 	}

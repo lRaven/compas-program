@@ -4,14 +4,14 @@
 			class="r-textarea__input"
 			:placeholder="placeholder"
 			:value="modelValue"
-			@input="this.$emit('update:modelValue', $event.target.value)"
+			@input="$emit('update:modelValue', $event.target.value)"
 		></textarea>
 	</label>
 </template>
 
 <script>
 	export default {
-		name: "rTextarea",
+		name: 'rTextarea',
 		props: {
 			modelValue: String,
 			placeholder: [String, Number],
@@ -20,7 +20,7 @@
 </script>
 
 <style lang="scss" scoped>
-	@import "@/assets/scss/variables";
+	@import '@/assets/scss/variables';
 
 	.r-textarea {
 		padding: 2rem 1rem 2rem 3rem;

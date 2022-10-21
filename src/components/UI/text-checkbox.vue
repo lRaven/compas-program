@@ -5,8 +5,8 @@
 			class="text-checkbox__real"
 			v-model="isChecked"
 			@change.stop="
-				this.$emit('update:modelValue', selectedValue);
-				this.$emit('change', selectedValue, $event.target.checked);
+				$emit('update:modelValue', selectedValue);
+				$emit('change', selectedValue, $event.target.checked);
 			"
 		/>
 
@@ -15,8 +15,7 @@
 			:style="`background-color: ${isChecked ? color : '#DFE3E3'}`"
 			@mouseenter="$event.target.style = 'background-color:' + color"
 			@mouseleave="
-				if (!isChecked)
-					$event.target.style = 'background-color: #DFE3E3';
+				if (!isChecked) $event.target.style = 'background-color: #DFE3E3';
 			"
 		>
 			{{ text }}
@@ -25,21 +24,25 @@
 </template>
 
 <script>
+	import { ref } from 'vue';
+
 	export default {
-		name: "TextCheckbox",
+		name: 'TextCheckbox',
 		props: {
 			selectedValue: [String, Number],
 			color: {
 				value: String,
-				default: "#1d1d1d",
+				default: '#1d1d1d',
 			},
 			text: {
 				value: [String, Number],
-				default: "checkbox",
+				default: 'checkbox',
 			},
 		},
-
-		data: () => ({ isChecked: false }),
+		setup() {
+			const isChecked = ref(false);
+			return { isChecked };
+		},
 	};
 </script>
 

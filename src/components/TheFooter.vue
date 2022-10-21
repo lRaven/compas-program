@@ -102,8 +102,8 @@
 
 	export default {
 		name: 'TheFooter',
-		methods: {
-			scroll,
+		setup() {
+			return { scroll };
 		},
 	};
 </script>

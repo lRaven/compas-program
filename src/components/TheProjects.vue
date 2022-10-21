@@ -16,23 +16,23 @@
 			</div>
 
 			<div class="the-projects__list">
-				<project-card
+				<ProjectCard
 					v-for="project in projects"
 					:key="project.id"
 					:project="project"
 					v-model="selectedProject"
 					v-model:slider="sliderCoordinates"
-				></project-card>
+				></ProjectCard>
 
 				<transition mode="out-in" name="fade">
-					<project-card-slider
+					<ProjectCardSlider
 						v-if="
 							Object.keys(selectedProject).length > 0 && documentWidth > 767
 						"
 						:slides="selectedProject.slides"
-						:xPosition="sliderCoordinates.x"
-						:yPosition="sliderCoordinates.y"
-					></project-card-slider>
+						:x-position="sliderCoordinates.x"
+						:y-position="sliderCoordinates.y"
+					></ProjectCardSlider>
 				</transition>
 
 				<div class="the-projects__archive">
@@ -43,7 +43,11 @@
 							v-for="project in projectsArchive"
 							:key="project.id"
 						>
-							<a href="#" target="_blank" class="the-projects__archive-link">
+							<a
+								href="https://compas-pro.ru/portfolio"
+								target="_blank"
+								class="the-projects__archive-link"
+							>
 								{{ project.name }}
 							</a>
 
@@ -88,7 +92,7 @@
 			<div class="the-projects__slider">
 				<r-slider
 					v-if="documentWidth <= 767"
-					sliderId="projects"
+					slider-id="projects"
 					:slides="projects"
 					v-model="selectedProjectId"
 				></r-slider>
@@ -183,13 +187,19 @@
 	.the-projects {
 		position: static;
 		transition: all 0.2s ease;
-		padding-bottom: 12rem;
+
+		@media (min-width: 768px) {
+			padding-bottom: 12rem;
+		}
 
 		&__header {
 			display: flex;
 			align-items: flex-end;
 			gap: 12rem;
-			margin-bottom: 4rem;
+			margin-bottom: 8.7rem;
+			@media (max-width: 540px) {
+				margin-bottom: 4rem;
+			}
 		}
 		&__arrow {
 			height: 7rem;
@@ -202,8 +212,9 @@
 		&__container {
 			display: flex;
 			flex-direction: column;
-			padding-bottom: 5rem;
+
 			@media (min-width: 768px) {
+				padding-bottom: 5rem;
 				border-bottom: 0.2rem solid #c9c9c9;
 			}
 		}
@@ -278,10 +289,8 @@
 				margin-bottom: 3rem;
 				color: $gray;
 			}
-			&-list {
-			}
+
 			&-project {
-				cursor: pointer;
 				display: flex;
 				align-items: center;
 				gap: 2rem;

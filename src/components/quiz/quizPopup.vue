@@ -1,12 +1,12 @@
 <template>
-	<div class="quiz-popup" @click="this.$emit('closePopup')">
+	<div class="quiz-popup" @click="$emit('close-popup')">
 		<transition mode="out-in">
 			<div
 				class="quiz-popup__content"
 				v-show="isPopupContentVisible"
 				@click.stop
 			>
-				<button class="quiz-popup__close" @click="this.$emit('closePopup')">
+				<button class="quiz-popup__close" @click="$emit('close-popup')">
 					<img src="/img/icons/cross.svg" alt="close" />
 				</button>
 
@@ -20,15 +20,15 @@
 								Как должен выглядеть результат?
 							</p>
 							<div class="quiz-popup__slide-1-row">
-								<text-checkbox
+								<TextCheckbox
 									v-for="(result, index) in quizData.result_view"
 									:key="result.id"
 									:color="result.color"
 									:text="result.description"
-									:selectedValue="index + 1"
+									:selected-value="index + 1"
 									@change="collectTypes"
 								>
-								</text-checkbox>
+								</TextCheckbox>
 							</div>
 							<r-input
 								placeholder="Свой вариант"
@@ -70,7 +70,7 @@
 								Оптимальная стоимость
 							</p>
 							<div class="quiz-popup__slide-2-row">
-								<text-radio
+								<TextRadio
 									v-for="(cost, index) in quizData.cost"
 									:key="cost.id"
 									:designOptions="{
@@ -79,19 +79,19 @@
 										isHasBorder: false,
 									}"
 									:text="cost.description"
-									:selectedValue="quiz.cost"
+									:selected-value="quiz.cost"
 									:value="index + 1"
-									radioGroup="cost"
+									radio-group="cost"
 									v-model.number="quiz.cost"
 								>
-								</text-radio>
+								</TextRadio>
 							</div>
 
 							<p class="quiz-popup__slide-title quiz-popup__slide-2-title">
 								Оптимальный срок
 							</p>
 							<div class="quiz-popup__slide-2-row">
-								<text-radio
+								<TextRadio
 									v-for="(period, index) in quizData.period"
 									:key="period.id"
 									:designOptions="{
@@ -100,12 +100,12 @@
 										isHasBorder: false,
 									}"
 									:text="period.description"
-									:selectedValue="quiz.period"
+									:selected-value="quiz.period"
 									:value="index + 1"
-									radioGroup="period"
+									radio-group="period"
 									v-model.number="quiz.period"
 								>
-								</text-radio>
+								</TextRadio>
 							</div>
 						</div>
 					</transition>
@@ -125,30 +125,24 @@
 								<r-input
 									placeholder="Ваше имя"
 									v-model.trim="quiz.first_name"
-									:errorMessage="
+									:error-message="
 										v$.quiz.first_name.$errors.length > 0
 											? 'Обязательное поле'
 											: null
 									"
 								></r-input>
-								<!-- <r-input
-									placeholder="Где вы работаете"
-									v-model.trim="quiz.work_place"
-								></r-input> -->
+
 								<r-input
 									placeholder="Номер телефона"
 									type="tel"
 									v-model.trim="quiz.connector"
-									:errorMessage="
+									:error-message="
 										v$.quiz.connector.$errors.length > 0
 											? 'Обязательное поле'
 											: null
 									"
 								></r-input>
-								<!-- <r-input
-									placeholder="За что отвечаете в компании"
-									v-model.trim="quiz.responsibilities"
-								></r-input> -->
+
 								<r-button
 									type="submit"
 									color="bordered"
@@ -211,6 +205,7 @@
 </template>
 
 <script>
+	import { ref, onMounted } from 'vue';
 	import { sendQuiz } from '@/api/quiz';
 	import { returnErrorMessages } from '@/js/returnErrorMessages';
 	import { useToast } from 'vue-toastification';
@@ -245,46 +240,21 @@
 				}
 			},
 		},
-		computed: {
-			isFormValid() {
-				// if (
-				// 	this.quiz.first_name &&
-				// 	// this.quiz.work_place &&
-				// 	this.quiz.connector
-				// 	// && this.quiz.responsibilities
-				// ) {
-				// 	return true;
-				// } else return false;
-
-				return true;
-			},
-		},
-		data: () => ({
-			isPopupContentVisible: false,
-
+		validations: () => ({
 			quiz: {
-				result_view: [],
-				result_view_self: null,
-
-				wishes: null,
-				url_reference: null,
-				file: null,
-
-				cost: null,
-				period: null,
-
-				first_name: null,
-				work_place: null,
-				connector: null,
-				responsibilities: null,
+				first_name: { required },
+				connector: { required },
 			},
+		}),
+		setup() {
+			const isPopupContentVisible = ref(false);
+			onMounted(() => {
+				setTimeout(() => {
+					isPopupContentVisible.value = true;
+				}, 300);
+			});
 
-			quizProgress: {
-				steps: 4,
-				step: 1,
-			},
-
-			quizData: {
+			const quizData = {
 				result_view: [
 					{ id: 1, description: 'Веб-сайт', color: '#9FB0ED' },
 					{
@@ -324,72 +294,92 @@
 					{ id: 2, description: '6-12 месяцев', color: '#E7ED9F' },
 					{ id: 3, description: '12+ месяцев', color: '#ED9F9F' },
 				],
-			},
-		}),
-		validations: () => ({
-			quiz: {
-				first_name: { required },
-				connector: { required },
-			},
-		}),
-		methods: {
-			collectTypes(value, checked) {
+			};
+			const quiz = ref({
+				result_view: [],
+				result_view_self: null,
+
+				wishes: null,
+				url_reference: null,
+				file: null,
+
+				cost: null,
+				period: null,
+
+				first_name: null,
+				work_place: null,
+				connector: null,
+				responsibilities: null,
+			});
+
+			const quizProgress = ref({
+				steps: 4,
+				step: 1,
+			});
+
+			const collectTypes = (value, checked) => {
 				if (checked) {
-					this.quiz.result_view.push(value);
+					quiz.value.result_view.push(value);
 				} else {
-					this.quiz.result_view = this.quiz.result_view.filter(
+					quiz.value.result_view = quiz.value.result_view.filter(
 						(el) => el !== value
 					);
 				}
-			},
+			};
 
-			async sendForm() {
-				this.v$.$validate();
-				if (!this.v$.$invalid) {
+			const sendForm = async () => {
+				v$.value.$validate();
+
+				if (!v$.value.$invalid) {
 					try {
-						this.quiz.result_view = JSON.stringify(this.quiz.result_view);
-						const response = await sendQuiz(this.quiz);
+						quiz.value.result_view = JSON.stringify(quiz.value.result_view);
+						const response = await sendQuiz(quiz.value);
 
 						if (response.status === 201) {
-							this.quizProgress.step = this.quizProgress.steps;
-
-							if (typeof this.quiz.result_view === 'string') {
-								this.quiz.result_view = JSON.parse(this.quiz.result_view);
-							}
+							quizProgress.value.step = quizProgress.value.steps;
 						}
 					} catch (err) {
-						if (typeof this.quiz.result_view === 'string') {
-							this.quiz.result_view = JSON.parse(this.quiz.result_view);
-						}
-
 						const error_list = returnErrorMessages(err.response.data);
 						error_list.forEach((el) => {
-							this.toast.error(el);
+							toast.error(el);
 						});
-					}
-				}
-			},
-
-			resetForm() {
-				for (const key in this.quiz) {
-					if (Object.hasOwnProperty.call(this.quiz, key)) {
-						if (Array.isArray(this.quiz[key])) {
-							this.quiz[key] = [];
-						} else {
-							this.quiz[key] = '';
+					} finally {
+						if (typeof quiz.value.result_view === 'string') {
+							quiz.value.result_view = JSON.parse(quiz.value.result_view);
 						}
 					}
 				}
-			},
-		},
-		mounted() {
-			setTimeout(() => {
-				this.isPopupContentVisible = true;
-			}, 300);
-		},
-		setup() {
+			};
+			const resetForm = () => {
+				for (const key in quiz.value) {
+					if (Object.hasOwnProperty.call(quiz.value, key)) {
+						if (Array.isArray(quiz.value[key])) {
+							quiz.value[key] = [];
+						} else {
+							quiz.value[key] = '';
+						}
+					}
+				}
+			};
+
 			const toast = useToast();
-			return { toast, v$: useVuelidate() };
+			const v$ = useVuelidate();
+
+			return {
+				isPopupContentVisible,
+
+				quizData,
+				quiz,
+				quizProgress,
+
+				collectTypes,
+
+				sendForm,
+				resetForm,
+
+				toast,
+				v$,
+			};
 		},
 	};
 </script>
@@ -558,11 +548,7 @@
 			gap: 2rem;
 			width: 100%;
 			max-width: 70rem;
-			// display: grid;
-			// grid-template-columns: repeat(2, 1fr);
-			// grid-gap: 2rem;
 			@media (max-width: 767px) {
-				// grid-template-columns: 1fr;
 				width: 100%;
 			}
 

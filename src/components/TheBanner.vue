@@ -1,5 +1,5 @@
 <template>
-	<section class="the-banner" id="banner">
+	<section class="the-banner" id="banner" v-once>
 		<div class="the-banner__container center">
 			<h2 class="the-banner__title">
 				Cоздадим
@@ -11,7 +11,7 @@
 			<r-button
 				text="Рассчитать стоимость проекта"
 				color="accent"
-				@click="scroll('#questions')"
+				@click="$emit('open-popup')"
 			></r-button>
 
 			<div class="the-banner__steps">
@@ -24,8 +24,6 @@
 </template>
 
 <script>
-	import { scroll } from '@/js/scroll';
-
 	export default {
 		name: 'TheBanner',
 		setup() {
@@ -43,7 +41,7 @@
 					text: 'В договоре утверждаем  сроки и поэтапную оплату. Также у нас есть рассрочка платежа',
 				},
 			];
-			return { steps, scroll };
+			return { steps };
 		},
 	};
 </script>
@@ -99,8 +97,10 @@
 		}
 		.r-button {
 			margin-bottom: 16rem;
-			padding: 2.6rem 8rem;
 			width: fit-content;
+			@media (min-width: 767px) {
+				padding: 2.6rem 8rem;
+			}
 			@media (max-width: 540px) {
 				padding: 2rem 6rem;
 				font-size: $text-m;
@@ -130,21 +130,18 @@
 			}
 
 			&:first-child {
-				max-width: 45rem;
-				@media (max-width: 540px) {
-					max-width: 100%;
+				@media (min-width: 768px) {
+					max-width: 45rem;
 				}
 			}
 			&:nth-child(2) {
-				max-width: 32rem;
-				@media (max-width: 540px) {
-					max-width: 100%;
+				@media (min-width: 768px) {
+					max-width: 32rem;
 				}
 			}
 			&:nth-child(3) {
-				max-width: 27rem;
-				@media (max-width: 540px) {
-					max-width: 100%;
+				@media (min-width: 768px) {
+					max-width: 26rem;
 				}
 			}
 		}

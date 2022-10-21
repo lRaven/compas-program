@@ -21,7 +21,6 @@
 				default: 'Link',
 			},
 		},
-		setup() {},
 	};
 </script>
 

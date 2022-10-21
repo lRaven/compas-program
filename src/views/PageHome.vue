@@ -1,23 +1,23 @@
 <template>
 	<div class="page-home page">
-		<the-header />
+		<TheHeader />
 
 		<main class="page-home__main main">
-			<the-banner />
-			<the-benefits />
-			<the-projects @openPopup="openPopup"></the-projects>
-			<the-workflow />
-			<the-questions @openPopup="openPopup"></the-questions>
+			<TheBanner @open-popup="openPopup"></TheBanner>
+			<TheBenefits @open-popup="openPopup"></TheBenefits>
+			<TheProjects @open-popup="openPopup"></TheProjects>
+			<TheWorkflow />
+			<TheQuestions @open-popup="openPopup"></TheQuestions>
 		</main>
 
-		<the-footer />
+		<TheFooter />
 
 		<transition mode="out-in" name="fade">
-			<quiz-popup
+			<QuizPopup
 				v-if="isPopupOpen"
-				:isPopupOpen="isPopupOpen"
-				@closePopup="closePopup"
-			></quiz-popup>
+				:is-popup-open="isPopupOpen"
+				@close-popup="closePopup"
+			></QuizPopup>
 		</transition>
 	</div>
 </template>
@@ -55,12 +55,12 @@
 		setup() {
 			const isPopupOpen = ref(false);
 			const openPopup = () => {
-				document.querySelector('body').classList.add('locked');
 				isPopupOpen.value = true;
+				document.querySelector('body').classList.add('locked');
 			};
 			const closePopup = () => {
-				document.querySelector('body').classList.remove('locked');
 				isPopupOpen.value = false;
+				document.querySelector('body').classList.remove('locked');
 			};
 
 			return { isPopupOpen, openPopup, closePopup };

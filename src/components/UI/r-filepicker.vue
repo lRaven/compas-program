@@ -5,7 +5,7 @@
 			class="r-filepicker__real"
 			@change="
 				file = $event.target.files.item(0).name;
-				this.$emit('update:modelValue', $event.target.files.item(0));
+				$emit('update:modelValue', $event.target.files.item(0));
 			"
 		/>
 		<div class="r-filepicker__fake">{{ file || description }}</div>
@@ -13,10 +13,15 @@
 </template>
 
 <script>
+	import { ref } from 'vue';
+
 	export default {
-		name: "rFilepicker",
+		name: 'rFilepicker',
 		props: { description: String },
-		data: () => ({ file: null }),
+		setup() {
+			const file = ref(null);
+			return { file };
+		},
 	};
 </script>
 

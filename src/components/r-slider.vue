@@ -21,15 +21,15 @@
 		</button>
 
 		<Swiper
-			:slidesPerView="1"
-			:spaceBetween="20"
+			:slides-per-view="1"
+			:space-between="20"
 			:loop="true"
 			:modules="modules"
 			:navigation="{
 				prevEl: `.r-slider__prev-${sliderId}`,
 				nextEl: `.r-slider__next-${sliderId}`,
 			}"
-			@slideChange="onSlideChange"
+			@slide-change="onSlideChange"
 		>
 			<SwiperSlide v-for="slide in slides" :key="slide.id">
 				<img class="r-slider__image" :src="slide.image" :alt="slide.name" />
